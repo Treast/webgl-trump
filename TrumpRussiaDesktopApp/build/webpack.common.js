@@ -14,6 +14,28 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.tsx?$/,
+                enforce: 'pre',
+                use: [
+                    {
+                        loader: 'tslint-loader',
+                        options: {
+                            "configFile": "tslint.json",
+                            "tsConfigFile": "tsconfig.json",
+                            "typeCheck": true
+                        }
+                    }
+                ],
+                exclude: /(node_modules|bower_components)/,
+            },
+            {
+                test: /\.tsx?$/,
+                use: [
+                    'ts-loader'
+                ],
+                exclude: /(node_modules|bower_components)/
+            },
+            {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
@@ -25,6 +47,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [
         new HtmlPlugin({

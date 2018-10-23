@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import * as io from 'socket.io-client';
 import { CONFIG } from '../config';
 import { Room } from './Room';
 import { Pages } from '../utils/Pages';
@@ -6,6 +6,9 @@ import { Game } from './Game';
 import { DatGui } from '../utils/DatGui';
 
 export class App {
+
+    private socket: SocketIOClient.Socket;
+    private game: Game;
 
     constructor () {
         this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
@@ -19,7 +22,7 @@ export class App {
     }
 
     initRoom () {
-        this.socket.emit('room:create', id => {
+        this.socket.emit('room:create', (id: number) => {
             const room = new Room(id);
             room.setQRcode(document.getElementById('qrcode'));
             room.setLink(document.getElementById('address'));
