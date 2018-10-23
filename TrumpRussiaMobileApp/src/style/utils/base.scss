@@ -1,0 +1,28 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, .app {
+  width: 100%;
+  height: 100%;
+}
+
+ul, li{
+  list-style: none;
+}
+
+.app{
+  position: relative;
+  z-index: 1;
+}
+
+.background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}

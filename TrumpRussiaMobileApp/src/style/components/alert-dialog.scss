@@ -1,0 +1,17 @@
+body:not(.alert-box-active) [data-alert-dialog="container"] {
+  display: none;
+}
+
+[data-alert-dialog="container"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+[data-alert-dialog="element"] {
+  padding: 10px;
+}

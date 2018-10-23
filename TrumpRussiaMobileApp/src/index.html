@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Device Orientation</title>
+</head>
+<body>
+    <div class="app">
+        <div data-alert-dialog="container">
+            <div id="ad-fullscreen" data-alert-dialog="element">
+                <p>Pour une meilleure expérience,</p>
+                <p>activez le mode plein écran :</p>
+                <button data-alert-dialog="accept">Activer</button>
+                <button data-alert-dialog="refuse">Continuer</button>
+            </div>
+        </div>
+        <div class="controller">
+            <div id="timer" class="timer">5:00</div>
+            <p class="order">Essayez de récolter des informations secrètes en switchant entre les caméras</p>
+            <ul class="cameras_list">
+                <li class="cameras_item">
+                    <button class="cameras_item_btn" data-camera="0">Camera 1</button>
+                </li>
+                <li class="cameras_item">
+                    <button class="cameras_item_btn" data-camera="1">Camera 2</button>
+                </li>
+                <li class="cameras_item">
+                    <button class="cameras_item_btn" data-camera="2">Camera 3</button>
+                </li>
+            </ul>
+            <ul class="inventory_list">
+                <li class="inventory_item">
+                    <span id="inventory_1">?</span>
+                </li>
+                <li class="inventory_item">
+                    <span id="inventory_2">?</span>
+                </li>
+                <li class="inventory_item">
+                    <span id="inventory_3">?</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="background"></div>
+</body>
+</html>
