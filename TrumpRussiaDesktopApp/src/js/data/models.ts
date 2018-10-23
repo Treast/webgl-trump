@@ -1,5 +1,5 @@
-export const ModelsData = {
-    AmericaScene: {
-        filename: 'AmericaScene.dae'
-    }
+export const MODELS_DATA = {
+  AmericaScene: {
+    filename: 'AmericaScene.dae',
+  },
 };
