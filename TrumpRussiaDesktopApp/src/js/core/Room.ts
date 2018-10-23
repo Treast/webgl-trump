@@ -1,17 +1,19 @@
-import {CONFIG} from '../config';
+import { CONFIG } from '../config';
 import * as QRCode from 'qrcode';
 
 export class Room {
 
-    constructor (id) {
+    private address: string;
+
+    constructor (id: number) {
         this.address = `http://${CONFIG.MOBILE_APP.HOST}:${CONFIG.MOBILE_APP.PORT}?roomId=${id}`;
     }
 
-    setQRcode (element) {
+    setQRcode (element: HTMLElement) {
         QRCode.toCanvas(element, this.address);
     }
 
-    setLink (element) {
+    setLink (element: HTMLElement) {
         element.innerHTML = this.address
     }
 }

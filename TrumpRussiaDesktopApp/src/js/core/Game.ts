@@ -10,7 +10,7 @@ import { ModelsLoader } from './ModelsLoader';
 import { ModelsData } from './../data/models';
 import { CONFIG } from '../config';
 import { DatGui } from '../utils/DatGui';
-import {Pages} from "../utils/Pages";
+import { Pages } from "../utils/Pages";
 
 export class Game {
 

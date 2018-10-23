@@ -3,6 +3,10 @@ import {CONFIG} from '../config';
 
 class GuiParams {
 
+    public positionX: number;
+    public positionY: number;
+    public positionZ: number;
+
     constructor () {
         this.positionX = 0;
         this.positionY = 0;

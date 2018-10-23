@@ -5,7 +5,7 @@ const webpack = require('webpack');
 
 module.exports = {
     entry: {
-        app: './src/js/app.js'
+        app: './src/js/app.ts'
     },
     output: {
         path: path.join(__dirname, './../dist'),
