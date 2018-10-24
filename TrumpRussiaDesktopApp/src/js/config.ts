@@ -1,7 +1,7 @@
 export const CONFIG = {
   DEBUG_MODE: false,
   MOBILE_APP: {
-    HOST: '192.168.1.14',
+    HOST: '192.168.1.45',
     PORT: 9000,
   },
   SERVER: {
@@ -11,10 +11,10 @@ export const CONFIG = {
   GAME: {
     CAMERAS: [
       {
-        POSITION: { x: 7, y: 7, z: 19 },
+        POSITION: { x: 4, y: 3, z: 2 },
       },
       {
-        POSITION: { x: -3, y: 7, z: -14 },
+        POSITION: { x: -4, y: 3, z: -2 },
       },
       {
         POSITION: { x: -25, y: 13, z: -1 },

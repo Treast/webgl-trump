@@ -3,7 +3,7 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-  Vector3,
+  Vector3, AxesHelper, Group,
 } from 'three';
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
@@ -20,6 +20,7 @@ export class Game {
   private readonly scene: Scene;
   private loaderManager: LoadingManager;
   private initialRotation: Vector3;
+  private cameraParent: Group;
   public renderer: WebGLRenderer;
 
   constructor (socket: SocketIOClient.Socket, width: number, height: number) {
@@ -30,6 +31,11 @@ export class Game {
     this.scene = new Scene();
     this.renderer = new WebGLRenderer();
     this.renderer.setSize(this.width, this.height);
+    const axesHelper = new AxesHelper( 5 );
+    this.scene.add( axesHelper );
+    this.cameraParent = new Group();
+    this.cameraParent.add(this.camera);
+    this.scene.add(this.cameraParent);
   }
 
   resize (width: number, height: number) {
@@ -90,23 +96,17 @@ export class Game {
   }
 
   setCamera (id: number) {
-    this.camera.position.set(
+    this.cameraParent.position.set(
       CONFIG.GAME.CAMERAS[id].POSITION.x,
       CONFIG.GAME.CAMERAS[id].POSITION.y,
       CONFIG.GAME.CAMERAS[id].POSITION.z,
     );
     this.camera.lookAt(0, 0, 0);
-    this.initialRotation = new Vector3(
-      this.camera.rotation.x,
-      this.camera.rotation.y,
-      this.camera.rotation.z,
-    );
     this.camera.updateProjectionMatrix();
   }
 
   onChangeOrientation (data: any) {
-    this.camera.rotation.x = this.initialRotation.x + (data.beta / 2 * Math.PI / 180);
-    this.camera.rotation.y = this.initialRotation.y + ((data.alpha - 90) / 2 * Math.PI / 180);
-    this.camera.updateProjectionMatrix();
+    this.cameraParent.rotation.z = -((data.beta - 5) / 2 * Math.PI / 180);
+    this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 }
