@@ -9,7 +9,7 @@ export const CONFIG = {
     PORT: 3000,
   },
   GAME: {
-    ENVELOPES_NAMES: ['Enveloppe_01','Enveloppe__02','Enveloppe_03_'],
+    ENVELOPES_NAMES: ['Enveloppe_01', 'Enveloppe__02', 'Enveloppe_03_'],
     CAMERAS: [
       {
         POSITION: { x: 4, y: 3, z: 2 },

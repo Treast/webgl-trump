@@ -7,8 +7,10 @@ import {
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
 import { PAGES } from '../utils/Pages';
-import { CamerasManager } from "./CamerasManager";
-import { EnvelopesManager } from "./EnvelopesManager";
+import { CamerasManager } from './CamerasManager';
+import { EnvelopesManager } from './EnvelopesManager';
+import { Orientation } from '../typing';
+import { EffectManager } from "./EffectManager";
 
 export class Game {
 
@@ -21,6 +23,7 @@ export class Game {
   public renderer: WebGLRenderer;
   private camerasManager: CamerasManager;
   private envelopesManager: EnvelopesManager;
+  private effectManager: EffectManager;
 
   constructor (socket: SocketIOClient.Socket, width: number, height: number) {
     this.socket = socket;
@@ -30,8 +33,10 @@ export class Game {
     this.scene = new Scene();
     this.renderer = new WebGLRenderer();
     this.renderer.setSize(this.width, this.height);
+    this.renderer.shadowMap.enabled = true;
     this.camerasManager = new CamerasManager(this.scene, this.camera);
-    this.envelopesManager = new EnvelopesManager();
+    this.envelopesManager = new EnvelopesManager(this.scene);
+    this.effectManager = new EffectManager(this.scene, this.camera, this.renderer, this.width, this.height);
   }
 
   resize (width: number, height: number) {
@@ -40,11 +45,16 @@ export class Game {
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
+    this.effectManager.getComposer().setSize(window.innerWidth, window.innerHeight);
   }
 
   animate (callback: () => void = null) {
     requestAnimationFrame(this.animate.bind(this, callback));
-    this.renderer.render(this.scene, this.camera);
+    this.camerasManager.checkEnvelopeCibling(
+      this.envelopesManager.getEnvelopes(),
+      this.effectManager.getOutlinePass()
+    );
+    this.effectManager.getComposer().render();
   }
 
   init () {
@@ -53,16 +63,15 @@ export class Game {
   }
 
   initSocketListeners () {
-    this.socket.on('mobile:orientation', (data: any) => this.camerasManager.changeOrientation(data));
+    this.socket.on('mobile:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
     this.socket.on('camera:set', (id: number) => this.camerasManager.setCamera(id));
     this.socket.on('timer:end', this.setTimerEnd.bind(this));
   }
 
-  setTimerEnd () {
-    PAGES.show('timer-end');
-  }
-
   onInitDone () {
+    this.effectManager.init();
+    this.envelopesManager.init();
+    this.camerasManager.init();
     this.camerasManager.setCamera(0);
   }
 
@@ -77,5 +86,9 @@ export class Game {
       },
     );
     modelsLoader.load(MODELS_DATA);
+  }
+
+  setTimerEnd () {
+    PAGES.show('timer-end');
   }
 }
