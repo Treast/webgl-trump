@@ -3,13 +3,12 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-  Vector3, AxesHelper, Group,
 } from 'three';
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
-import { CONFIG } from '../config';
-import { DAT_GUI } from '../utils/DatGui';
 import { PAGES } from '../utils/Pages';
+import { CamerasManager } from "./CamerasManager";
+import { EnvelopesManager } from "./EnvelopesManager";
 
 export class Game {
 
@@ -19,9 +18,9 @@ export class Game {
   private readonly camera: PerspectiveCamera;
   private readonly scene: Scene;
   private loaderManager: LoadingManager;
-  private initialRotation: Vector3;
-  private cameraParent: Group;
   public renderer: WebGLRenderer;
+  private camerasManager: CamerasManager;
+  private envelopesManager: EnvelopesManager;
 
   constructor (socket: SocketIOClient.Socket, width: number, height: number) {
     this.socket = socket;
@@ -31,11 +30,8 @@ export class Game {
     this.scene = new Scene();
     this.renderer = new WebGLRenderer();
     this.renderer.setSize(this.width, this.height);
-    const axesHelper = new AxesHelper( 5 );
-    this.scene.add( axesHelper );
-    this.cameraParent = new Group();
-    this.cameraParent.add(this.camera);
-    this.scene.add(this.cameraParent);
+    this.camerasManager = new CamerasManager(this.scene, this.camera);
+    this.envelopesManager = new EnvelopesManager();
   }
 
   resize (width: number, height: number) {
@@ -48,38 +44,32 @@ export class Game {
 
   animate (callback: () => void = null) {
     requestAnimationFrame(this.animate.bind(this, callback));
-    if (CONFIG.DEBUG_MODE) {
-      this.camera.position.set(
-        DAT_GUI.params.positionX,
-        DAT_GUI.params.positionY,
-        DAT_GUI.params.positionZ,
-      );
-      this.camera.lookAt(0, 0, 0);
-      this.camera.updateProjectionMatrix();
-    }
     this.renderer.render(this.scene, this.camera);
   }
 
   init () {
-    this.initModels();
+    this.initModels(() => this.onInitDone());
+    this.initSocketListeners();
+  }
 
-    this.socket.on('mobile:orientation', this.onChangeOrientation.bind(this));
-    this.socket.on('camera:set', this.setCamera.bind(this));
+  initSocketListeners () {
+    this.socket.on('mobile:orientation', (data: any) => this.camerasManager.changeOrientation(data));
+    this.socket.on('camera:set', (id: number) => this.camerasManager.setCamera(id));
     this.socket.on('timer:end', this.setTimerEnd.bind(this));
   }
 
-  setTimerEnd() {
+  setTimerEnd () {
     PAGES.show('timer-end');
   }
 
   onInitDone () {
-    this.setCamera(0);
+    this.camerasManager.setCamera(0);
   }
 
-  initModels () {
+  initModels (onLoaded: () => void) {
     this.loaderManager = new LoadingManager();
     // this.loaderManager.onProgress = this.onModelsLoadingProgress.bind(this);
-    this.loaderManager.onLoad = this.onModelsLoadingFinish.bind(this);
+    this.loaderManager.onLoad = onLoaded;
     const modelsLoader = new ModelsLoader(
       this.loaderManager,
       (scene: Scene) => {
@@ -87,26 +77,5 @@ export class Game {
       },
     );
     modelsLoader.load(MODELS_DATA);
-  }
-
-  // onModelsLoadingProgress (count: number, length: number) {}
-
-  onModelsLoadingFinish () {
-    this.onInitDone();
-  }
-
-  setCamera (id: number) {
-    this.cameraParent.position.set(
-      CONFIG.GAME.CAMERAS[id].POSITION.x,
-      CONFIG.GAME.CAMERAS[id].POSITION.y,
-      CONFIG.GAME.CAMERAS[id].POSITION.z,
-    );
-    this.camera.lookAt(0, 0, 0);
-    this.camera.updateProjectionMatrix();
-  }
-
-  onChangeOrientation (data: any) {
-    this.cameraParent.rotation.z = -((data.beta - 5) / 2 * Math.PI / 180);
-    this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 }
