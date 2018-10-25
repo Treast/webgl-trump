@@ -16,6 +16,9 @@ ul, li{
 .app{
   position: relative;
   z-index: 1;
+  font-family: 'Chakra Petch', sans-serif;
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff;
 }
 
 .background{
@@ -24,5 +27,5 @@ ul, li{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #193238;
 }

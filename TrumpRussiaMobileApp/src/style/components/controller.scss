@@ -1,9 +1,145 @@
 .controller{
   position: relative;
   padding-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  .main-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    .cameras_list, #envelop, .zoom-slider {
+      flex-shrink: 0;
+      display: flex;
+      align-content: center;
+      justify-content: center;
+    }
+
+    .cameras_list {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-grow: 1;
+      flex-basis: 25%;
+
+      .cameras_item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .cameras_item_btn {
+        position: relative;
+        display: block;
+        height: 60px;
+        width: 60px;
+        appearance: none;
+        border: 1px solid #ffffff;
+        background: none;
+        margin-bottom: 20px;
+        color: #ffffff;
+        text-shadow: 0 0 5px #ffffff;
+        font-size: 16px;
+        overflow: hidden;
+        border-radius: 10px;
+        outline: none;
+        z-index: 2;
+      }
+
+      .cameras_item.selected .cameras_item_btn {
+        border-top-left-radius: 0;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 60px;
+          height: 60px;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 1;
+          background-color: #ffffff;
+          transform: translate(-40px, -40px) rotate(45deg);
+        }
+      }
+    }
+
+    #envelop {
+      text-align: center;
+      flex-grow: 2;
+      flex-basis: 50%;
+
+      img {
+        width: 110px;
+        height: 80px;
+      }
+    }
+
+    .zoom-slider {
+      flex-grow: 1;
+      flex-basis: 25%;
+
+      .noUi-target {
+        background: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .range {
+        height: 100%;
+        width: 20px;
+
+        .noUi-handle {
+          left: -21px;
+          width: 60px;
+          height: 60px;
+          box-shadow: 0 0 5px #ffffff;
+          background-color: #ffffff;
+          border-radius: 50%;
+          outline: none;
+          cursor: grab;
+
+          &::before, &::after {
+            display: none;
+          }
+        }
+        .noUi-pips-vertical {
+          left: -16px;
+          .noUi-marker-vertical.noUi-marker {
+            width: 30px;
+            background-color: #4E5863;
+
+            &.selected {
+              background-color: #ffffff;
+              box-shadow: 0 0 5px #ffffff;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.timer{
+.timer {
+  text-align: center;
+  font-size: 26px;
+  padding: 15px;
+}
+
+.order {
+  font-size: 18px;
+  text-align: center;
+  padding: 35px;
+}
+
+/* .timer{
   position: absolute;
   right: 0;
   top: 0;
@@ -15,4 +151,4 @@
 
 .order{
   text-align: center;
-}
+} */
