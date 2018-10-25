@@ -8,5 +8,5 @@ export interface Orientation {
 
 export interface Envelope {
   object: Object3D;
-  boundingBox: Mesh
+  boundingBox: Mesh;
 }

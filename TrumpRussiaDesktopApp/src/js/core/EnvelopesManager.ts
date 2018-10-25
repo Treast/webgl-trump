@@ -22,13 +22,16 @@ export class EnvelopesManager {
   }
 
   createBoundingBox (envelope: Object3D) {
-    const geometry = new BoxGeometry(50, 50, 50);
+    const geometry = new BoxGeometry(40, 40, 40);
     const material = new MeshBasicMaterial({ opacity: 0.3, color: 0x00ff00 });
     const cube = new Mesh(geometry, material);
     // @ts-ignore
     cube.material.transparent = true;
-    //cube.material.opacity = 0;
-    envelope.add(cube);
+    // @ts-ignore
+    cube.material.opacity = 0;
+    this.scene.updateMatrixWorld(true);
+    cube.applyMatrix(envelope.matrixWorld);
+    this.scene.add(cube);
     this.envelopes.push({ object: envelope, boundingBox: cube });
   }
 }

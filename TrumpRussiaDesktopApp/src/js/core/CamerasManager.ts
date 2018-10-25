@@ -35,14 +35,13 @@ export class CamerasManager {
     this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 
-  checkEnvelopeCibling (envelopes: Envelope[], outlinePass: OutlinePass) {
+  checkEnvelopeCibling(envelopes: Envelope[], outlinePass: OutlinePass) {
     this.raycaster.setFromCamera({ x: 0, y: 0 }, this.camera);
     const objs = envelopes.map(envelope => envelope.boundingBox);
     const intersects = this.raycaster.intersectObjects(objs);
     if (intersects.length > 0) {
       const outlineObjects = envelopes.filter((envelope) => intersects[0].object.id === envelope.boundingBox.id);
-      console.log(outlineObjects.map(envelope => envelope.object));
-       outlinePass.selectedObjects = outlineObjects.map(envelope => envelope.object);
+      outlinePass.selectedObjects = outlineObjects.map(envelope => envelope.object);
     }
     else outlinePass.selectedObjects = [];
   }

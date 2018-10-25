@@ -16,7 +16,8 @@ export class App {
     }
 
     init () {
-        this.initFullScreen();
+        //this.initFullScreen();
+        this.joinRoom();
         this.initCameraManager();
         this.initTimer();
     }

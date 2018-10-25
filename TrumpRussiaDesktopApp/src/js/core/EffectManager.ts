@@ -61,11 +61,13 @@ export class EffectManager {
       this.scene,
       this.camera
     );
-    this.outlinePass.edgeStrength = 3;
-    this.outlinePass.edgeGlow = 0;
+    this.outlinePass.edgeStrength = 1;
+    this.outlinePass.edgeGlow = 1;
     this.outlinePass.edgeThickness = 1;
-    this.outlinePass.pulsePeriod = 3;
+    this.outlinePass.pulsePeriod = 2;
+    this.outlinePass.usePatternTexture = false;
     this.outlinePass.visibleEdgeColor.set('#ffffff');
+    this.outlinePass.hiddenEdgeColor.set('#ffffff');
     this.composer.addPass(this.outlinePass);
   }
 }
