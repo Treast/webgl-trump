@@ -1,4 +1,4 @@
-import { Mesh, Object3D } from "three";
+import { Mesh, Object3D } from 'three';
 
 export interface Orientation {
   alpha: number;

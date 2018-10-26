@@ -8,20 +8,20 @@ import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
 
 export class EffectManager {
 
-  private scene: Scene;
-  private renderer: WebGLRenderer;
+  private readonly scene: Scene;
+  private readonly renderer: WebGLRenderer;
   private outlinePass: THREE.OutlinePass;
-  private composer: THREE.EffectComposer;
-  private camera: PerspectiveCamera;
-  private height: number;
-  private width: number;
+  private readonly composer: THREE.EffectComposer;
+  private readonly camera: PerspectiveCamera;
+  private readonly height: number;
+  private readonly width: number;
 
   constructor (
     scene: Scene,
     camera: PerspectiveCamera,
     renderer: WebGLRenderer,
     width: number,
-    height: number
+    height: number,
   ) {
     this.scene = scene;
     this.renderer = renderer;
@@ -59,7 +59,7 @@ export class EffectManager {
     this.outlinePass = new THREE.OutlinePass(
       new Vector2(this.width, this.height),
       this.scene,
-      this.camera
+      this.camera,
     );
     this.outlinePass.edgeStrength = 1;
     this.outlinePass.edgeGlow = 1;

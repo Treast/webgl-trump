@@ -10,11 +10,11 @@ import { PAGES } from '../utils/Pages';
 import { CamerasManager } from './CamerasManager';
 import { EnvelopesManager } from './EnvelopesManager';
 import { Orientation } from '../typing';
-import { EffectManager } from "./EffectManager";
+import { EffectManager } from './EffectManager';
+import { SOCKET } from './Socket';
 
 export class Game {
 
-  private socket: SocketIOClient.Socket;
   private width: number;
   private height: number;
   private readonly camera: PerspectiveCamera;
@@ -25,8 +25,7 @@ export class Game {
   private envelopesManager: EnvelopesManager;
   private effectManager: EffectManager;
 
-  constructor (socket: SocketIOClient.Socket, width: number, height: number) {
-    this.socket = socket;
+  constructor (width: number, height: number) {
     this.width = width;
     this.height = height;
     this.camera = new PerspectiveCamera(75, this.width / this.height, 0.1, 1000);
@@ -52,7 +51,7 @@ export class Game {
     requestAnimationFrame(this.animate.bind(this, callback));
     this.camerasManager.checkEnvelopeCibling(
       this.envelopesManager.getEnvelopes(),
-      this.effectManager.getOutlinePass()
+      this.effectManager.getOutlinePass(),
     );
     this.effectManager.getComposer().render();
   }
@@ -63,9 +62,14 @@ export class Game {
   }
 
   initSocketListeners () {
-    this.socket.on('mobile:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
-    this.socket.on('camera:set', (id: number) => this.camerasManager.setCamera(id));
-    this.socket.on('timer:end', this.setTimerEnd.bind(this));
+    SOCKET.getInstance().on('mobile:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
+    SOCKET.getInstance().on('camera:set', (id: number) => this.camerasManager.setCamera(id));
+    SOCKET.getInstance().on('timer:end', this.setTimerEnd.bind(this));
+    SOCKET.getInstance().on('mobile:zoom', this.changeZoom.bind(this));
+  }
+
+  changeZoom(data: any) {
+    this.camerasManager.changeZoom(data.zoom);
   }
 
   onInitDone () {

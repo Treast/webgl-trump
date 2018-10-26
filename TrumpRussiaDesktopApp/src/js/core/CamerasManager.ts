@@ -5,7 +5,7 @@ import { Envelope, Orientation } from '../typing';
 export class CamerasManager {
 
   private cameraParent: Group;
-  private camera: PerspectiveCamera;
+  private readonly camera: PerspectiveCamera;
   private scene: Scene;
   private raycaster: Raycaster = new Raycaster();
 
@@ -35,12 +35,19 @@ export class CamerasManager {
     this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 
+  changeZoom(zoom: number) {
+    const originalFOV = 75;
+    const difference = originalFOV * (zoom / 100);
+    this.camera.fov = originalFOV - difference;
+    this.camera.updateProjectionMatrix();
+  }
+
   checkEnvelopeCibling(envelopes: Envelope[], outlinePass: OutlinePass) {
     this.raycaster.setFromCamera({ x: 0, y: 0 }, this.camera);
     const objs = envelopes.map(envelope => envelope.boundingBox);
     const intersects = this.raycaster.intersectObjects(objs);
     if (intersects.length > 0) {
-      const outlineObjects = envelopes.filter((envelope) => intersects[0].object.id === envelope.boundingBox.id);
+      const outlineObjects = envelopes.filter(envelope => intersects[0].object.id === envelope.boundingBox.id);
       outlinePass.selectedObjects = outlineObjects.map(envelope => envelope.object);
     }
     else outlinePass.selectedObjects = [];

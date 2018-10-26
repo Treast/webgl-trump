@@ -20,11 +20,15 @@ io.on('connection', socket => {
     });
 
     socket.on('mobile:orientation', data => {
-    io.to(socket.roomId).emit('mobile:orientation', data)
+        io.to(socket.roomId).emit('mobile:orientation', data)
+    });
+
+    socket.on('mobile:zoom', data => {
+        io.to(socket.roomId).emit('mobile:zoom', data)
     });
 
     socket.on('timer:end', data => {
-    io.to(socket.roomId).emit('timer:end', data)
+        io.to(socket.roomId).emit('timer:end', data)
     });
 
     socket.on('camera:set', id => {

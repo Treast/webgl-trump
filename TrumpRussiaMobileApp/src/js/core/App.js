@@ -4,6 +4,7 @@ import { FullScreen } from '../utils/FullScreen';
 import { CONFIG } from '../config';
 import io from 'socket.io-client';
 import {CamerasManager} from './CamerasManager';
+import * as noUiSlider from "nouislider";
 
 export class App {
 
@@ -19,7 +20,44 @@ export class App {
         //this.initFullScreen();
         this.joinRoom();
         this.initCameraManager();
+        this.initSlider();
         this.initTimer();
+        this.start();
+    }
+
+    initSlider() {
+      this.slider = document.querySelector('.zoom-slider .range');
+      noUiSlider.create(this.slider, {
+        start: 0,
+        range: {
+          'min': [0],
+          'max': [100]
+        },
+        pips: {
+          mode: 'values',
+          values: [],
+          density: 4
+        },
+        orientation: 'vertical',
+        direction: 'rtl',
+      });
+
+      this.slider.noUiSlider.on('update', () => {
+        const pipes = document.querySelectorAll('.noUi-marker.noUi-marker-vertical');
+        const value = this.slider.noUiSlider.get();
+
+        for(const pipe of pipes) {
+          const top = parseInt(pipe.style.bottom);
+          if(top <= value) {
+            pipe.classList.add('selected');
+          } else {
+            pipe.classList.remove('selected');
+          }
+        }
+        this.socket.emit('mobile:zoom', {
+            zoom: value
+        });
+      });
     }
 
     initTimer() {
@@ -49,7 +87,7 @@ export class App {
 
     joinRoom () {
         this.socket.emit('room:join', this.roomId);
-        this.socket.on('experience:start', () => this.start());
+        //this.socket.on('experience:start', () => this.start());
     }
 
     start () {
