@@ -1,10 +1,86 @@
 .controller{
   position: relative;
-  padding-top: 40px;
+  padding-top: 10px;
 
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
+  height: 100%;
+
+  .header {
+    position: relative;
+    flex-grow: 1;
+    text-align: center;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 24px;
+      left: -103px;
+      transform: translateX(-50%);
+      height: 1px;
+      width: 100%;
+      background-color: #ffffff;
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 31px;
+      right: -103px;
+      transform: translateX(50%);
+      height: 1px;
+      width: 100%;
+      background-color: #ffffff;
+    }
+
+    .timer {
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 20px;
+      width: 160px;
+      background-color: #193238;
+      z-index: 2;
+      padding: 10px 30px;
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -5px;
+        left: -12px;
+        display: block;
+        height: 33px;
+        width: 1px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 26px;
+        right: -12px;
+        display: block;
+        height: 33px;
+        width: 1px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  .main-container {
+    flex-grow: 2;
+  }
+
+  .inventory {
+    flex-grow: 1;
+  }
 
   .main-container {
     display: flex;
@@ -85,6 +161,7 @@
     .zoom-slider {
       flex-grow: 1;
       flex-basis: 25%;
+      padding: 0 0 20px;
 
       .noUi-target {
         background: none;
@@ -136,7 +213,7 @@
 .order {
   font-size: 18px;
   text-align: center;
-  padding: 35px;
+  padding: 0 10px 10px;
 }
 
 /* .timer{
