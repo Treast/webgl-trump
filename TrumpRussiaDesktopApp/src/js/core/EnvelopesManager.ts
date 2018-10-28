@@ -45,6 +45,7 @@ export class EnvelopesManager {
     cube.material.transparent = true;
     // @ts-ignore
     cube.material.opacity = 0;
+    this.scene.updateMatrixWorld(true);
     cube.applyMatrix(envelope.matrixWorld);
     this.scene.add(cube);
     return cube;
