@@ -5,7 +5,7 @@ export const CONFIG = {
     PORT: 9000,
   },
   SERVER: {
-    HOST: 'localhost',
+    HOST: 'trump.vincentriva.fr',
     PORT: 3000,
   },
   GAME: {

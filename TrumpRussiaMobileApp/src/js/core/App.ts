@@ -1,14 +1,21 @@
 import { Timer } from './Timer';
 import { FullScreen } from '../utils/FullScreen';
 import { CamerasManager } from './CamerasManager';
-import * as noUiSlider from "nouislider";
-import { Socket } from "../utils/Socket";
-import { EnvelopesManager } from "./EnvelopesManager";
+// @ts-ignore
+import * as noUiSlider from 'nouislider';
+import { Socket } from '../utils/Socket';
+import { EnvelopesManager } from './EnvelopesManager';
 
 export class App {
 
+  private readonly roomId: string;
+  private timer: any;
+  private camerasManager: any;
+  private envelopesManager: any;
+  private slider: noUiSlider;
+
   constructor() {
-    this.roomId = new URL(window.location).searchParams.get('roomId');
+    this.roomId = new URL(window.location.toString()).searchParams.get('roomId');
     this.timer = null;
     this.camerasManager = null;
     this.envelopesManager = null;
@@ -32,16 +39,16 @@ export class App {
     noUiSlider.create(this.slider, {
       start: 0,
       range: {
-        'min': [0],
-        'max': [100]
+        min: [0],
+        max: [100],
       },
       pips: {
         mode: 'values',
         values: [],
-        density: 4
+        density: 4,
       },
       orientation: 'vertical',
-      direction: 'rtl'
+      direction: 'rtl',
     });
 
     this.slider.noUiSlider.on('update', () => {
@@ -49,7 +56,7 @@ export class App {
       const value = this.slider.noUiSlider.get();
 
       for (const pipe of pipes) {
-        const top = parseInt(pipe.style.bottom);
+        const top = parseInt((pipe as HTMLElement).style.bottom, 10);
         if (top <= value) {
           pipe.classList.add('selected');
         } else {
@@ -57,7 +64,7 @@ export class App {
         }
       }
       Socket.getInstance().emit('camera:zoom', {
-        zoom: value
+        zoom: value,
       });
     });
   }
@@ -86,12 +93,12 @@ export class App {
     window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this));
   }
 
-  onDeviceOrientation(e) {
+  onDeviceOrientation(e: DeviceOrientationEvent) {
     Socket.getInstance().emit('camera:orientation', {
       alpha: e.alpha,
       beta: e.beta,
-      gamma: e.gamma
-    })
+      gamma: e.gamma,
+    });
   }
 
 }

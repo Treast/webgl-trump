@@ -31,8 +31,10 @@ export class EnvelopesManager {
   private initEnvelopes() {
     CONFIG.GAME.ENVELOPES_NAMES.forEach((name: string) => {
       const object = this.scene.getObjectByName(name);
-      const boundingBox = this.createBoundingBox(object);
-      this.envelopes.push({ object, boundingBox, name });
+      if (object) {
+        const boundingBox = this.createBoundingBox(object);
+        this.envelopes.push({ object, boundingBox, name });
+      }
     });
   }
 

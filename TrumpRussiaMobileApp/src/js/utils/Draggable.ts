@@ -1,6 +1,13 @@
 export class Draggable {
+  private el: HTMLElement;
+  private targetEl: HTMLElement;
+  private readonly onDragged: () => void;
+  private startX: number;
+  private startY: number;
+  public enable: boolean;
+  private isInTarget: boolean;
 
-  constructor(el, targetEl, onDragged) {
+  constructor(el: HTMLElement, targetEl: HTMLElement, onDragged: () => void) {
     this.el = el;
     this.targetEl = targetEl;
     this.onDragged = onDragged;
@@ -14,12 +21,12 @@ export class Draggable {
     this.el.addEventListener('touchend', this.onTouchEndEl.bind(this));
   }
 
-  onTouchStartEl(e) {
+  onTouchStartEl(e: TouchEvent) {
     e.preventDefault();
     this.start(e.touches[0].clientX, e.touches[0].clientY);
   }
 
-  onTouchMoveEl(e) {
+  onTouchMoveEl(e: TouchEvent) {
     e.preventDefault();
     this.move(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
   }
@@ -28,12 +35,12 @@ export class Draggable {
     this.end();
   }
 
-  start(x, y) {
+  start(x: number, y: number) {
     this.startX = x;
     this.startY = y;
   }
 
-  move(x, y) {
+  move(x: number, y: number) {
     if (!this.enable) return;
     const diffX = x - this.startX;
     const diffY = y - this.startY;
@@ -46,8 +53,7 @@ export class Draggable {
     this.moveAt(0, 0);
   }
 
-  moveAt(x, y) {
+  moveAt(x: number, y: number) {
     this.el.style.transform = `translate(${x}px, ${y}px)`;
   }
-
 }

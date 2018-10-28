@@ -5,5 +5,5 @@ import 'nouislider/distribute/nouislider.min.css';
 
 const app = new App();
 onDomReady(() => {
-  app.init()
+  app.init();
 });

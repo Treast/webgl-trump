@@ -1,6 +1,6 @@
 export class FullScreen {
 
-  static applyOnElement(element) {
+  static applyOnElement(element: any) {
     if (element.requestFullscreen) {
       element.requestFullscreen();
     } else if (element.mozRequestFullScreen) {
