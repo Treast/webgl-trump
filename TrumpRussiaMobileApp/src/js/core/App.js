@@ -1,4 +1,3 @@
-import { AlertDialog } from '../utils/AlertDialog';
 import { Timer } from './Timer';
 import { FullScreen } from '../utils/FullScreen';
 import { CamerasManager } from './CamerasManager';

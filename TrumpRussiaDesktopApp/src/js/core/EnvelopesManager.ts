@@ -50,7 +50,8 @@ export class EnvelopesManager {
     return cube;
   }
 
-  private onDragged () {
+  private onDragged (envelope: any) {
+    console.log(envelope);
     this.removeEnvelope(this.currentObjectCibling);
   }
 
@@ -76,7 +77,7 @@ export class EnvelopesManager {
     }
     if (this.currentObjectCibling !== objectCibling) {
       SOCKET.getInstance().emit('envelope:hover', objectCibling === null ? null : {
-        name: objectCibling.name
+        name: objectCibling.name,
       });
       this.currentObjectCibling = objectCibling;
     }
