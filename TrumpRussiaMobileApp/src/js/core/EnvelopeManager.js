@@ -19,13 +19,8 @@ export class EnvelopeManager {
     }
 
     onHoverEnvelope (envelope) {
-        if (envelope === null) {
-            this.draggable.enable = false;
-            this.draggableEnvelope.src = `./assets/envelop@2x.png`;
-        } else {
-            this.draggable.enable = true;
-            this.draggableEnvelope.src = `./assets/envelop@2x-hover.png`;
-        }
+      this.draggable.enable = envelope !== null;
+      this.draggableEnvelope.src = this.draggable.enable ? `./assets/envelop@2x-active.png` : `./assets/envelop@2x.png`;
     }
 
     onDraggedEnvelope () {

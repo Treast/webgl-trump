@@ -7,7 +7,6 @@ export class Draggable {
         this.startX = 0;
         this.startY = 0;
         this.enable = true;
-
         this.isInTarget = false;
 
         this.el.addEventListener('touchstart', this.onTouchStartEl.bind(this));
@@ -38,11 +37,7 @@ export class Draggable {
         if (!this.enable) return;
         const diffX = x - this.startX;
         const diffY = y - this.startY;
-        if (this.el.getBoundingClientRect().top > this.targetEl.getBoundingClientRect().top) {
-            this.isInTarget = true;
-        } else {
-            this.isInTarget = false;
-        }
+        this.isInTarget = this.el.getBoundingClientRect().top > this.targetEl.getBoundingClientRect().top;
         this.moveAt(diffX, diffY);
     }
 

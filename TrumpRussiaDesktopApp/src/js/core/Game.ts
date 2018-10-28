@@ -49,10 +49,8 @@ export class Game {
 
   animate (callback: () => void = null) {
     requestAnimationFrame(this.animate.bind(this, callback));
-    this.envelopesManager.checkCibling(
-      this.camera,
-      this.effectManager.getOutlinePass(),
-    );
+    this.envelopesManager.checkCibling(this.camera, this.effectManager.getOutlinePass());
+    this.scene.updateMatrixWorld(true);
     this.effectManager.getComposer().render();
   }
 
