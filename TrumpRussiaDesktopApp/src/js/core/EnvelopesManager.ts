@@ -64,7 +64,7 @@ export class EnvelopesManager {
   }
 
   checkCibling (camera: PerspectiveCamera, outlinePass: OutlinePass) {
-    const selectedEnvelope = this.getSelectedEnvelopes(camera);
+    const selectedEnvelope = this.getSelectedEnvelope(camera);
     if (selectedEnvelope !== null) {
       outlinePass.selectedObjects = [selectedEnvelope.object];
     } else {
@@ -78,7 +78,7 @@ export class EnvelopesManager {
     }
   }
 
-  getSelectedEnvelopes (camera: PerspectiveCamera): Envelope {
+  getSelectedEnvelope (camera: PerspectiveCamera): Envelope {
     let selectedEnvelopes = null;
     this.raycaster.setFromCamera({ x: 0, y: 0 }, camera);
     const objs = this.envelopes.map(envelope => envelope.boundingBox);
