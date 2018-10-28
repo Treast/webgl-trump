@@ -59,10 +59,10 @@ export class Game {
   }
 
   initSocketListeners () {
-    SOCKET.getInstance().on('mobile:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
+    SOCKET.getInstance().on('camera:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
     SOCKET.getInstance().on('camera:set', (id: number) => this.camerasManager.setCamera(id));
     SOCKET.getInstance().on('timer:end', this.setTimerEnd.bind(this));
-    SOCKET.getInstance().on('mobile:zoom', this.changeZoom.bind(this));
+    SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
   }
 
   changeZoom(data: any) {

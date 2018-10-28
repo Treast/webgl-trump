@@ -57,7 +57,7 @@ export class App {
           pipe.classList.remove('selected');
         }
       }
-      Socket.getInstance().emit('mobile:zoom', {
+      Socket.getInstance().emit('camera:zoom', {
         zoom: value
       });
     });
@@ -88,7 +88,7 @@ export class App {
   }
 
   onDeviceOrientation(e) {
-    Socket.getInstance().emit('mobile:orientation', {
+    Socket.getInstance().emit('camera:orientation', {
       alpha: e.alpha,
       beta: e.beta,
       gamma: e.gamma
