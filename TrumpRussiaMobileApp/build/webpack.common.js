@@ -2,6 +2,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: {
@@ -24,14 +25,14 @@ module.exports = {
                 }
             },
             {
-            test: /\.(png|jpg|gif)$/,
-            use: [
-                  {
-                    loader: 'file-loader',
-                    options: {
-                      outputPath: 'assets/'
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath: 'assets/'
+                        }
                     }
-                  }
                 ]
             }
         ]
@@ -44,11 +45,12 @@ module.exports = {
             filename: "[name].css",
             chunkFilename: "[id].css"
         }),
-      new CopyWebpackPlugin([
-        {
-          from: path.join(__dirname, './../src', 'images'),
-          to: 'assets/',
-        },
-      ]),
+        new CopyWebpackPlugin([
+            {
+                from: path.join(__dirname, './../src', 'images'),
+                to: 'assets/',
+            },
+        ]),
+        new Dotenv(),
     ]
 };

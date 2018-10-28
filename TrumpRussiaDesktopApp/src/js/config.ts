@@ -1,7 +1,7 @@
 export const CONFIG = {
   DEBUG_MODE: false,
   MOBILE_APP: {
-    HOST: '192.168.1.14',
+    HOST: process.env.MOBILE_HOST,
     PORT: 9000,
   },
   SERVER: {

@@ -64,11 +64,17 @@
       flex-basis: 33%;
       margin-bottom: 20px;
 
+      &-active {
+
+        span{
+          background-color: #ffffff;
+        }
+      }
+
       span {
         display: block;
         height: 60px;
         width: 60px;
-        background-color: #ffffff;
         box-shadow: 0 0 5px #ffffff;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
@@ -76,4 +82,9 @@
     }
   }
 
+}
+
+.envelope-draggable{
+  position: relative;
+  z-index: 10;
 }

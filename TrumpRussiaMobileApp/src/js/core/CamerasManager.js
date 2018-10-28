@@ -1,8 +1,9 @@
+import {Socket} from "../utils/Socket";
+
 export class CamerasManager {
 
-    constructor (socket) {
+    constructor () {
         this.cameras = document.querySelectorAll('[data-camera]');
-        this.socket = socket;
         this.currentCamera = null;
     }
 
@@ -16,6 +17,6 @@ export class CamerasManager {
         if (this.currentCamera === camera) return;
         this.currentCamera = camera;
         const id = camera.getAttribute('data-camera');
-        this.socket.emit('camera:set', id);
+        Socket.getInstance().emit('camera:set', id);
     }
 }

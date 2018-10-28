@@ -1,15 +1,14 @@
 import { AlertDialog } from '../utils/AlertDialog';
 import { Timer } from './Timer';
 import { FullScreen } from '../utils/FullScreen';
-import { CONFIG } from '../config';
-import io from 'socket.io-client';
-import {CamerasManager} from './CamerasManager';
+import { CamerasManager } from './CamerasManager';
 import * as noUiSlider from "nouislider";
+import { Socket } from "../utils/Socket";
+import { EnvelopeManager } from "./EnvelopeManager";
 
 export class App {
 
     constructor () {
-        this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
         this.roomId = new URL(window.location).searchParams.get('roomId');
         if (this.roomId === null) {
             console.error('Le parametre GET "roomdId" est manquant');
@@ -20,6 +19,7 @@ export class App {
         //this.initFullScreen();
         this.joinRoom();
         this.initCameraManager();
+        this.initEnvelopesManager();
         this.initSlider();
         this.initTimer();
         this.start();
@@ -54,14 +54,14 @@ export class App {
             pipe.classList.remove('selected');
           }
         }
-        this.socket.emit('mobile:zoom', {
+        Socket.getInstance().emit('mobile:zoom', {
             zoom: value
         });
       });
     }
 
     initTimer() {
-        const timer = new Timer(this.socket);
+        const timer = new Timer(Socket.getInstance());
         timer.init();
         timer.start();
     }
@@ -80,14 +80,19 @@ export class App {
         alert.show();
     }
 
+    initEnvelopesManager () {
+        const envelopesManager = new EnvelopeManager();
+        envelopesManager.init();
+    }
+
     initCameraManager () {
-        const cameraManager = new CamerasManager(this.socket);
+        const cameraManager = new CamerasManager();
         cameraManager.init();
     }
 
     joinRoom () {
-        this.socket.emit('room:join', this.roomId);
-        //this.socket.on('experience:start', () => this.start());
+        Socket.getInstance().emit('room:join', this.roomId);
+        //Socket.getInstance().on('experience:start', () => this.start());
     }
 
     start () {
@@ -95,7 +100,7 @@ export class App {
     }
 
     onDeviceOrientation (e) {
-        this.socket.emit('mobile:orientation', {
+        Socket.getInstance().emit('mobile:orientation', {
             alpha: e.alpha,
             beta: e.beta,
             gamma: e.gamma

@@ -1,6 +1,6 @@
 export const CONFIG = {
     SERVER: {
-        HOST: '192.168.1.14',
+        HOST: process.env.MOBILE_HOST,
         PORT: 3000
     }
 };

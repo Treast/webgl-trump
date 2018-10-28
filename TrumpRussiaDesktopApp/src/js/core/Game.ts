@@ -49,8 +49,8 @@ export class Game {
 
   animate (callback: () => void = null) {
     requestAnimationFrame(this.animate.bind(this, callback));
-    this.camerasManager.checkEnvelopeCibling(
-      this.envelopesManager.getEnvelopes(),
+    this.envelopesManager.checkCibling(
+      this.camera,
       this.effectManager.getOutlinePass(),
     );
     this.effectManager.getComposer().render();

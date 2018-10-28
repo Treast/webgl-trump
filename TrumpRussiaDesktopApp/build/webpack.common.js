@@ -2,6 +2,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: {
@@ -61,6 +62,7 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             THREE: 'three'
-        })
+        }),
+        new Dotenv()
     ]
 };

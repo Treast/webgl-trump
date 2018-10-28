@@ -35,6 +35,14 @@ io.on('connection', socket => {
        io.to(socket.roomId).emit('camera:set', id);
     });
 
+    socket.on('envelope:hover', envelope => {
+       io.to(socket.roomId).emit('envelope:hover', envelope);
+    });
+
+    socket.on('envelope:dragged', () => {
+       io.to(socket.roomId).emit('envelope:dragged');
+    });
+
 });
 
 http.listen(3000, () => {
