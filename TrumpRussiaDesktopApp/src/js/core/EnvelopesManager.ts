@@ -17,7 +17,7 @@ export class EnvelopesManager {
   private scene: Scene;
   private envelopes: Envelope[] = [];
   private raycaster: Raycaster = new Raycaster();
-  private currentObjectCibling: Envelope = null;
+  private currEnvelopeSelected: Envelope = null;
 
   constructor (scene: Scene) {
     this.scene = scene;
@@ -64,22 +64,28 @@ export class EnvelopesManager {
   }
 
   checkCibling (camera: PerspectiveCamera, outlinePass: OutlinePass) {
-    let objectCibling = null;
+    const selectedEnvelope = this.getSelectedEnvelopes(camera);
+    if (selectedEnvelope !== null) {
+      outlinePass.selectedObjects = [selectedEnvelope.object];
+    } else {
+      outlinePass.selectedObjects = [];
+    }
+    if (this.currEnvelopeSelected !== selectedEnvelope) {
+      SOCKET.getInstance().emit('envelope:hover', !selectedEnvelope ? null : {
+        name: this.currEnvelopeSelected.name,
+      });
+      this.currEnvelopeSelected = selectedEnvelope;
+    }
+  }
+
+  getSelectedEnvelopes (camera: PerspectiveCamera): Envelope {
+    let selectedEnvelopes = null;
     this.raycaster.setFromCamera({ x: 0, y: 0 }, camera);
     const objs = this.envelopes.map(envelope => envelope.boundingBox);
     const intersects = this.raycaster.intersectObjects(objs);
     if (intersects.length > 0) {
-      const outlineObjects = this.envelopes.filter(envelope => intersects[0].object.id === envelope.boundingBox.id);
-      outlinePass.selectedObjects = outlineObjects.map(envelope => envelope.object);
-      objectCibling = outlineObjects[0];
-    } else {
-      outlinePass.selectedObjects = [];
+      selectedEnvelopes = this.envelopes.filter(envelope => intersects[0].object.id === envelope.boundingBox.id)[0];
     }
-    if (this.currentObjectCibling !== objectCibling) {
-      SOCKET.getInstance().emit('envelope:hover', objectCibling === null ? null : {
-        name: objectCibling.name,
-      });
-      this.currentObjectCibling = objectCibling;
-    }
+    return selectedEnvelopes;
   }
 }
