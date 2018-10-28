@@ -17,11 +17,10 @@ export class EnvelopesManager {
   private scene: Scene;
   private envelopes: Envelope[] = [];
   private raycaster: Raycaster = new Raycaster();
-  private currentObjectCibling: Envelope;
+  private currentObjectCibling: Envelope = null;
 
   constructor (scene: Scene) {
     this.scene = scene;
-    this.currentObjectCibling = null;
   }
 
   init () {
@@ -33,7 +32,7 @@ export class EnvelopesManager {
     CONFIG.GAME.ENVELOPES_NAMES.forEach((name: string) => {
       const object = this.scene.getObjectByName(name);
       const boundingBox = this.createBoundingBox(object);
-      this.envelopes.push({ object, boundingBox });
+      this.envelopes.push({ object, boundingBox, name });
     });
   }
 
@@ -76,7 +75,9 @@ export class EnvelopesManager {
       outlinePass.selectedObjects = [];
     }
     if (this.currentObjectCibling !== objectCibling) {
-      SOCKET.getInstance().emit('envelope:hover', objectCibling);
+      SOCKET.getInstance().emit('envelope:hover', objectCibling === null ? null : {
+        name: objectCibling.name
+      });
       this.currentObjectCibling = objectCibling;
     }
   }

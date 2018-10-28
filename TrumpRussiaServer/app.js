@@ -39,8 +39,8 @@ io.on('connection', socket => {
        io.to(socket.roomId).emit('envelope:hover', envelope);
     });
 
-    socket.on('envelope:dragged', () => {
-       io.to(socket.roomId).emit('envelope:dragged');
+    socket.on('envelope:dragged', envelope => {
+       io.to(socket.roomId).emit('envelope:dragged', envelope);
     });
 
 });

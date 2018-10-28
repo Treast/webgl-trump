@@ -10,7 +10,9 @@ export class Room {
   }
 
   setQRcode (element: HTMLElement) {
-    QRCode.toCanvas(element, this.address);
+    QRCode.toCanvas(element, this.address, err => {
+      console.log(err);
+    });
   }
 
   setLink (element: HTMLElement) {

@@ -5,16 +5,16 @@ let instance = null;
 
 export class Socket {
 
-    constructor () {
-        if (instance === null) {
-            this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
-            instance = this;
-        }
-        return instance;
+  constructor() {
+    if (instance === null) {
+      this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
+      instance = this;
     }
+    return instance;
+  }
 
-    static getInstance () {
-        return new Socket().socket;
-    }
+  static getInstance() {
+    return new Socket().socket;
+  }
 
 }
