@@ -50,9 +50,9 @@ export class EnvelopesManager {
     return cube;
   }
 
-  private onDragged (envelope: any) {
-    console.log(envelope);
-    this.removeEnvelope(this.currentObjectCibling);
+  private onDragged ({ name }: any) {
+    const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
+    this.removeEnvelope(envelope);
   }
 
   private removeEnvelope (envelope: Envelope) {
