@@ -12,7 +12,7 @@ export class App {
   private timer: any;
   private camerasManager: any;
   private envelopesManager: any;
-  private slider: noUiSlider;
+  private slider: any;
 
   constructor() {
     this.roomId = new URL(window.location.toString()).searchParams.get('roomId');
@@ -94,6 +94,7 @@ export class App {
   }
 
   onDeviceOrientation(e: DeviceOrientationEvent) {
+    console.log(e);
     Socket.getInstance().emit('camera:orientation', {
       alpha: e.alpha,
       beta: e.beta,

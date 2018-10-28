@@ -72,7 +72,7 @@ export class EnvelopesManager {
     } else {
       outlinePass.selectedObjects = [];
     }
-    if (this.currEnvelopeSelected !== selectedEnvelope) {
+    if (this.currEnvelopeSelected && this.currEnvelopeSelected !== selectedEnvelope) {
       SOCKET.getInstance().emit('envelope:hover', !selectedEnvelope ? null : {
         name: this.currEnvelopeSelected.name,
       });

@@ -8,7 +8,7 @@ export class Socket {
 
   constructor() {
     if (instance === null) {
-      this.socket = io(`https://${CONFIG.SERVER.HOST}`);
+      this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
       instance = this;
     }
     return instance;

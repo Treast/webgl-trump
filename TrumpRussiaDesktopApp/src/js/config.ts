@@ -2,11 +2,11 @@ export const CONFIG = {
   DEBUG_MODE: false,
   MOBILE_APP: {
     HOST: process.env.MOBILE_HOST,
-    PORT: 9000,
+    PORT: process.env.MOBILE_PORT,
   },
   SERVER: {
-    HOST: 'trump.vincentriva.fr',
-    PORT: 3000,
+    HOST: process.env.SERVER_HOST,
+    PORT: process.env.SERVER_PORT,
   },
   GAME: {
     ENVELOPES_NAMES: ['Enveloppe_01', 'Enveloppe__02', 'Enveloppe_03_'],

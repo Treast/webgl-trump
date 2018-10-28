@@ -5,6 +5,7 @@ const io = require('socket.io')(http);
 const rooms = require('./modules/rooms');
 
 io.on('connection', socket => {
+  console.log("Client connected");
 
   socket.on('room:create', callback => {
     const id = rooms.create();

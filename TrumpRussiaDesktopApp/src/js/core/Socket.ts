@@ -5,7 +5,7 @@ class Socket {
   private readonly socket: SocketIOClient.Socket;
 
   constructor() {
-    this.socket = io(`https://${CONFIG.SERVER.HOST}`);
+    this.socket = io(`http://${CONFIG.SERVER.HOST}:${CONFIG.SERVER.PORT}`);
   }
 
   getInstance() {
