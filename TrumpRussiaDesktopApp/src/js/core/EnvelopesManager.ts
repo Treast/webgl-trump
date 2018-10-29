@@ -63,28 +63,29 @@ export class EnvelopesManager {
     });
     this.scene.remove(envelope.object);
     this.scene.remove(envelope.boundingBox);
+    this.envelopes.splice(this.envelopes.indexOf(envelope), 1);
   }
 
   checkCibling (camera: PerspectiveCamera, outlinePass: OutlinePass) {
-    const selectedEnvelope = this.getSelectedEnvelope(camera);
+    const selectedEnvelope = this.getIntersectedEnvelope(camera);
     if (selectedEnvelope !== null) {
       outlinePass.selectedObjects = [selectedEnvelope.object];
     } else {
       outlinePass.selectedObjects = [];
     }
-    if (this.currEnvelopeSelected && this.currEnvelopeSelected !== selectedEnvelope) {
+    if (this.currEnvelopeSelected !== selectedEnvelope) {
       SOCKET.getInstance().emit('envelope:hover', !selectedEnvelope ? null : {
-        name: this.currEnvelopeSelected.name,
+        name: selectedEnvelope.name,
       });
       this.currEnvelopeSelected = selectedEnvelope;
     }
   }
 
-  getSelectedEnvelope (camera: PerspectiveCamera): Envelope {
+  getIntersectedEnvelope (camera: PerspectiveCamera): Envelope {
     let selectedEnvelopes = null;
     this.raycaster.setFromCamera({ x: 0, y: 0 }, camera);
-    const objs = this.envelopes.map(envelope => envelope.boundingBox);
-    const intersects = this.raycaster.intersectObjects(objs);
+    let boundingBoxes = this.envelopes.map(envelope => envelope.boundingBox);
+    const intersects = this.raycaster.intersectObjects(boundingBoxes);
     if (intersects.length > 0) {
       selectedEnvelopes = this.envelopes.filter(envelope => intersects[0].object.id === envelope.boundingBox.id)[0];
     }

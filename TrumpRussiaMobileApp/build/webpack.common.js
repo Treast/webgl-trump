@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -46,6 +47,17 @@ module.exports = {
             plugins: ['@babel/plugin-proposal-class-properties']
           }
         }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'assets/'
+            }
+          }
+        ]
       }
     ]
   },
@@ -60,6 +72,12 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
+    new CopyWebpackPlugin([
+      {
+        from: path.join(__dirname, './../src', 'images'),
+        to: 'assets/',
+      },
+    ]),
     new webpack.ProvidePlugin({
       THREE: 'three'
     }),

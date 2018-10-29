@@ -11,7 +11,7 @@ export class Room {
 
   setQRcode (element: HTMLElement) {
     QRCode.toCanvas(element, this.address, (err) => {
-      console.log(err);
+      if (err) console.log(err);
     });
   }
 

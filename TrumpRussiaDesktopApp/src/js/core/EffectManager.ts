@@ -1,9 +1,11 @@
+import 'three/examples/js/postprocessing/EffectComposer';
 import 'three/examples/js/shaders/CopyShader';
 import 'three/examples/js/shaders/FXAAShader';
-import 'three/examples/js/postprocessing/EffectComposer';
+import 'three/examples/js/shaders/FilmShader';
 import 'three/examples/js/postprocessing/ShaderPass';
 import 'three/examples/js/postprocessing/RenderPass';
 import 'three/examples/js/postprocessing/OutlinePass';
+import 'three/examples/js/postprocessing/FilmPass';
 import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
 
 export class EffectManager {
@@ -45,6 +47,7 @@ export class EffectManager {
     const renderPass = new THREE.RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
     this.initOutlinePass();
+    //this.initFilmPass();
     // @ts-ignore
     const effect = new THREE.ShaderPass(THREE.FXAAShader);
     // @ts-ignore
@@ -69,5 +72,13 @@ export class EffectManager {
     this.outlinePass.visibleEdgeColor.set('#ffffff');
     this.outlinePass.hiddenEdgeColor.set('#ffffff');
     this.composer.addPass(this.outlinePass);
+  }
+  
+  initFilmPass () {
+    // @ts-ignore
+    let effectFilm = new THREE.FilmPass(0.8, 0.325, 256, false);
+    // @ts-ignore
+    effectFilm.renderToScreen = true;
+    this.composer.addPass(effectFilm);
   }
 }
