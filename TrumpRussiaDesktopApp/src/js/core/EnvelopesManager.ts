@@ -84,7 +84,7 @@ export class EnvelopesManager {
   getIntersectedEnvelope (camera: PerspectiveCamera): Envelope {
     let selectedEnvelopes = null;
     this.raycaster.setFromCamera({ x: 0, y: 0 }, camera);
-    let boundingBoxes = this.envelopes.map(envelope => envelope.boundingBox);
+    const boundingBoxes = this.envelopes.map(envelope => envelope.boundingBox);
     const intersects = this.raycaster.intersectObjects(boundingBoxes);
     if (intersects.length > 0) {
       selectedEnvelopes = this.envelopes.filter(envelope => intersects[0].object.id === envelope.boundingBox.id)[0];

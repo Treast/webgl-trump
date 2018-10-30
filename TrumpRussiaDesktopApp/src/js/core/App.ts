@@ -7,8 +7,6 @@ import { SOCKET } from './Socket';
 
 export class App {
 
-  private game: Game;
-
   init () {
     PAGES.show('linker');
     this.initRoom();
@@ -26,20 +24,19 @@ export class App {
 
   initGame () {
     if (CONFIG.DEBUG_MODE) DAT_GUI.init();
-    this.game = new Game(window.innerWidth, window.innerHeight);
-    this.game.init();
+    Game.getInstance().init(window.innerWidth, window.innerHeight);
 
     const container = document.getElementById('experience');
-    container.appendChild(this.game.renderer.domElement);
+    container.appendChild(Game.getInstance().renderer.domElement);
 
     window.addEventListener('resize', () => {
-      this.game.resize(window.innerWidth, window.innerHeight);
+      Game.getInstance().resize(window.innerWidth, window.innerHeight);
     });
   }
 
   start () {
     PAGES.show('experience');
-    this.game.animate();
+    Game.getInstance().animate();
   }
 
 }
