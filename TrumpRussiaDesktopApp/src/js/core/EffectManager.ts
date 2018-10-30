@@ -7,12 +7,16 @@ import 'three/examples/js/postprocessing/RenderPass';
 import 'three/examples/js/postprocessing/OutlinePass';
 import 'three/examples/js/postprocessing/FilmPass';
 import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
+import { GUI } from 'dat.gui';
+import { GUIParamsInterface } from '../utils/DatGui';
+import { Game } from './Game';
 
 export class EffectManager {
 
   private readonly scene: Scene;
   private readonly renderer: WebGLRenderer;
   private outlinePass: THREE.OutlinePass;
+  private filmPass: THREE.FilmPass;
   private readonly composer: THREE.EffectComposer;
   private readonly camera: PerspectiveCamera;
   private readonly height: number;
@@ -38,6 +42,10 @@ export class EffectManager {
     return this.outlinePass;
   }
 
+  getFilmPass () {
+    return this.filmPass;
+  }
+
   getComposer () {
     return this.composer;
   }
@@ -47,14 +55,7 @@ export class EffectManager {
     const renderPass = new THREE.RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
     this.initOutlinePass();
-    //this.initFilmPass();
-    // @ts-ignore
-    const effect = new THREE.ShaderPass(THREE.FXAAShader);
-    // @ts-ignore
-    effect.uniforms['resolution'].value.set(1 / this.width, 1 / this.height);
-    // @ts-ignore
-    effect.renderToScreen = true;
-    this.composer.addPass(effect);
+    this.initFilmPass();
   }
 
   initOutlinePass () {
@@ -76,9 +77,41 @@ export class EffectManager {
   
   initFilmPass () {
     // @ts-ignore
-    let effectFilm = new THREE.FilmPass(0.8, 0.325, 256, false);
+    this.filmPass = new THREE.FilmPass(0.8, 0.25, 1070, false);
     // @ts-ignore
-    effectFilm.renderToScreen = true;
-    this.composer.addPass(effectFilm);
+    this.filmPass.renderToScreen = true;
+    this.composer.addPass(this.filmPass);
+  }
+}
+
+export class GUIParamsFilmPass implements GUIParamsInterface {
+
+  public enable: boolean = true;
+
+  private readonly scanlinesCount: number;
+  private readonly grayscale: boolean;
+  private readonly scanlinesIntensity: number;
+  private readonly noiseIntensity: number;
+
+  constructor () {
+    this.scanlinesCount = 256;
+    this.grayscale = false;
+    this.scanlinesIntensity = 0.3;
+    this.noiseIntensity = 0.8;
+  }
+
+  init(gui: GUI): void {
+    gui.add(this, 'scanlinesIntensity', 0, 1);
+    gui.add(this, 'noiseIntensity', 0, 3);
+    gui.add(this, 'grayscale');
+    gui.add(this, 'scanlinesCount', 0, 2048).step(1);
+  }
+
+  render(): void {
+    const filmPass = Game.getInstance().getEffectManager().getFilmPass();
+    filmPass.uniforms.grayscale.value = this.grayscale;
+    filmPass.uniforms.nIntensity.value = this.noiseIntensity;
+    filmPass.uniforms.sIntensity.value = this.scanlinesIntensity;
+    filmPass.uniforms.sCount.value = this.scanlinesCount;
   }
 }

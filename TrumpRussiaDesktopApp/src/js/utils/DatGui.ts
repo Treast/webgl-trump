@@ -1,37 +1,36 @@
 import * as dat from 'dat.gui';
 import { CONFIG } from '../config';
+import { GUIParamsFilmPass } from '../core/EffectManager';
 
-class GuiParams {
-
-  public positionX: number;
-  public positionY: number;
-  public positionZ: number;
-  public rotateX: number;
-  public rotateY: number;
-  public rotateZ: number;
-
-  constructor () {
-    this.positionX = 0;
-    this.positionY = 0;
-    this.positionZ = 0;
-    this.rotateX = 0;
-    this.rotateY = 0;
-    this.rotateZ = 0;
-  }
+export interface GUIParamsInterface {
+  enable: boolean;
+  init(gui: dat.GUI): void;
+  render(): void;
 }
 
 export const DAT_GUI = {
 
+  params: {
+    filmPass: new GUIParamsFilmPass(),
+  },
+
   gui: CONFIG.DEBUG_MODE ? new dat.GUI() : null,
 
-  params: new GuiParams(),
-
   init () {
-    this.gui.add(this.params, 'positionX', -20, 20);
-    this.gui.add(this.params, 'positionY', -20, 20);
-    this.gui.add(this.params, 'positionZ', -20, 20);
-    this.gui.add(this.params, 'rotateX', -180, 180);
-    this.gui.add(this.params, 'rotateY', -180, 180);
-    this.gui.add(this.params, 'rotateZ', -180, 180);
+    Object.keys(this.params).forEach((name: string) => {
+      if (this.gui !== null && this.params[name].enable) {
+        const folder = this.gui.addFolder(name);
+        this.params[name].init(folder);
+      }
+    });
   },
+
+  render () {
+    Object.keys(this.params).forEach((name: string) => {
+      if (this.gui !== null && this.params[name].enable) {
+        this.params[name].render();
+      }
+    });
+  },
+
 };
