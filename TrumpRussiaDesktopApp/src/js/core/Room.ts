@@ -1,5 +1,6 @@
 import { CONFIG } from '../config';
-import * as QRCode from 'qrcode';
+// @ts-ignore
+import * as QRcode from 'qrcode-svg';
 
 export class Room {
 
@@ -10,9 +11,12 @@ export class Room {
   }
 
   setQRcode (element: HTMLElement) {
-    QRCode.toCanvas(element, this.address, (err) => {
-      if (err) console.log(err);
-    });
+    const svg = new QRcode({
+      content: this.address,
+      background: 'transparent',
+      color: '#fff',
+    }).svg();
+    (element as HTMLImageElement).innerHTML = svg;
   }
 
   setLink (element: HTMLElement) {

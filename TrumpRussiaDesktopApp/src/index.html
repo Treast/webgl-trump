@@ -5,9 +5,40 @@
         <title>Real Donald Trump</title>
     </head>
     <body>
+        <section data-page="introduction">
+            <div class="inner">
+                <div class="inner-top"></div>
+                <div class="inner-bottom"></div>
+                <div class="inner-content">
+                    <div class="inner-page" data-inner-page="1">
+                        <p>_ Ce texte sera une mise en contexte rappelant l’élection de Trump et un les suspections qui tournent autours de sa relation avec Poutine. Tempor invidunt aliquyam erat, sed diam voluptua. At vero eos et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+                    </div>
+                    <div class="inner-page" data-inner-page="2">
+                        <p>_ Ce texte aura pour but de mettre l’utilisateur dans la peau d’un agent secret étant sur le point d’infiltrer le réseau d’un bâtiment pour avoir accès à des caméras de surveillance d’une pièce secrète où se trouvent Trump et Poutine. </p>
+                    </div>
+                    <div class="inner-page" data-inner-page="3">
+                        <p>_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                    </div>
+                    <div class="inner-page" data-inner-page="4">
+                        <div id="qrcode"></div>
+                        <p>Scanne le QR code pour accéder aux caméras de surveillance. </p>
+                    </div>
+                </div>
+                <div class="inner-pagination">
+                    <div class="arrow arrow-left"></div>
+                    <div class="pages">
+                        <div class="page selected" data-inner-page="1"></div>
+                        <div class="page selected" data-inner-page="2"></div>
+                        <div class="page" data-inner-page="3"></div>
+                        <div class="page" data-inner-page="4"></div>
+                    </div>
+                    <div class="arrow arrow-right"></div>
+                </div>
+            </div>
+        </section>
         <section data-page="linker">
             <p>Pour commencer l'expérience, veuillez flashez le QR Code :</p>
-            <canvas id="qrcode"></canvas>
+            <!-- <canvas id="qrcode"></canvas> -->
             <p>ou se render à l'adresse suivante :</p>
             <p id="address"></p>
         </section>

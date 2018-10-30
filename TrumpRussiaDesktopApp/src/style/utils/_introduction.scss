@@ -1,0 +1,185 @@
+section[data-page="introduction"] {
+  //background: url('./assets/background.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #182128;
+
+  .inner {
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    right: 80px;
+    bottom: 100px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+    .inner-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        top: -42px;
+        left: 16px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        top: -42px;
+        right: 16px;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .inner-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        bottom: -42px;
+        left: 16px;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        bottom: -42px;
+        right: 16px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+    }
+
+    .inner-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .inner-page {
+        opacity: 1;
+        color: white;
+        text-shadow: 0 0 5px #ffffff;
+        font-family: 'Chakra Petch', sans-serif;
+        transition: all 0.4s ease-in-out;
+
+        #qrcode {
+          text-align: center;
+        }
+
+        &.hidden {
+          opacity: 0;
+        }
+      }
+    }
+
+    .inner-pagination {
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: 50px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
+      .arrow {
+        display: block;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #fff;
+        box-shadow: 0 0 5px #ffffff;
+        transform: rotate(-45deg);
+        transition: all 0.4s ease-in-out;
+
+        &.disabled {
+          border: 1px solid rgba(#fff, 0.2);
+          box-shadow: 0 0 5px rgba(#fff, 0.2);
+        }
+
+        &.arrow-left {
+          margin-right: 45px;
+        }
+
+        &.arrow-right {
+          margin-left: 15px;
+        }
+      }
+
+      .pages {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        .page {
+          position: relative;
+
+          &::after {
+            content: '';
+            display: block;
+            height: 10px;
+            width: 10px;
+            transform: rotate(-45deg);
+            background-color: #707070;
+            margin-right: 30px;
+            transition: all 0.4s ease-in-out;
+          }
+
+          &::before {
+            content: '';
+            display: block;
+            height: 1px;
+            width: 30px;
+            background-color: #707070;
+            position: absolute;
+            top: 50%;
+            left: -30px;
+            transform: translateY(-50%);
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+
+          &:first-child::before {
+            display: none;
+          }
+
+          &.selected {
+            &::after, &::before {
+              background-color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}
