@@ -9,7 +9,7 @@ export class App {
 
   init () {
     PAGES.show('introduction');
-    PAGES.show('linker');
+    // PAGES.show('linker');
     this.initRoom();
     SOCKET.getInstance().on('experience:start', this.start.bind(this));
   }
