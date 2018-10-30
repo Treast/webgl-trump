@@ -2,6 +2,9 @@ import { Socket } from '../utils/Socket';
 import { Draggable } from '../utils/Draggable';
 
 export class EnvelopesManager {
+
+  private static INACTIVE_OPACITY = '0.4';
+
   private readonly draggableEnvelope: HTMLImageElement;
   private readonly inventory: HTMLElement;
   private envelopes: NodeListOf<HTMLElement>;
@@ -18,6 +21,8 @@ export class EnvelopesManager {
       this.onDraggedEnvelope.bind(this),
     );
     this.currentHover = null;
+
+    this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
   init() {
@@ -27,7 +32,7 @@ export class EnvelopesManager {
   onHoverEnvelope(envelope: HTMLElement) {
     this.currentHover = envelope;
     this.draggable.enable = envelope !== null;
-    this.draggableEnvelope.src = this.draggable.enable ? './assets/envelop@2x-active.png' : './assets/envelop@2x.png';
+    this.draggableEnvelope.style.opacity = this.draggable.enable ? '1' : EnvelopesManager.INACTIVE_OPACITY;
   }
 
   onDraggedEnvelope() {
