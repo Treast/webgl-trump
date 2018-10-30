@@ -1,4 +1,5 @@
 import {
+  Clock,
   LoadingManager,
   PerspectiveCamera,
   Scene,
@@ -28,6 +29,9 @@ export class Game {
   private camerasManager: CamerasManager;
   private envelopesManager: EnvelopesManager;
   private effectManager: EffectManager;
+  private clock: Clock;
+
+  private constructor () {}
 
   static getInstance () {
     if (this.instance === null) this.instance = new Game();
@@ -46,6 +50,7 @@ export class Game {
     this.renderer = new WebGLRenderer();
     this.renderer.setSize(this.width, this.height);
     this.renderer.shadowMap.enabled = true;
+    this.clock = new Clock();
     this.camerasManager = new CamerasManager(this.scene, this.camera);
     this.envelopesManager = new EnvelopesManager(this.scene);
     this.effectManager = new EffectManager(this.scene, this.camera, this.renderer, this.width, this.height);
@@ -93,7 +98,7 @@ export class Game {
     requestAnimationFrame(this.animate.bind(this, callback));
     this.envelopesManager.checkCibling(this.camera, this.effectManager.getOutlinePass());
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
-    this.effectManager.getComposer().render();
+    this.effectManager.getComposer().render(this.clock.getDelta());
   }
 
   changeZoom(data: any) {
