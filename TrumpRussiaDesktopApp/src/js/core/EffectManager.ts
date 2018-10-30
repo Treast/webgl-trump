@@ -74,7 +74,7 @@ export class EffectManager {
     this.outlinePass.hiddenEdgeColor.set('#ffffff');
     this.composer.addPass(this.outlinePass);
   }
-  
+
   initFilmPass () {
     // @ts-ignore
     this.filmPass = new THREE.FilmPass(0.8, 0.25, 1070, false);
