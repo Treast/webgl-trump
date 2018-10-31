@@ -77,7 +77,7 @@ export class EffectManager {
 
   initFilmPass () {
     // @ts-ignore
-    this.filmPass = new THREE.FilmPass(0.8, 0.25, 1070, false);
+    this.filmPass = new THREE.FilmPass(0.58, 0.13, 890, false);
     // @ts-ignore
     this.filmPass.renderToScreen = true;
     this.composer.addPass(this.filmPass);
