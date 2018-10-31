@@ -3,19 +3,23 @@
 }
 
 .camera_text{
+  display: flex;
+  align-items: center;
   position: absolute;
   top: 70px;
   right: 70px;
   color: white;
+  font-family: 'Bai Jamjuree', sans-serif;
 }
 
 .camera_icon{
   display: inline-block;
-  width: 10px;
-  height: 10px;
+  width: 23px;
+  height: 23px;
+  box-shadow: 0 0 7px 0 red;
   background-color: red;
   border-radius: 50%;
-  margin-left: 5px;
+  margin-left: 16px;
 }
 
 .camera_center{
@@ -46,9 +50,9 @@
 
 .camera_corner{
   position: absolute;
-  width: 100px;
-  height: 100px;
-  border: solid 10px #fff;
+  width: 56px;
+  height: 56px;
+  border: 2px solid #fff;
   margin: 40px;
   &:nth-child(1){
     top: 0;
@@ -74,4 +78,19 @@
     border-top-color: transparent;
     border-left-color: transparent;
   }
+}
+
+.camera_label{
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 5px #ffffff;
+  font-family: 'Bai Jamjuree', sans-serif;
+  transform: translateX(-50%);
+}
+
+.camera_label span{
+  margin-left: 5px;
 }

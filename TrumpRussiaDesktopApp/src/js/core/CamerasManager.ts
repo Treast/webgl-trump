@@ -7,10 +7,12 @@ export class CamerasManager {
   private cameraParent: Group;
   private readonly camera: PerspectiveCamera;
   private scene: Scene;
+  private numberElement: any;
 
   constructor (scene: Scene, camera: PerspectiveCamera) {
     this.camera = camera;
     this.scene = scene;
+    this.numberElement = document.getElementById('camera_number');
   }
 
   init () {
@@ -27,6 +29,7 @@ export class CamerasManager {
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
+    this.numberElement.innerText = ++id;
   }
 
   changeOrientation (data: Orientation) {

@@ -11,6 +11,7 @@ export class App {
     PAGES.show('introduction');
     // PAGES.show('linker');
     this.initRoom();
+    this.initGame();
     SOCKET.getInstance().on('experience:start', this.start.bind(this));
   }
 
