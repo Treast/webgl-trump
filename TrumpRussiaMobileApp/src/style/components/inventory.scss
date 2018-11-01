@@ -5,7 +5,7 @@
     text-align: center;
     margin: 0 auto -2px;
     width: 212px;
-    background-color: #193238;
+    background-color: $background-color;
     span {
       position: relative;
       padding: 7px 20px;
@@ -14,7 +14,7 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       border-top: 1px solid #ffffff;
-      background-color: #193238;
+      background-color: $background-color;
 
       &::before {
         position: absolute;

@@ -36,6 +36,14 @@ io.on('connection', socket => {
     io.to(socket.roomId).emit('timer:end', data)
   });
 
+  socket.on('pause:on', data => {
+    io.to(socket.roomId).emit('pause:on', data)
+  });
+
+  socket.on('pause:off', data => {
+    io.to(socket.roomId).emit('pause:off', data)
+  });
+
   socket.on('envelope:hover', envelope => {
     io.to(socket.roomId).emit('envelope:hover', envelope);
   });

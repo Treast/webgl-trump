@@ -8,16 +8,11 @@
     <title>Device Orientation</title>
 </head>
 <body>
-    <div class="app">
-        <!-- <div data-alert-dialog="container">
-            <div id="ad-fullscreen" data-alert-dialog="element">
-                <p>Pour une meilleure expérience,</p>
-                <p>activez le mode plein écran :</p>
-                <button data-alert-dialog="accept">Activer</button>
-                <button data-alert-dialog="refuse">Continuer</button>
-            </div>
-        </div> -->
+    <div class="app" data-page="app">
         <div class="controller">
+            <div id="pause">
+                <span></span>
+            </div>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
                 <p class="order">Essayez de récolter des informations secrètes en switchant entre les caméras</p>
@@ -99,6 +94,14 @@
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div class="pause" data-page="pause">
+        <div class="content">
+            <h1>Pause</h1>
+
+            <h2 class="timer-run">Reprendre</h2>
+            <h2>Quitter</h2>
         </div>
     </div>
     <div class="background"></div>

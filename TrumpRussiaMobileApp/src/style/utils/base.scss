@@ -1,4 +1,6 @@
-*{
+$background-color: #12171B;
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,7 +15,7 @@ ul, li{
   list-style: none;
 }
 
-.app{
+.app {
   position: relative;
   z-index: 1;
   font-family: 'Chakra Petch', sans-serif;
@@ -21,11 +23,11 @@ ul, li{
   text-shadow: 0 0 5px #ffffff;
 }
 
-.background{
+.background {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #193238;
+  background-color: $background-color;
 }

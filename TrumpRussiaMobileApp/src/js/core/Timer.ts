@@ -3,25 +3,32 @@ import Socket from '../utils/Socket';
 class Timer {
   private remainingTime: number;
   private interval: any;
+  private isRunning: boolean = true;
 
   constructor() {
     this.remainingTime = 300;
     this.interval = null;
   }
 
-  init() {
+  stop() {
+    this.isRunning = false;
+  }
 
+  run() {
+    this.isRunning = true;
   }
 
   start() {
     this.interval = setInterval(() => {
-      if (this.remainingTime < 0) {
-        Socket.emit('timer:end');
-        clearInterval(this.interval);
-      } else {
-        this.remainingTime -= 1;
-        const converted = this.convertToMinutes(this.remainingTime);
-        document.querySelector('#timer').innerHTML = `${converted.minutes}:${converted.seconds}`;
+      if (this.isRunning) {
+        if (this.remainingTime < 0) {
+          Socket.emit('timer:end');
+          clearInterval(this.interval);
+        } else {
+          this.remainingTime -= 1;
+          const converted = this.convertToMinutes(this.remainingTime);
+          document.querySelector('#timer').innerHTML = `${converted.minutes}:${converted.seconds}`;
+        }
       }
     },                          1000);
   }

@@ -4,6 +4,8 @@ import CamerasManager from './CamerasManager';
 import Socket from '../utils/Socket';
 import EnvelopesManager from './EnvelopesManager';
 import ZoomManager from './ZoomManager';
+import PauseManager from './PauseManager';
+import { PAGES } from '../utils/Pages';
 
 class App {
 
@@ -17,13 +19,19 @@ class App {
   }
 
   init() {
+    PAGES.show('app');
     FullScreen.applyOnElement(document.body);
     this.joinRoom();
     this.initCamerasManager();
     this.initEnvelopesManager();
+    this.initPauseManager();
     this.initSlider();
     this.initTimer();
     this.start();
+  }
+
+  initPauseManager() {
+    PauseManager.init();
   }
 
   initSlider() {
@@ -31,7 +39,6 @@ class App {
   }
 
   initTimer() {
-    Timer.init();
     Timer.start();
   }
 
