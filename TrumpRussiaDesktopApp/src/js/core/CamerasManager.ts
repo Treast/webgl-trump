@@ -21,15 +21,16 @@ class CamerasManager {
     this.scene.add(this.cameraParent);
   }
 
-  setCamera (id: number) {
+  setCamera (id: any) {
+    const idn = parseInt(id);
     this.cameraParent.position.set(
-      CONFIG.GAME.CAMERAS[id].POSITION.x,
-      CONFIG.GAME.CAMERAS[id].POSITION.y,
-      CONFIG.GAME.CAMERAS[id].POSITION.z,
+      CONFIG.GAME.CAMERAS[idn].POSITION.x,
+      CONFIG.GAME.CAMERAS[idn].POSITION.y,
+      CONFIG.GAME.CAMERAS[idn].POSITION.z,
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
-    this.numberElement.innerText = (1 + id).toString();
+    this.numberElement.innerText = (1 + idn).toString();
   }
 
   changeOrientation (data: Orientation) {

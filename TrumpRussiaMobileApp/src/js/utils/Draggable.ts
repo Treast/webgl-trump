@@ -49,7 +49,7 @@ export class Draggable {
   }
 
   end() {
-    if (this.isInTarget) this.onDragged();
+    if (this.isInTarget && this.enable) this.onDragged();
     this.moveAt(0, 0);
   }
 

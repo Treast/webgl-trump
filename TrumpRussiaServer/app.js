@@ -32,6 +32,10 @@ io.on('connection', socket => {
     io.to(socket.roomId).emit('camera:zoom', data)
   });
 
+  socket.on('timer:change', data => {
+    io.to(socket.roomId).emit('timer:change', data)
+  });
+
   socket.on('timer:end', data => {
     io.to(socket.roomId).emit('timer:end', data)
   });

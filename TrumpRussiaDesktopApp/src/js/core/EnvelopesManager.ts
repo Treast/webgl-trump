@@ -25,7 +25,7 @@ class EnvelopesManager {
 
   init () {
     this.initEnvelopes();
-    SOCKET.getInstance().on('envelope:dragged', this.onDragged.bind(this));
+    SOCKET.getInstance().on('envelope:dragged', this.onDraggedEnvelope.bind(this));
   }
 
   private initEnvelopes() {
@@ -52,7 +52,7 @@ class EnvelopesManager {
     return cube;
   }
 
-  private onDragged ({ name }: any) {
+  private onDraggedEnvelope ({ name }: any) {
     const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
     this.removeEnvelope(envelope);
   }

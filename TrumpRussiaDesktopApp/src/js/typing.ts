@@ -11,3 +11,8 @@ export interface Envelope {
   boundingBox: Mesh;
   name: string;
 }
+
+export interface TimerValue {
+  minutes: string;
+  seconds: string;
+}

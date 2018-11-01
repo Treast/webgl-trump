@@ -10,7 +10,7 @@ import { MODELS_DATA } from '../data/models';
 import { PAGES } from '../utils/Pages';
 import CamerasManager from './CamerasManager';
 import EnvelopesManager from './EnvelopesManager';
-import { Orientation } from '../typing';
+import { Orientation, TimerValue } from '../typing';
 import EffectManager from './EffectManager';
 import { SOCKET } from './Socket';
 import { DAT_GUI } from '../utils/DatGui';
@@ -24,6 +24,7 @@ class Game {
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
   private clock: Clock;
+  private timer: any;
 
   init (width: number, height: number) {
     this.width = width;
@@ -34,6 +35,7 @@ class Game {
     this.renderer.setSize(this.width, this.height);
     this.renderer.shadowMap.enabled = true;
     this.clock = new Clock();
+    this.timer = document.getElementById('timer');
     EnvelopesManager.setScene(this.scene);
     EffectManager.initStatus(this.scene, this.camera, this.renderer, this.width, this.height);
     this.initModels(() => this.onInitDone());
@@ -43,7 +45,8 @@ class Game {
   initSocketListeners () {
     SOCKET.getInstance().on('camera:orientation', (data: Orientation) => CamerasManager.changeOrientation(data));
     SOCKET.getInstance().on('camera:set', (id: number) => CamerasManager.setCamera(id));
-    SOCKET.getInstance().on('timer:end', this.setTimerEnd.bind(this));
+    SOCKET.getInstance().on('timer:end', this.onTimerEnd.bind(this));
+    SOCKET.getInstance().on('timer:change', this.onTimerChange.bind(this));
     SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
   }
 
@@ -87,7 +90,11 @@ class Game {
     CamerasManager.changeZoom(data.zoom);
   }
 
-  setTimerEnd () {
+  onTimerChange (value: TimerValue) {
+    this.timer.innerHTML = `${value.minutes}:${value.seconds}`;
+  }
+
+  onTimerEnd () {
     PAGES.show('timer-end');
   }
 }

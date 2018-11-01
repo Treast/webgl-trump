@@ -28,9 +28,10 @@ class Timer {
           this.remainingTime -= 1;
           const converted = this.convertToMinutes(this.remainingTime);
           document.querySelector('#timer').innerHTML = `${converted.minutes}:${converted.seconds}`;
+          Socket.emit('timer:change', converted);
         }
       }
-    },                          1000);
+    }, 1000);
   }
 
   convertToMinutes(number: number) {

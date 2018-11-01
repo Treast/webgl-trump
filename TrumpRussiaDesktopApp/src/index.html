@@ -21,6 +21,7 @@
                     </div>
                     <div class="inner-page" data-inner-page="4">
                         <div id="qrcode"></div>
+                        <div class="linker_adress" id="address"></div>
                         <p>Scanne le QR code pour accéder aux caméras de surveillance. </p>
                     </div>
                 </div>
@@ -36,17 +37,12 @@
                 </div>
             </div>
         </section>
-        <section data-page="linker">
-            <p>Pour commencer l'expérience, veuillez flashez le QR Code :</p>
-            <!-- <canvas id="qrcode"></canvas> -->
-            <p>ou se render à l'adresse suivante :</p>
-            <p id="address"></p>
-        </section>
         <section data-page="experience" id="experience" class="camera">
             <span class="camera_corner"></span>
             <span class="camera_corner"></span>
             <span class="camera_corner"></span>
             <span class="camera_corner"></span>
+            <span class="camera_timer" id="timer"></span>
             <span class="camera_text">REC <span class="camera_icon"></span></span>
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
             <span class="camera_center"></span>
