@@ -6,6 +6,7 @@ class TimerManager {
   private timer: any;
 
   init () {
+    this.timer = document.getElementById('timer');
     this.initSocketListener();
   }
 

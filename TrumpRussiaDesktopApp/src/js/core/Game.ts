@@ -36,7 +36,6 @@ class Game {
     this.renderer.setSize(this.width, this.height);
     this.renderer.shadowMap.enabled = true;
     this.clock = new Clock();
-    this.timer = document.getElementById('timer');
     EnvelopesManager.setScene(this.scene);
     EffectManager.initStatus(this.scene, this.camera, this.renderer, this.width, this.height);
     TimerManager.init();
