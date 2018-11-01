@@ -1,17 +1,13 @@
 import * as dat from 'dat.gui';
 import { CONFIG } from '../config';
-import { GUIParamsFilmPass } from '../core/EffectManager';
-
-export interface GUIParamsInterface {
-  enable: boolean;
-  init(gui: dat.GUI): void;
-  render(): void;
-}
+import { GUIParamsFilmPass } from './DatGuiParams/GUIParamsFilmPass';
+import { GUIParamsBadTVPass } from './DatGuiParams/GUIParamsBadTVPass';
 
 export const DAT_GUI = {
 
   params: {
     filmPass: new GUIParamsFilmPass(),
+    badTvPadd: new GUIParamsBadTVPass(),
   },
 
   gui: CONFIG.DEBUG_MODE ? new dat.GUI() : null,

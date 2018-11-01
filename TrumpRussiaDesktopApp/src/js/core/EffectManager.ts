@@ -2,24 +2,30 @@ import 'three/examples/js/postprocessing/EffectComposer';
 import 'three/examples/js/shaders/CopyShader';
 import 'three/examples/js/shaders/FXAAShader';
 import 'three/examples/js/shaders/FilmShader';
+import './../libs/BadTVShader';
 import 'three/examples/js/postprocessing/ShaderPass';
 import 'three/examples/js/postprocessing/RenderPass';
 import 'three/examples/js/postprocessing/OutlinePass';
 import 'three/examples/js/postprocessing/FilmPass';
 import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
-import { GUI } from 'dat.gui';
-import { GUIParamsInterface } from '../utils/DatGui';
 
 class EffectManager {
 
   private scene: Scene;
   private renderer: WebGLRenderer;
+  // @ts-ignore
   private outlinePass: THREE.OutlinePass;
+  // @ts-ignore
   private filmPass: THREE.FilmPass;
+  // @ts-ignore
   private composer: THREE.EffectComposer;
   private camera: PerspectiveCamera;
   private height: number;
   private width: number;
+  // @ts-ignore
+  private badTVPass: THREE.ShaderPass;
+  private copyPass: any;
+  private enableBadTVPass: boolean = false;
 
   getOutlinePass () {
     return this.outlinePass;
@@ -33,12 +39,27 @@ class EffectManager {
     return this.composer;
   }
 
+  getBadTVPass () {
+    return this.badTVPass;
+  }
+
+  getEnableBadTVPass () {
+    return this.enableBadTVPass;
+  }
+
   init () {
+    // @ts-ignore
+    this.composer = new THREE.EffectComposer(this.renderer);
     // @ts-ignore
     const renderPass = new THREE.RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
     this.initOutlinePass();
+    if (this.enableBadTVPass) this.initBadTVPass();
     this.initFilmPass();
+    // @ts-ignore
+    this.copyPass = new THREE.ShaderPass(THREE.CopyShader);
+    this.copyPass.renderToScreen = true;
+    this.composer.addPass(this.copyPass);
   }
 
   initStatus (
@@ -53,8 +74,6 @@ class EffectManager {
     this.camera = camera;
     this.width = width;
     this.height = height;
-    // @ts-ignore
-    this.composer = new THREE.EffectComposer(this.renderer);
   }
 
   initOutlinePass () {
@@ -77,44 +96,25 @@ class EffectManager {
   initFilmPass () {
     // @ts-ignore
     this.filmPass = new THREE.FilmPass(0.58, 0.13, 890, false);
-    // @ts-ignore
-    this.filmPass.renderToScreen = true;
     this.composer.addPass(this.filmPass);
   }
+
+  initBadTVPass () {
+    // @ts-ignore
+    this.badTVPass = new THREE.ShaderPass(THREE.BadTVShader);
+    this.badTVPass.uniforms['distortion'].value = 8.3;
+    this.badTVPass.uniforms['distortion2'].value = 7;
+    this.badTVPass.uniforms['speed'].value = 0.35;
+    this.badTVPass.uniforms['rollSpeed'].value = 0.13;
+    this.composer.addPass(this.badTVPass);
+  }
+
+  setBreakScreen (value: boolean) {
+    this.enableBadTVPass = value;
+    this.init();
+  }
+
 }
 
 const effectManager = new EffectManager();
-
 export default effectManager;
-
-export class GUIParamsFilmPass implements GUIParamsInterface {
-
-  public enable: boolean = true;
-
-  private readonly scanlinesCount: number;
-  private readonly grayscale: boolean;
-  private readonly scanlinesIntensity: number;
-  private readonly noiseIntensity: number;
-
-  constructor () {
-    this.scanlinesCount = 256;
-    this.grayscale = false;
-    this.scanlinesIntensity = 0.3;
-    this.noiseIntensity = 0.8;
-  }
-
-  init(gui: GUI): void {
-    gui.add(this, 'scanlinesIntensity', 0, 1);
-    gui.add(this, 'noiseIntensity', 0, 3);
-    gui.add(this, 'grayscale');
-    gui.add(this, 'scanlinesCount', 0, 2048).step(1);
-  }
-
-  render(): void {
-    const filmPass = effectManager.getFilmPass();
-    filmPass.uniforms.grayscale.value = this.grayscale;
-    filmPass.uniforms.nIntensity.value = this.noiseIntensity;
-    filmPass.uniforms.sIntensity.value = this.scanlinesIntensity;
-    filmPass.uniforms.sCount.value = this.scanlinesCount;
-  }
-}

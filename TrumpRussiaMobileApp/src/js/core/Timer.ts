@@ -6,7 +6,7 @@ class Timer {
   private isRunning: boolean = true;
 
   constructor() {
-    this.remainingTime = 300;
+    this.remainingTime = 30; // 300;
     this.interval = null;
   }
 
@@ -21,16 +21,16 @@ class Timer {
   start() {
     this.interval = setInterval(() => {
       if (this.isRunning) {
-        if (this.remainingTime < 0) {
-          Socket.emit('timer:end');
-          clearInterval(this.interval);
-        } else {
           this.remainingTime -= 1;
           const converted = this.convertToMinutes(this.remainingTime);
           document.querySelector('#timer').innerHTML = `${converted.minutes}:${converted.seconds}`;
-        }
+          Socket.emit('timer:change', converted);
+          if (this.remainingTime === 0) {
+            Socket.emit('timer:end');
+            clearInterval(this.interval);
+          }
       }
-    },                          1000);
+    }, 1000);
   }
 
   convertToMinutes(number: number) {

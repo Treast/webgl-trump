@@ -3,7 +3,6 @@ import {
   Mesh,
   MeshBasicMaterial,
   Object3D,
-  OutlinePass,
   PerspectiveCamera,
   Raycaster,
   Scene,
@@ -11,6 +10,7 @@ import {
 import { CONFIG } from '../config';
 import { Envelope } from '../typing';
 import { SOCKET } from './Socket';
+import effectManager from './EffectManager';
 
 class EnvelopesManager {
 
@@ -25,7 +25,7 @@ class EnvelopesManager {
 
   init () {
     this.initEnvelopes();
-    SOCKET.getInstance().on('envelope:dragged', this.onDragged.bind(this));
+    SOCKET.getInstance().on('envelope:dragged', this.onDraggedEnvelope.bind(this));
   }
 
   private initEnvelopes() {
@@ -52,7 +52,7 @@ class EnvelopesManager {
     return cube;
   }
 
-  private onDragged ({ name }: any) {
+  private onDraggedEnvelope ({ name }: any) {
     const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
     this.removeEnvelope(envelope);
   }
@@ -64,14 +64,17 @@ class EnvelopesManager {
     this.scene.remove(envelope.object);
     this.scene.remove(envelope.boundingBox);
     this.envelopes.splice(this.envelopes.indexOf(envelope), 1);
+    if (this.envelopes.length === 0) {
+      SOCKET.getInstance().emit('game:win');
+    }
   }
 
-  checkCibling (camera: PerspectiveCamera, outlinePass: OutlinePass) {
+  checkCibling (camera: PerspectiveCamera) {
     const selectedEnvelope = this.getIntersectedEnvelope(camera);
     if (selectedEnvelope !== null) {
-      outlinePass.selectedObjects = [selectedEnvelope.object];
+      effectManager.getOutlinePass().selectedObjects = [selectedEnvelope.object];
     } else {
-      outlinePass.selectedObjects = [];
+      effectManager.getOutlinePass().selectedObjects = [];
     }
     if (this.currEnvelopeSelected !== selectedEnvelope) {
       SOCKET.getInstance().emit('envelope:hover', !selectedEnvelope ? null : {

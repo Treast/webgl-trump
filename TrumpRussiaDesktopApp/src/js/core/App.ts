@@ -9,10 +9,9 @@ export class App {
 
   init () {
     PAGES.show('introduction');
-    // PAGES.show('linker');
     this.initRoom();
     this.initGame();
-    SOCKET.getInstance().on('experience:start', this.start.bind(this));
+    SOCKET.getInstance().on('game:start', this.start.bind(this));
   }
 
   initRoom () {

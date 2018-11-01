@@ -1,6 +1,7 @@
 import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
+import { SOCKET } from './Socket';
 
 class CamerasManager {
 
@@ -19,17 +20,25 @@ class CamerasManager {
     this.cameraParent = new Group();
     this.cameraParent.add(this.camera);
     this.scene.add(this.cameraParent);
+    this.initSocketListeners();
   }
 
-  setCamera (id: number) {
+  initSocketListeners () {
+    SOCKET.getInstance().on('camera:orientation', this.changeOrientation.bind(this));
+    SOCKET.getInstance().on('camera:set', this.setCamera.bind(this));
+    SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
+  }
+
+  setCamera (id: any) {
+    const idn = parseInt(id, 10);
     this.cameraParent.position.set(
-      CONFIG.GAME.CAMERAS[id].POSITION.x,
-      CONFIG.GAME.CAMERAS[id].POSITION.y,
-      CONFIG.GAME.CAMERAS[id].POSITION.z,
+      CONFIG.GAME.CAMERAS[idn].POSITION.x,
+      CONFIG.GAME.CAMERAS[idn].POSITION.y,
+      CONFIG.GAME.CAMERAS[idn].POSITION.z,
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
-    this.numberElement.innerText = (1 + id).toString();
+    this.numberElement.innerText = (1 + idn).toString();
   }
 
   changeOrientation (data: Orientation) {
@@ -37,7 +46,7 @@ class CamerasManager {
     this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 
-  changeZoom(zoom: number) {
+  changeZoom({ zoom }: any) {
     const originalFOV = 75;
     const difference = originalFOV * (zoom / 100);
     this.camera.fov = originalFOV - difference;

@@ -8,13 +8,13 @@ import {
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
 import { PAGES } from '../utils/Pages';
-import CamerasManager from './CamerasManager';
-import EnvelopesManager from './EnvelopesManager';
-import { Orientation } from '../typing';
-import EffectManager from './EffectManager';
 import { SOCKET } from './Socket';
 import { DAT_GUI } from '../utils/DatGui';
 import { CONFIG } from '../config';
+import CamerasManager from './CamerasManager';
+import EnvelopesManager from './EnvelopesManager';
+import EffectManager from './EffectManager';
+import TimerManager from './TimerManager';
 
 class Game {
   private width: number;
@@ -24,6 +24,7 @@ class Game {
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
   private clock: Clock;
+  private shaderTime: number = 0;
 
   init (width: number, height: number) {
     this.width = width;
@@ -36,15 +37,14 @@ class Game {
     this.clock = new Clock();
     EnvelopesManager.setScene(this.scene);
     EffectManager.initStatus(this.scene, this.camera, this.renderer, this.width, this.height);
+    TimerManager.init();
     this.initModels(() => this.onInitDone());
     this.initSocketListeners();
   }
 
   initSocketListeners () {
-    SOCKET.getInstance().on('camera:orientation', (data: Orientation) => CamerasManager.changeOrientation(data));
-    SOCKET.getInstance().on('camera:set', (id: number) => CamerasManager.setCamera(id));
-    SOCKET.getInstance().on('timer:end', this.setTimerEnd.bind(this));
-    SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
+    SOCKET.getInstance().on('game:win', this.onGameFinish.bind(this, true));
+    SOCKET.getInstance().on('game:lose', this.onGameFinish.bind(this, false));
   }
 
   resize (width: number, height: number) {
@@ -77,18 +77,22 @@ class Game {
   }
 
   animate (callback: () => void = null) {
+    this.shaderTime += 0.1;
     requestAnimationFrame(this.animate.bind(this, callback));
-    EnvelopesManager.checkCibling(this.camera, EffectManager.getOutlinePass());
+    EnvelopesManager.checkCibling(this.camera);
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
-    EffectManager.getComposer().render(this.clock.getDelta());
+    if (EffectManager.getEnableBadTVPass()) EffectManager.getBadTVPass().uniforms['time'].value = this.shaderTime;
+    EffectManager.getFilmPass().uniforms['time'].value = this.shaderTime;
+    EffectManager.getComposer().render(0.1);
   }
 
-  changeZoom(data: any) {
-    CamerasManager.changeZoom(data.zoom);
-  }
-
-  setTimerEnd () {
-    PAGES.show('timer-end');
+  onGameFinish (isWinning: boolean) {
+    if (isWinning) {
+      PAGES.show('game-result');
+    } else {
+      EffectManager.setBreakScreen(true);
+      (document.getElementById('experience')).classList.add('experience-finish');
+    }
   }
 }
 
