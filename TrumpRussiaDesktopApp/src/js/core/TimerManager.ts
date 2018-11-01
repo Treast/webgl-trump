@@ -1,0 +1,21 @@
+import { SOCKET } from './Socket';
+import { TimerValue } from '../typing';
+
+class TimerManager {
+
+  private timer: any;
+
+  init () {
+    this.initSocketListener();
+  }
+
+  private initSocketListener() {
+    SOCKET.getInstance().on('timer:change', this.onTimerChange.bind(this));
+  }
+
+  onTimerChange (value: TimerValue) {
+    this.timer.innerHTML = `${value.minutes}:${value.seconds}`;
+  }
+}
+
+export default new TimerManager();

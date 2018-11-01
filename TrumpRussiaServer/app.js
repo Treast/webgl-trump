@@ -17,7 +17,15 @@ io.on('connection', socket => {
   socket.on('room:join', id => {
     socket.join(id);
     socket.roomId = id;
-    io.to(id).emit('experience:start');
+    io.to(id).emit('game:start');
+  });
+
+  socket.on('game:win', () => {
+    io.to(socket.roomId).emit('game:win');
+  });
+
+  socket.on('game:lose', () => {
+    io.to(socket.roomId).emit('game:lose');
   });
 
   socket.on('camera:set', id => {
@@ -37,7 +45,8 @@ io.on('connection', socket => {
   });
 
   socket.on('timer:end', data => {
-    io.to(socket.roomId).emit('timer:end', data)
+    //io.to(socket.roomId).emit('timer:end', data);
+    io.to(socket.roomId).emit('game:lose');
   });
 
   socket.on('pause:on', data => {

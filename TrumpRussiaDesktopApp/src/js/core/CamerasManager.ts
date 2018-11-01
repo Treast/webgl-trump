@@ -1,6 +1,7 @@
 import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
+import { SOCKET } from "./Socket";
 
 class CamerasManager {
 
@@ -19,6 +20,13 @@ class CamerasManager {
     this.cameraParent = new Group();
     this.cameraParent.add(this.camera);
     this.scene.add(this.cameraParent);
+    this.initSocketListeners();
+  }
+
+  initSocketListeners () {
+    SOCKET.getInstance().on('camera:orientation', this.changeOrientation.bind(this));
+    SOCKET.getInstance().on('camera:set', this.setCamera.bind(this));
+    SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
   }
 
   setCamera (id: any) {
@@ -38,7 +46,7 @@ class CamerasManager {
     this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 
-  changeZoom(zoom: number) {
+  changeZoom({ zoom }: any) {
     const originalFOV = 75;
     const difference = originalFOV * (zoom / 100);
     this.camera.fov = originalFOV - difference;
