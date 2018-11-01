@@ -7,7 +7,7 @@ export class Room {
   private readonly address: string;
 
   constructor (id: number) {
-    this.address = `http://${CONFIG.MOBILE_APP.HOST}:${CONFIG.MOBILE_APP.PORT}?roomId=${id}`;
+    this.address = `${CONFIG.MOBILE_APP}?roomId=${id}`;
   }
 
   setQRcode (element: HTMLElement) {

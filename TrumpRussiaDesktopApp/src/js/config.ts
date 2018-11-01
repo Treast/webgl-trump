@@ -1,13 +1,7 @@
 export const CONFIG = {
   DEBUG_MODE: false,
-  MOBILE_APP: {
-    HOST: process.env.MOBILE_HOST,
-    PORT: process.env.MOBILE_PORT,
-  },
-  SERVER: {
-    HOST: process.env.SERVER_HOST,
-    PORT: process.env.SERVER_PORT,
-  },
+  MOBILE_APP: process.env.MOBILE,
+  SERVER: process.env.SERVER,
   GAME: {
     ENVELOPES_NAMES: ['Enveloppe_01', 'Enveloppe__02', 'Enveloppe_03_'],
     CAMERAS: [
