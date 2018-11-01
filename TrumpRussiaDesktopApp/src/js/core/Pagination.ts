@@ -1,16 +1,19 @@
 // @ts-ignore
 import { TweenMax } from 'gsap';
 
-export class Pagination {
+class Pagination {
   private readonly element: HTMLElement;
   private innerPages: NodeListOf<HTMLElement>;
   private innerPaginationPages: NodeListOf<HTMLElement>;
   private currentIndex: number;
   private maxIndex: number;
 
-  constructor(element: HTMLElement) {
-    this.element = element;
+  constructor() {
+    this.element = document.querySelector('section[data-page="introduction"] .inner');
     this.currentIndex = 1;
+  }
+
+  init() {
     this.initPages();
     this.initListeners();
     this.refreshPage();
@@ -92,3 +95,5 @@ export class Pagination {
     this.refreshPage();
   }
 }
+
+export default new Pagination();

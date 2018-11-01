@@ -2,20 +2,20 @@ import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
 
-export class CamerasManager {
+class CamerasManager {
 
   private cameraParent: Group;
-  private readonly camera: PerspectiveCamera;
+  private camera: PerspectiveCamera;
   private scene: Scene;
   private numberElement: any;
 
-  constructor (scene: Scene, camera: PerspectiveCamera) {
-    this.camera = camera;
-    this.scene = scene;
+  constructor () {
     this.numberElement = document.getElementById('camera_number');
   }
 
-  init () {
+  init (scene: Scene, camera: PerspectiveCamera) {
+    this.camera = camera;
+    this.scene = scene;
     this.cameraParent = new Group();
     this.cameraParent.add(this.camera);
     this.scene.add(this.cameraParent);
@@ -29,7 +29,7 @@ export class CamerasManager {
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
-    this.numberElement.innerText = ++id;
+    this.numberElement.innerText = (1 + id).toString();
   }
 
   changeOrientation (data: Orientation) {
@@ -44,3 +44,5 @@ export class CamerasManager {
     this.camera.updateProjectionMatrix();
   }
 }
+
+export default new CamerasManager();

@@ -12,14 +12,14 @@ import { CONFIG } from '../config';
 import { Envelope } from '../typing';
 import { SOCKET } from './Socket';
 
-export class EnvelopesManager {
+class EnvelopesManager {
 
   private scene: Scene;
   private envelopes: Envelope[] = [];
   private raycaster: Raycaster = new Raycaster();
   private currEnvelopeSelected: Envelope = null;
 
-  constructor (scene: Scene) {
+  setScene(scene: Scene) {
     this.scene = scene;
   }
 
@@ -92,3 +92,5 @@ export class EnvelopesManager {
     return selectedEnvelopes;
   }
 }
+
+export default new EnvelopesManager();

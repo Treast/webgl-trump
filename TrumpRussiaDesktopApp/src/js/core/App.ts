@@ -1,7 +1,7 @@
 import { CONFIG } from '../config';
 import { Room } from './Room';
 import { PAGES } from '../utils/Pages';
-import { Game } from './Game';
+import Game from './Game';
 import { DAT_GUI } from '../utils/DatGui';
 import { SOCKET } from './Socket';
 
@@ -25,19 +25,19 @@ export class App {
 
   initGame () {
     if (CONFIG.DEBUG_MODE) DAT_GUI.init();
-    Game.getInstance().init(window.innerWidth, window.innerHeight);
+    Game.init(window.innerWidth, window.innerHeight);
 
     const container = document.getElementById('experience');
-    container.appendChild(Game.getInstance().renderer.domElement);
+    container.appendChild(Game.renderer.domElement);
 
     window.addEventListener('resize', () => {
-      Game.getInstance().resize(window.innerWidth, window.innerHeight);
+      Game.resize(window.innerWidth, window.innerHeight);
     });
   }
 
   start () {
     PAGES.show('experience');
-    Game.getInstance().animate();
+    Game.animate();
   }
 
 }

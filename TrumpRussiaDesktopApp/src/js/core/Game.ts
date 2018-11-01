@@ -8,39 +8,22 @@ import {
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
 import { PAGES } from '../utils/Pages';
-import { CamerasManager } from './CamerasManager';
-import { EnvelopesManager } from './EnvelopesManager';
+import CamerasManager from './CamerasManager';
+import EnvelopesManager from './EnvelopesManager';
 import { Orientation } from '../typing';
-import { EffectManager } from './EffectManager';
+import EffectManager from './EffectManager';
 import { SOCKET } from './Socket';
 import { DAT_GUI } from '../utils/DatGui';
 import { CONFIG } from '../config';
 
-export class Game {
-
-  private static instance: Game = null;
-
+class Game {
   private width: number;
   private height: number;
   private camera: PerspectiveCamera;
   private scene: Scene;
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
-  private camerasManager: CamerasManager;
-  private envelopesManager: EnvelopesManager;
-  private effectManager: EffectManager;
   private clock: Clock;
-
-  private constructor () {}
-
-  static getInstance () {
-    if (this.instance === null) this.instance = new Game();
-    return this.instance;
-  }
-
-  public getEffectManager () {
-    return this.effectManager;
-  }
 
   init (width: number, height: number) {
     this.width = width;
@@ -51,16 +34,15 @@ export class Game {
     this.renderer.setSize(this.width, this.height);
     this.renderer.shadowMap.enabled = true;
     this.clock = new Clock();
-    this.camerasManager = new CamerasManager(this.scene, this.camera);
-    this.envelopesManager = new EnvelopesManager(this.scene);
-    this.effectManager = new EffectManager(this.scene, this.camera, this.renderer, this.width, this.height);
+    EnvelopesManager.setScene(this.scene);
+    EffectManager.initStatus(this.scene, this.camera, this.renderer, this.width, this.height);
     this.initModels(() => this.onInitDone());
     this.initSocketListeners();
   }
 
   initSocketListeners () {
-    SOCKET.getInstance().on('camera:orientation', (data: Orientation) => this.camerasManager.changeOrientation(data));
-    SOCKET.getInstance().on('camera:set', (id: number) => this.camerasManager.setCamera(id));
+    SOCKET.getInstance().on('camera:orientation', (data: Orientation) => CamerasManager.changeOrientation(data));
+    SOCKET.getInstance().on('camera:set', (id: number) => CamerasManager.setCamera(id));
     SOCKET.getInstance().on('timer:end', this.setTimerEnd.bind(this));
     SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
   }
@@ -71,14 +53,14 @@ export class Game {
     this.camera.aspect = this.width / this.height;
     this.camera.updateProjectionMatrix();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-    this.effectManager.getComposer().setSize(window.innerWidth, window.innerHeight);
+    EffectManager.getComposer().setSize(window.innerWidth, window.innerHeight);
   }
 
   onInitDone () {
-    this.effectManager.init();
-    this.envelopesManager.init();
-    this.camerasManager.init();
-    this.camerasManager.setCamera(0);
+    EffectManager.init();
+    EnvelopesManager.init();
+    CamerasManager.init(this.scene, this.camera);
+    CamerasManager.setCamera(0);
   }
 
   initModels (onLoaded: () => void) {
@@ -96,16 +78,18 @@ export class Game {
 
   animate (callback: () => void = null) {
     requestAnimationFrame(this.animate.bind(this, callback));
-    this.envelopesManager.checkCibling(this.camera, this.effectManager.getOutlinePass());
+    EnvelopesManager.checkCibling(this.camera, EffectManager.getOutlinePass());
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
-    this.effectManager.getComposer().render(this.clock.getDelta());
+    EffectManager.getComposer().render(this.clock.getDelta());
   }
 
   changeZoom(data: any) {
-    this.camerasManager.changeZoom(data.zoom);
+    CamerasManager.changeZoom(data.zoom);
   }
 
   setTimerEnd () {
     PAGES.show('timer-end');
   }
 }
+
+export default new Game();

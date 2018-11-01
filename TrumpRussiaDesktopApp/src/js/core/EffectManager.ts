@@ -9,34 +9,17 @@ import 'three/examples/js/postprocessing/FilmPass';
 import { PerspectiveCamera, Scene, Vector2, WebGLRenderer } from 'three';
 import { GUI } from 'dat.gui';
 import { GUIParamsInterface } from '../utils/DatGui';
-import { Game } from './Game';
 
-export class EffectManager {
+class EffectManager {
 
-  private readonly scene: Scene;
-  private readonly renderer: WebGLRenderer;
+  private scene: Scene;
+  private renderer: WebGLRenderer;
   private outlinePass: THREE.OutlinePass;
   private filmPass: THREE.FilmPass;
-  private readonly composer: THREE.EffectComposer;
-  private readonly camera: PerspectiveCamera;
-  private readonly height: number;
-  private readonly width: number;
-
-  constructor (
-    scene: Scene,
-    camera: PerspectiveCamera,
-    renderer: WebGLRenderer,
-    width: number,
-    height: number,
-  ) {
-    this.scene = scene;
-    this.renderer = renderer;
-    this.camera = camera;
-    this.width = width;
-    this.height = height;
-    // @ts-ignore
-    this.composer = new THREE.EffectComposer(this.renderer);
-  }
+  private composer: THREE.EffectComposer;
+  private camera: PerspectiveCamera;
+  private height: number;
+  private width: number;
 
   getOutlinePass () {
     return this.outlinePass;
@@ -56,6 +39,22 @@ export class EffectManager {
     this.composer.addPass(renderPass);
     this.initOutlinePass();
     this.initFilmPass();
+  }
+
+  initStatus (
+    scene: Scene,
+    camera: PerspectiveCamera,
+    renderer: WebGLRenderer,
+    width: number,
+    height: number,
+  ) {
+    this.scene = scene;
+    this.renderer = renderer;
+    this.camera = camera;
+    this.width = width;
+    this.height = height;
+    // @ts-ignore
+    this.composer = new THREE.EffectComposer(this.renderer);
   }
 
   initOutlinePass () {
@@ -84,6 +83,10 @@ export class EffectManager {
   }
 }
 
+const effectManager = new EffectManager();
+
+export default effectManager;
+
 export class GUIParamsFilmPass implements GUIParamsInterface {
 
   public enable: boolean = true;
@@ -108,7 +111,7 @@ export class GUIParamsFilmPass implements GUIParamsInterface {
   }
 
   render(): void {
-    const filmPass = Game.getInstance().getEffectManager().getFilmPass();
+    const filmPass = effectManager.getFilmPass();
     filmPass.uniforms.grayscale.value = this.grayscale;
     filmPass.uniforms.nIntensity.value = this.noiseIntensity;
     filmPass.uniforms.sIntensity.value = this.scanlinesIntensity;
