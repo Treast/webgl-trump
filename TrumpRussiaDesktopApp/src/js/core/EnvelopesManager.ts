@@ -10,7 +10,7 @@ import {
 import { CONFIG } from '../config';
 import { Envelope } from '../typing';
 import { SOCKET } from './Socket';
-import effectManager from "./EffectManager";
+import effectManager from './EffectManager';
 
 class EnvelopesManager {
 

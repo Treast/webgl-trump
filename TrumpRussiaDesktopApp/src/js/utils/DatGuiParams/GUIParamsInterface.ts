@@ -1,4 +1,4 @@
-import * as dat from "dat.gui";
+import * as dat from 'dat.gui';
 
 export interface GUIParamsInterface {
   enable: boolean;

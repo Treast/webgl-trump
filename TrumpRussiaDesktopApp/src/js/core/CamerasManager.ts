@@ -1,7 +1,7 @@
 import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
-import { SOCKET } from "./Socket";
+import { SOCKET } from './Socket';
 
 class CamerasManager {
 
@@ -30,7 +30,7 @@ class CamerasManager {
   }
 
   setCamera (id: any) {
-    const idn = parseInt(id);
+    const idn = parseInt(id, 10);
     this.cameraParent.position.set(
       CONFIG.GAME.CAMERAS[idn].POSITION.x,
       CONFIG.GAME.CAMERAS[idn].POSITION.y,

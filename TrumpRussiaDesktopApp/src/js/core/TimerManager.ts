@@ -14,7 +14,7 @@ class TimerManager {
     SOCKET.getInstance().on('timer:change', this.onTimerChange.bind(this));
   }
 
-  onTimerChange (value: TimerValue) {
+  private onTimerChange (value: TimerValue) {
     this.timer.innerHTML = `${value.minutes}:${value.seconds}`;
   }
 }

@@ -18,7 +18,7 @@ export const DAT_GUI = {
         const folder = this.gui.addFolder(name);
         this.params[name].init(folder);
       }
-    })
+    });
   },
 
   render () {

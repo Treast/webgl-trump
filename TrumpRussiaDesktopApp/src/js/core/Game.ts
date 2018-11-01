@@ -14,7 +14,7 @@ import { CONFIG } from '../config';
 import CamerasManager from './CamerasManager';
 import EnvelopesManager from './EnvelopesManager';
 import EffectManager from './EffectManager';
-import TimerManager from "./TimerManager";
+import TimerManager from './TimerManager';
 
 class Game {
   private width: number;
@@ -24,7 +24,6 @@ class Game {
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
   private clock: Clock;
-  private timer: any;
   private shaderTime: number = 0;
 
   init (width: number, height: number) {

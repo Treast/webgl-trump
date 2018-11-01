@@ -117,5 +117,4 @@ class EffectManager {
 }
 
 const effectManager = new EffectManager();
-
 export default effectManager;
