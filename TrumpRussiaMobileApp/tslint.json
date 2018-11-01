@@ -6,7 +6,8 @@
             true,
             140
         ],
-        "import-name": false
+        "import-name": false,
+        "variable-name": false
     },
     "defaultSeverity": "error",
     "project": "tsconfig.json"

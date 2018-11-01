@@ -76,6 +76,7 @@
 
   .main-container {
     flex-grow: 2;
+    max-height: 50%;
   }
 
   .inventory {
@@ -161,7 +162,15 @@
     .zoom-slider {
       flex-grow: 1;
       flex-basis: 25%;
-      padding: 0 0 40px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      padding-top: 30px;
+
+      .zoom-value {
+        padding-top: 40px;
+      }
 
       .noUi-target {
         background: none;
@@ -174,7 +183,8 @@
         width: 20px;
 
         .noUi-handle {
-          left: -21px;
+          top: -28px;
+          left: -17px;
           width: 60px;
           height: 60px;
           box-shadow: 0 0 5px #ffffff;
@@ -188,7 +198,7 @@
           }
         }
         .noUi-pips-vertical {
-          left: -16px;
+          left: -12px;
           .noUi-marker-vertical.noUi-marker {
             width: 30px;
             background-color: #4E5863;

@@ -1,10 +1,10 @@
-export class Timer {
-  private socket: SocketIOClient.Socket;
+import Socket from '../utils/Socket';
+
+class Timer {
   private remainingTime: number;
   private interval: any;
 
-  constructor(socket: SocketIOClient.Socket) {
-    this.socket = socket;
+  constructor() {
     this.remainingTime = 300;
     this.interval = null;
   }
@@ -16,7 +16,7 @@ export class Timer {
   start() {
     this.interval = setInterval(() => {
       if (this.remainingTime < 0) {
-        this.socket.emit('timer:end');
+        Socket.emit('timer:end');
         clearInterval(this.interval);
       } else {
         this.remainingTime -= 1;
@@ -35,3 +35,5 @@ export class Timer {
     };
   }
 }
+
+export default new Timer();

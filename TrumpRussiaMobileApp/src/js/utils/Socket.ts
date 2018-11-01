@@ -1,21 +1,16 @@
 import { CONFIG } from '../config';
 import * as io from 'socket.io-client';
 
-let instance: any = null;
-
-export class Socket {
-  private socket: SocketIOClient.Socket;
+class Socket {
+  private readonly socket: SocketIOClient.Socket;
 
   constructor() {
-    if (instance === null) {
-      this.socket = io(`${CONFIG.SERVER}`);
-      instance = this;
-    }
-    return instance;
+    this.socket = io(`${CONFIG.SERVER}`);
   }
 
-  static getInstance() {
-    return new Socket().socket;
+  get() {
+    return this.socket;
   }
-
 }
+
+export default new Socket().get();

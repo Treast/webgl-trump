@@ -1,7 +1,7 @@
-import { Socket } from '../utils/Socket';
+import Socket from '../utils/Socket';
 import { Draggable } from '../utils/Draggable';
 
-export class EnvelopesManager {
+class EnvelopesManager {
 
   private static INACTIVE_OPACITY = '0.4';
 
@@ -26,7 +26,7 @@ export class EnvelopesManager {
   }
 
   init() {
-    Socket.getInstance().on('envelope:hover', this.onHoverEnvelope.bind(this));
+    Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
   }
 
   onHoverEnvelope(envelope: HTMLElement) {
@@ -38,7 +38,8 @@ export class EnvelopesManager {
   onDraggedEnvelope() {
     const actives = this.inventory.querySelectorAll('.inventory_item-active');
     this.envelopes[actives.length].classList.add('inventory_item-active');
-    Socket.getInstance().emit('envelope:dragged', this.currentHover);
+    Socket.emit('envelope:dragged', this.currentHover);
   }
-
 }
+
+export default new EnvelopesManager();
