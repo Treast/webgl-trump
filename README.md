@@ -63,7 +63,6 @@ Télécharger la branche `master` [ici](https://github.com/Treast/webgl-trump/ar
 - Installer les dépendances NPM
 `npm install`
 - Renommer le fichier `.env.example` en `.env` et changer l'adresse IP présente par la vôtre. *(Pour connaître votre adresse IP, ouvrez un terminal et tapez `ifconfig /all` sous Windows ou bien `ipconfig` sous Unix/MacOS)*
-- **Attention ! Il faut ouvrir le port 9001 de votre ordinateur pour y avoir accès depuis le téléphone.**
 
 ### Lancement
 #### En mode développement
