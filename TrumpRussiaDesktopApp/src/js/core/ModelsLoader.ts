@@ -1,3 +1,7 @@
+/**
+ * ModelsLoader va charger les différents modèles de l'expérience.
+ */
+
 import * as path from 'path';
 import 'three/examples/js/loaders/ColladaLoader';
 import 'three/examples/js/loaders/LoaderSupport';
@@ -20,6 +24,11 @@ export class ModelsLoader {
     this.onSceneLoaded = onSceneLoaded;
   }
 
+  /**
+   * On charge les modèles définis dans le fichier de configuration et on lance le chargement du fichier associé selon
+   * l'extension du modèle.
+   * @param modelsData
+   */
   load (modelsData: any) {
     Object.keys(modelsData).forEach((key: string) => {
       const modelData = modelsData[key];
@@ -41,6 +50,10 @@ export class ModelsLoader {
     });
   }
 
+  /**
+   * On charge le modèle Collada et on l'ajoute dans la scène.
+   * @param modelData
+   */
   loadCollada (modelData: any) {
     // @ts-ignore
     const loader = new ColladaLoader(this.loadingManager);
@@ -49,6 +62,10 @@ export class ModelsLoader {
     });
   }
 
+  /**
+   * On charge le modèle OBJ ainsi que les matériaux et on les rajoute dans la scène.
+   * @param modelData
+   */
   loadOBJ (modelData: any) {
     const mltLoader = new MTLLoader(this.loadingManager);
     mltLoader.load(`./models/${modelData.filename.replace('.obj', '.mtl')}`, (materials: MaterialCreator) => {

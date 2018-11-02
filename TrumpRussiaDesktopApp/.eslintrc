@@ -9,7 +9,8 @@
         }
     },
     "rules": {
-        "semi": 2
+        "semi": 2,
+        "no-trailing-spaces": ["warn", "ignore-comments"]
     },
     "env": {
         "browser": true

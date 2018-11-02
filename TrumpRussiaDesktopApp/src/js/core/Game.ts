@@ -1,3 +1,8 @@
+/**
+ * Coeur de notre jeu.
+ * La classe Game gère toute la partie THREE.JS, ainsi que les différents managers (CamerasManager, EnvelopesManager, EffectManager ...).
+ */
+
 import {
   Clock,
   LoadingManager,
@@ -8,7 +13,7 @@ import {
 import { ModelsLoader } from './ModelsLoader';
 import { MODELS_DATA } from '../data/models';
 import { PAGES } from '../utils/Pages';
-import { SOCKET } from './Socket';
+import Socket from './Socket';
 import { DAT_GUI } from '../utils/DatGui';
 import { CONFIG } from '../config';
 import CamerasManager from './CamerasManager';
@@ -26,6 +31,11 @@ class Game {
   private clock: Clock;
   private shaderTime: number = 0;
 
+  /**
+   * Initialisation
+   * @param width
+   * @param height
+   */
   init (width: number, height: number) {
     this.width = width;
     this.height = height;
@@ -42,11 +52,19 @@ class Game {
     this.initSocketListeners();
   }
 
+  /**
+   * On écoute les événements Socket.
+   */
   initSocketListeners () {
-    SOCKET.getInstance().on('game:win', this.onGameFinish.bind(this, true));
-    SOCKET.getInstance().on('game:lose', this.onGameFinish.bind(this, false));
+    Socket.on('game:win', this.onGameFinish.bind(this, true));
+    Socket.on('game:lose', this.onGameFinish.bind(this, false));
   }
 
+  /**
+   * Lors d'un resize de la fenêtre, on met à jour la taille du WebGLRenderer ainsi que celle des effets.
+   * @param width
+   * @param height
+   */
   resize (width: number, height: number) {
     this.width = width;
     this.height = height;
@@ -56,6 +74,9 @@ class Game {
     EffectManager.getComposer().setSize(window.innerWidth, window.innerHeight);
   }
 
+  /**
+   * Une fois la scène chargée et initialisée, on lance les différents managers.
+   */
   onInitDone () {
     EffectManager.init();
     EnvelopesManager.init();
@@ -63,6 +84,10 @@ class Game {
     CamerasManager.setCamera(0);
   }
 
+  /**
+   * On charge les différents models 3D définis dans le dossier src/js/data/models.ts et on les ajoute à la scène.
+   * @param onLoaded
+   */
   initModels (onLoaded: () => void) {
     this.loaderManager = new LoadingManager();
     // this.loaderManager.onProgress = this.onModelsLoadingProgress.bind(this);
@@ -76,6 +101,10 @@ class Game {
     modelsLoader.load(MODELS_DATA);
   }
 
+  /**
+   * RAF où l'on mets à jour les effets et on rend la scène THREE.JS.
+   * @param callback
+   */
   animate (callback: () => void = null) {
     this.shaderTime += 0.1;
     requestAnimationFrame(this.animate.bind(this, callback));
@@ -86,6 +115,11 @@ class Game {
     EffectManager.getComposer().render(0.1);
   }
 
+  /**
+   * Une fois la partie finie, si l'utilisateur a trouvé toutes les enveloppes, on affiche la page de résultats,
+   * sinon on lance l'effet d'écran cassé.
+   * @param isWinning
+   */
   onGameFinish (isWinning: boolean) {
     if (isWinning) {
       PAGES.show('game-result');

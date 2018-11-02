@@ -1,3 +1,10 @@
+/**
+ * EnvelopesManager gère les enveloppes présentes dans la scène.
+ * On récupère les objets présents dans la scène selon leur noms, on ajoute une BoundingBox autour de l'objet
+ * pour faciliter la sélection, on détecte si la caméra vise une BoundingBox, on génère dans ce cas une Outline autour
+ * de l'enveloppe en question, on peut alors la sélectionner via le smartphone
+ */
+
 import {
   BoxGeometry,
   Mesh,
@@ -9,7 +16,7 @@ import {
 } from 'three';
 import { CONFIG } from '../config';
 import { Envelope } from '../typing';
-import { SOCKET } from './Socket';
+import Socket from './Socket';
 import effectManager from './EffectManager';
 
 class EnvelopesManager {
@@ -23,11 +30,17 @@ class EnvelopesManager {
     this.scene = scene;
   }
 
+  /**
+   * On initialise les enveloppes et on écoute l'événement de sélection d'enveloppes.
+   */
   init () {
     this.initEnvelopes();
-    SOCKET.getInstance().on('envelope:dragged', this.onDraggedEnvelope.bind(this));
+    Socket.on('envelope:dragged', this.onDraggedEnvelope.bind(this));
   }
 
+  /**
+   * On récupère le nom des objets des enveloppes définies dans la scène selon le fichier de configuration.
+   */
   private initEnvelopes() {
     CONFIG.GAME.ENVELOPES_NAMES.forEach((name: string) => {
       const object = this.scene.getObjectByName(name);
@@ -38,6 +51,10 @@ class EnvelopesManager {
     });
   }
 
+  /**
+   * On crée une BoundingBox autour de chaque enveloppe pour faciliter la sélection.
+   * @param envelope
+   */
   private createBoundingBox (envelope: Object3D) {
     const geometry = new BoxGeometry(40, 40, 40);
     const material = new MeshBasicMaterial({ opacity: 0.3, color: 0x00ff00 });
@@ -52,11 +69,19 @@ class EnvelopesManager {
     return cube;
   }
 
+  /**
+   * Si l'enveloppe a été sélectionnée, on l'enlève de la scène.
+   * @param name
+   */
   private onDraggedEnvelope ({ name }: any) {
     const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
     this.removeEnvelope(envelope);
   }
 
+  /**
+   * On supprime l'enveloppe de la scène et on vérifie s'il reste encore des enveloppes à chercher.
+   * @param envelope
+   */
   private removeEnvelope (envelope: Envelope) {
     envelope.object.children.forEach((children: Object3D) => {
       envelope.object.remove(children);
@@ -65,10 +90,14 @@ class EnvelopesManager {
     this.scene.remove(envelope.boundingBox);
     this.envelopes.splice(this.envelopes.indexOf(envelope), 1);
     if (this.envelopes.length === 0) {
-      SOCKET.getInstance().emit('game:win');
+      Socket.emit('game:win');
     }
   }
 
+  /**
+   * On vérifie si la caméra cible une BoundingBox d'une enveloppe.
+   * @param camera
+   */
   checkCibling (camera: PerspectiveCamera) {
     const selectedEnvelope = this.getIntersectedEnvelope(camera);
     if (selectedEnvelope !== null) {
@@ -77,13 +106,17 @@ class EnvelopesManager {
       effectManager.getOutlinePass().selectedObjects = [];
     }
     if (this.currEnvelopeSelected !== selectedEnvelope) {
-      SOCKET.getInstance().emit('envelope:hover', !selectedEnvelope ? null : {
+      Socket.emit('envelope:hover', !selectedEnvelope ? null : {
         name: selectedEnvelope.name,
       });
       this.currEnvelopeSelected = selectedEnvelope;
     }
   }
 
+  /**
+   * On lance un Raycaster partant de la caméra et on vérifie si le raycast traverse une BoundingBox.
+   * @param camera
+   */
   getIntersectedEnvelope (camera: PerspectiveCamera): Envelope {
     let selectedEnvelopes = null;
     this.raycaster.setFromCamera({ x: 0, y: 0 }, camera);

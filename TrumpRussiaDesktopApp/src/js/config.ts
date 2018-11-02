@@ -1,3 +1,9 @@
+/**
+ * Configuration de base de notre application.
+ *
+ * On définit les différentes enveloppes, les adresses du serveur et de la version mobile, ainsi que la position des caméras.
+ */
+
 export const CONFIG = {
   DEBUG_MODE: false,
   MOBILE_APP: process.env.MOBILE,

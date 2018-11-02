@@ -1,3 +1,7 @@
+/**
+ * Effet visuel de grain sur l'écran pour simuler une ancienne TV.
+ */
+
 import effectManager from '../../core/EffectManager';
 import { GUI } from 'dat.gui';
 import { GUIParamsInterface } from './GUIParamsInterface';
@@ -18,6 +22,10 @@ export class GUIParamsFilmPass implements GUIParamsInterface {
     this.noiseIntensity = 0.8;
   }
 
+  /**
+   * On ajoute les paramètres.
+   * @param gui
+   */
   init(gui: GUI): void {
     gui.add(this, 'scanlinesIntensity', 0, 1);
     gui.add(this, 'noiseIntensity', 0, 3);
@@ -25,6 +33,9 @@ export class GUIParamsFilmPass implements GUIParamsInterface {
     gui.add(this, 'scanlinesCount', 0, 2048).step(1);
   }
 
+  /**
+   * Render
+   */
   render(): void {
     const filmPass = effectManager.getFilmPass();
     filmPass.uniforms.grayscale.value = this.grayscale;

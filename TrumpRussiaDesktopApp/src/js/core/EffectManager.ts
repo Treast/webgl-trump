@@ -1,3 +1,7 @@
+/**
+ * EffectManager gère les différents effets visuels sur l'écran.
+ */
+
 import 'three/examples/js/postprocessing/EffectComposer';
 import 'three/examples/js/shaders/CopyShader';
 import 'three/examples/js/shaders/FXAAShader';
@@ -27,26 +31,44 @@ class EffectManager {
   private copyPass: any;
   private enableBadTVPass: boolean = false;
 
+  /**
+   * On retourne le OutlinePass.
+   */
   getOutlinePass () {
     return this.outlinePass;
   }
 
+  /**
+   * On retourne le FilmPass.
+   */
   getFilmPass () {
     return this.filmPass;
   }
 
+  /**
+   * On retourne le composer.
+   */
   getComposer () {
     return this.composer;
   }
 
+  /**
+   * On retourne le BadTVPass.
+   */
   getBadTVPass () {
     return this.badTVPass;
   }
 
+  /**
+   * On retourne l'EnableBadTVPass.
+   */
   getEnableBadTVPass () {
     return this.enableBadTVPass;
   }
 
+  /**
+   * Initialisation
+   */
   init () {
     // @ts-ignore
     this.composer = new THREE.EffectComposer(this.renderer);
@@ -62,6 +84,14 @@ class EffectManager {
     this.composer.addPass(this.copyPass);
   }
 
+  /**
+   * On récupère la scène.
+   * @param scene
+   * @param camera
+   * @param renderer
+   * @param width
+   * @param height
+   */
   initStatus (
     scene: Scene,
     camera: PerspectiveCamera,
@@ -76,6 +106,9 @@ class EffectManager {
     this.height = height;
   }
 
+  /**
+   * On définit l'OutlinePass.
+   */
   initOutlinePass () {
     // @ts-ignore
     this.outlinePass = new THREE.OutlinePass(
@@ -93,12 +126,18 @@ class EffectManager {
     this.composer.addPass(this.outlinePass);
   }
 
+  /**
+   * On définit le FilmPass.
+   */
   initFilmPass () {
     // @ts-ignore
     this.filmPass = new THREE.FilmPass(0.58, 0.13, 890, false);
     this.composer.addPass(this.filmPass);
   }
 
+  /**
+   * On définit le BadTVPass.
+   */
   initBadTVPass () {
     // @ts-ignore
     this.badTVPass = new THREE.ShaderPass(THREE.BadTVShader);
@@ -109,6 +148,10 @@ class EffectManager {
     this.composer.addPass(this.badTVPass);
   }
 
+  /**
+   * On active l'effect BadTVPass.
+   * @param value
+   */
   setBreakScreen (value: boolean) {
     this.enableBadTVPass = value;
     this.init();

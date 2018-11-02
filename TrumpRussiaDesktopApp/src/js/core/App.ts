@@ -1,27 +1,44 @@
+/**
+ * Coeur de notre application.
+ *
+ * On instancie les différents composantes qui n'appartiennent pas au "jeu".
+ * On écoute également les différents événements principaux sur le socket ("game:start", "room:create").
+ * On lance le jeu.
+ */
+
 import { CONFIG } from '../config';
 import { Room } from './Room';
 import { PAGES } from '../utils/Pages';
 import Game from './Game';
 import { DAT_GUI } from '../utils/DatGui';
-import { SOCKET } from './Socket';
+import Socket from './Socket';
 
 export class App {
 
+  /**
+   * Initialisation
+   */
   init () {
     PAGES.show('introduction');
     this.initRoom();
     this.initGame();
-    SOCKET.getInstance().on('game:start', this.start.bind(this));
+    Socket.on('game:start', this.start.bind(this));
   }
 
+  /**
+   * On demande au server de créer une room, et on génère le QRCode associé.
+   */
   initRoom () {
-    SOCKET.getInstance().emit('room:create', (id: number) => {
+    Socket.emit('room:create', (id: number) => {
       const room = new Room(id);
       room.setQRcode(document.getElementById('qrcode'));
       room.setLink(document.getElementById('address'));
     });
   }
 
+  /**
+   * On lance le jeu.
+   */
   initGame () {
     if (CONFIG.DEBUG_MODE) DAT_GUI.init();
     Game.init(window.innerWidth, window.innerHeight);
@@ -34,6 +51,9 @@ export class App {
     });
   }
 
+  /**
+   * On affiche le canvas et on rend la scène THREE.JS
+   */
   start () {
     PAGES.show('experience');
     Game.animate();

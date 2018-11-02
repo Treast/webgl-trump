@@ -1,3 +1,7 @@
+/**
+ * Types que nous avons définis.
+ */
+
 import { Mesh, Object3D } from 'three';
 
 export interface Orientation {

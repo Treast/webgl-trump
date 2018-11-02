@@ -1,3 +1,7 @@
+/**
+ * Pagination gère la pagination lors du début de l'expérience.
+ */
+
 // @ts-ignore
 import { TweenMax } from 'gsap';
 
@@ -13,6 +17,9 @@ class Pagination {
     this.currentIndex = 1;
   }
 
+  /**
+   * On initialise les pages, les listeners et on met à jour l'affichage.
+   */
   init() {
     this.initPages();
     this.initListeners();
@@ -20,17 +27,26 @@ class Pagination {
     this.refreshClasses();
   }
 
+  /**
+   * On récupère toutes les pages et les points de paginations.
+   */
   private initPages() {
     this.innerPages = this.element.querySelectorAll('.inner-page') as NodeListOf<HTMLElement>;
     this.innerPaginationPages = this.element.querySelectorAll('.pages .page') as NodeListOf<HTMLElement>;
     this.maxIndex = this.innerPages.length;
   }
 
+  /**
+   * On initialise les listeners sur les boutons précédent et suivant.
+   */
   private initListeners() {
     this.element.querySelector('.arrow-left').addEventListener('click', () => { this.goPrev(); });
     this.element.querySelector('.arrow-right').addEventListener('click', () => { this.goNext(); });
   }
 
+  /**
+   * On regarde sur quelle page on se trouve et on met à jour l'affichage de la pagination et des boutons.
+   */
   private refreshClasses() {
     if (this.currentIndex === this.maxIndex) {
       this.element.querySelector('.arrow-right').classList.add('disabled');
@@ -53,6 +69,9 @@ class Pagination {
     }
   }
 
+  /**
+   * On change l'opacité de la page courante et de la page suivante.
+   */
   private refreshPage() {
     for (const innerPage of this.innerPages) {
       if (innerPage.getAttribute('data-inner-page') === this.currentIndex.toString(10)) {
@@ -75,6 +94,9 @@ class Pagination {
     this.refreshClasses();
   }
 
+  /**
+   * On passe à la page suivante et on met à jour l'affichage.
+   */
   private goNext() {
     this.currentIndex += 1;
 
@@ -85,6 +107,9 @@ class Pagination {
     this.refreshPage();
   }
 
+  /**
+   * On passe à la page précédente et on met à jour l'affichage.
+   */
   private goPrev() {
     this.currentIndex -= 1;
 

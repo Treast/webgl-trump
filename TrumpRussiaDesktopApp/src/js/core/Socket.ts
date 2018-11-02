@@ -1,3 +1,7 @@
+/**
+ * Singleton Socket.IO
+ */
+
 import * as io from 'socket.io-client';
 import { CONFIG } from '../config';
 
@@ -8,9 +12,9 @@ class Socket {
     this.socket = io(`${CONFIG.SERVER}`);
   }
 
-  getInstance() {
+  get() {
     return this.socket;
   }
 }
-
-export const SOCKET = new Socket();
+const SOCKET = new Socket();
+export default SOCKET.get();

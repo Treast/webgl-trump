@@ -1,7 +1,12 @@
+/**
+ * CamerasManager gère le changement de caméras dans la scène, ainsi que l'orientation de celles-ci selon l'orientation
+ * du mobile. On peut également changer de zoom.
+ */
+
 import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
-import { SOCKET } from './Socket';
+import Socket from './Socket';
 
 class CamerasManager {
 
@@ -14,6 +19,11 @@ class CamerasManager {
     this.numberElement = document.getElementById('camera_number');
   }
 
+  /**
+   * Initialisation
+   * @param scene
+   * @param camera
+   */
   init (scene: Scene, camera: PerspectiveCamera) {
     this.camera = camera;
     this.scene = scene;
@@ -23,12 +33,19 @@ class CamerasManager {
     this.initSocketListeners();
   }
 
+  /**
+   * On écoute les événements Socket
+   */
   initSocketListeners () {
-    SOCKET.getInstance().on('camera:orientation', this.changeOrientation.bind(this));
-    SOCKET.getInstance().on('camera:set', this.setCamera.bind(this));
-    SOCKET.getInstance().on('camera:zoom', this.changeZoom.bind(this));
+    Socket.on('camera:orientation', this.changeOrientation.bind(this));
+    Socket.on('camera:set', this.setCamera.bind(this));
+    Socket.on('camera:zoom', this.changeZoom.bind(this));
   }
 
+  /**
+   * On change de caméra
+   * @param id
+   */
   setCamera (id: any) {
     const idn = parseInt(id, 10);
     this.cameraParent.position.set(
@@ -41,11 +58,19 @@ class CamerasManager {
     this.numberElement.innerText = (1 + idn).toString();
   }
 
+  /**
+   * On change l'orientation de la caméra.
+   * @param data
+   */
   changeOrientation (data: Orientation) {
     this.cameraParent.rotation.z = -((data.beta - 5) / 2 * Math.PI / 180) * Math.sign(this.cameraParent.position.z);
     this.cameraParent.rotation.y = (data.alpha - 90) / 2 * Math.PI / 180;
   }
 
+  /**
+   * On change le zoom.
+   * @param zoom
+   */
   changeZoom({ zoom }: any) {
     const originalFOV = 75;
     const difference = originalFOV * (zoom / 100);

@@ -1,3 +1,7 @@
+/**
+ * Effet visuel lorsque le timer est dépassé (effet TV cassée).
+ */
+
 import effectManager from '../../core/EffectManager';
 import { GUI } from 'dat.gui';
 import { GUIParamsInterface } from './GUIParamsInterface';
@@ -18,6 +22,10 @@ export class GUIParamsBadTVPass implements GUIParamsInterface {
     this.rollSpeed = 0.1;
   }
 
+  /**
+   * On ajoute les paramètres.
+   * @param gui
+   */
   init(gui: GUI): void {
     gui.add(this, 'distortion', 0.1, 20).step(0.1).listen().name('Thick Distort');
     gui.add(this, 'distortion2', 0.1, 20).step(0.1).listen().name('Fine Distort');
@@ -25,6 +33,9 @@ export class GUIParamsBadTVPass implements GUIParamsInterface {
     gui.add(this, 'rollSpeed', 0.0, 1.0).step(0.01).listen().name('Roll Speed');
   }
 
+  /**
+   * Render
+   */
   render(): void {
     effectManager.getBadTVPass().uniforms['distortion'].value = this.distortion;
     effectManager.getBadTVPass().uniforms['distortion2'].value = this.distortion2;
