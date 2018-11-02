@@ -66,11 +66,11 @@ Télécharger la branche `master` [ici](https://github.com/Treast/webgl-trump/ar
 
 ### Lancement
 #### En mode développement
-- Ouvrer un terminal dans le dossier, et lancer le serveur Webpack :
+- Ouvrir un terminal dans le dossier, et lancer le serveur Webpack :
 `npm run dev`
 - Une fenêtre de navigateur devrait s'ouvrir avec l'URL du projet. *(Si jamais cela n'arrive pas, ouvrez vous-même votre navigateur et aller sur [http://0.0.0.0:9001](http://0.0.0.0:9001))*
 #### En mode production
-- Ouvrer un terminal dans le dossier, et lancer la compilation des assets avec Webpack :
+- Ouvrir un terminal dans le dossier, et lancer la compilation des assets avec Webpack :
 `npm run build`
 - Les fichiers compilés se trouvent dans le dossier `dist`.
 
