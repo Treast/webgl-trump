@@ -1,3 +1,7 @@
+/**
+ * Le ZoomManager sert à zoomer sur la scène sur la version desktop, afin de faciliter la sélection.
+ */
+
 // @ts-ignore
 import * as noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.min.css';
@@ -12,11 +16,17 @@ class ZoomManager {
     this.zoomValue = document.querySelector('.zoom-value');
   }
 
+  /**
+   * Initialisation
+   */
   init() {
     this.createSlider();
     this.setupSlider();
   }
 
+  /**
+   * On crée le slider côté graphique.
+   */
   createSlider() {
     noUiSlider.create(this.element, {
       start: 0,
@@ -34,6 +44,10 @@ class ZoomManager {
     });
   }
 
+  /**
+   * Lorsque la valeur du slider change, on met à jour les pipes (traits gris/blancs sur le slider), et on envoie la
+   * valeur au slider. On affiche également un pourcentage de zoom en front.
+   */
   setupSlider() {
     this.element.noUiSlider.on('update', () => {
       const pipes = document.querySelectorAll('.noUi-marker.noUi-marker-vertical');

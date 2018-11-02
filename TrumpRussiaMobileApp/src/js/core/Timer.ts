@@ -1,3 +1,8 @@
+/**
+ * Le TimerManager gère le temps de l'événement. L'affichage du timer est mis à jour toutes les secondes, est affiché
+ * en haut du desktop et du smartphone. Une fois le timer dépassé, un événément est envoyé et l'écran de défaite est affichée.
+ */
+
 import Socket from '../utils/Socket';
 
 class Timer {
@@ -10,14 +15,23 @@ class Timer {
     this.interval = null;
   }
 
+  /**
+   * On stoppe le timer.
+   */
   stop() {
     this.isRunning = false;
   }
 
+  /**
+   * On reprend le timer.
+   */
   run() {
     this.isRunning = true;
   }
 
+  /**
+   * On lance l'intervalle qui va calculer le temps restant chaque seconde et l'envoyer au desktop.
+   */
   start() {
     this.interval = setInterval(() => {
       if (this.isRunning) {
@@ -33,6 +47,10 @@ class Timer {
     },                          1000);
   }
 
+  /**
+   * On convertit le nombre de seconde en un truc un peu mieux :).
+   * @param number
+   */
   convertToMinutes(number: number) {
     const minutes = parseInt((number / 60).toString(), 10);
     const seconds = (`0${number % 60}`).slice(-2);

@@ -1,3 +1,9 @@
+/**
+ * EnvelopesManager gère le bouton de sélection d'enveloppes. Lorsque la caméra vise une enveloppe sur le desktop,
+ * un événement est reçu. On change alors l'opacité du bouton pour signaler que l'action est disponible et on autorise
+ * le drag sur l'élément.
+ */
+
 import Socket from '../utils/Socket';
 import { Draggable } from '../utils/Draggable';
 
@@ -25,16 +31,26 @@ class EnvelopesManager {
     this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
+  /**
+   * On écoute l'événement "hover" reçu par le serveur.
+   */
   init() {
     Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
   }
 
+  /**
+   * On met à jour l'affichage.
+   * @param envelope
+   */
   onHoverEnvelope(envelope: HTMLElement) {
     this.currentHover = envelope;
     this.draggable.enable = envelope !== null;
     this.draggableEnvelope.style.opacity = this.draggable.enable ? '1' : EnvelopesManager.INACTIVE_OPACITY;
   }
 
+  /**
+   * On "illumine" la case Enveloppe dans l'inventaire.
+   */
   onDraggedEnvelope() {
     const actives = this.inventory.querySelectorAll('.inventory_item-active');
     this.envelopes[actives.length].classList.add('inventory_item-active');

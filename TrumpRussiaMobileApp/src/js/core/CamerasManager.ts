@@ -1,3 +1,8 @@
+/**
+ * CamerasManager va gérer le changement de caméras. Au clic sur un bouton, l'information est envoyée au serveur
+ * pour avoir un changement de caméra sur le desktop.
+ */
+
 import Socket from '../utils/Socket';
 
 class CamerasManager {
@@ -9,12 +14,19 @@ class CamerasManager {
     this.currentCamera = null;
   }
 
+  /**
+   * On initialise les boutons en écoutant l'événement "click"
+   */
   init() {
     this.cameras.forEach(camera =>
       camera.addEventListener('click', () => this.setCamera(camera)),
     );
   }
 
+  /**
+   * On refraichit l'affichage et on envoie l'id de la caméra sélectionnée au serveur.
+   * @param camera
+   */
   setCamera(camera: HTMLElement) {
     for (const cam of this.cameras) {
       cam.parentElement.classList.remove('selected');

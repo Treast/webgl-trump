@@ -1,5 +1,8 @@
-import { CONFIG } from '../config';
+/**
+ * Singleton Socket.IO
+ */
 import * as io from 'socket.io-client';
+import { CONFIG } from '../config';
 
 class Socket {
   private readonly socket: SocketIOClient.Socket;
@@ -12,5 +15,5 @@ class Socket {
     return this.socket;
   }
 }
-
-export default new Socket().get();
+const SOCKET = new Socket();
+export default SOCKET.get();

@@ -1,3 +1,6 @@
+/**
+ * Permet de lancer la version en plein écran.
+ */
 export class FullScreen {
 
   static applyOnElement(element: any) {

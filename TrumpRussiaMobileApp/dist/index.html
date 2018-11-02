@@ -6,18 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Device Orientation</title>
-<link href="app.css" rel="stylesheet"><link href="app.07f8cba44158478b76d8.css" rel="stylesheet"></head>
+<link href="app.css" rel="stylesheet"><link href="app.381f296e7714d8b08401.css" rel="stylesheet"></head>
 <body>
-    <div class="app">
-        <!-- <div data-alert-dialog="container">
-            <div id="ad-fullscreen" data-alert-dialog="element">
-                <p>Pour une meilleure expérience,</p>
-                <p>activez le mode plein écran :</p>
-                <button data-alert-dialog="accept">Activer</button>
-                <button data-alert-dialog="refuse">Continuer</button>
-            </div>
-        </div> -->
+    <div class="app" data-page="app">
         <div class="controller">
+            <div id="pause">
+                <span></span>
+            </div>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
                 <p class="order">Essayez de récolter des informations secrètes en switchant entre les caméras</p>
@@ -25,13 +20,31 @@
             <div class="main-container">
                 <ul class="cameras_list">
                     <li class="cameras_item selected">
-                        <button class="cameras_item_btn" data-camera="0">1</button>
+                        <button class="cameras_item_btn" data-camera="0">
+                            <span class="desactivated">1</span>
+                            <span class="activated">
+                                <img src="./assets/camera@2x.png" alt="Camera">
+                            </span>
+                        </button>
                     </li>
                     <li class="cameras_item">
-                        <button class="cameras_item_btn" data-camera="1">2</button>
+                        <button class="cameras_item_btn" data-camera="1">
+                            <span class="desactivated">2</span>
+                            <span class="activated">
+                                <img src="./assets/camera@2x.png" alt="Camera">
+                            </span>
+                        </button>
                     </li>
                     <li class="cameras_item">
-                        <button class="cameras_item_btn" data-camera="2">3</button>
+                        <button class="cameras_item_btn" data-camera="2">
+                            <span class="desactivated">3</span>
+                            <span class="activated">
+                                <img src="./assets/camera@2x.png" alt="Camera">
+                            </span>
+                        </button>
+                    </li>
+                    <li class="camera_number">
+                        CAM 1
                     </li>
                 </ul>
                 <div id="envelop">
@@ -39,6 +52,9 @@
                 </div>
                 <div class="zoom-slider">
                     <div class="range noUiSlider"></div>
+                    <div class="zoom-value">
+                        0 %
+                    </div>
                 </div>
             </div>
             <div class="inventory" id="inventory">
@@ -47,25 +63,45 @@
                 </div>
                 <ul class="inventory_list">
                     <li class="inventory_item">
-                        <span id="inventory_1">?</span>
+                        <span id="inventory_1">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                     <li class="inventory_item">
-                        <span id="inventory_2">?</span>
+                        <span id="inventory_2">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                     <li class="inventory_item">
-                        <span id="inventory_3">?</span>
+                        <span id="inventory_3">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                     <li class="inventory_item">
-                        <span id="inventory_4">?</span>
+                        <span id="inventory_4">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                     <li class="inventory_item">
-                        <span id="inventory_5">?</span>
+                        <span id="inventory_5">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                     <li class="inventory_item">
-                        <span id="inventory_6">?</span>
+                        <span id="inventory_6">
+                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                        </span>
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+    <div class="pause" data-page="pause">
+        <div class="content">
+            <h1>Pause</h1>
+
+            <h2 class="timer-run">Reprendre</h2>
+            <h2>Quitter</h2>
         </div>
     </div>
     <div class="background"></div>

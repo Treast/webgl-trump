@@ -1,3 +1,9 @@
+/**
+ * La classe App gère toute l'application côté mobile.
+ * Elle initialise les différents managers (CamerasManager, EnvelopesManager, ZoomManager et PauseManager), ainsi
+ * que toutes les pages de l'application, et envoie régulièrement des informations sur l'orientation du mobile au serveur.
+ */
+
 import Timer from './Timer';
 import { FullScreen } from '../utils/FullScreen';
 import CamerasManager from './CamerasManager';
@@ -8,7 +14,6 @@ import PauseManager from './PauseManager';
 import { PAGES } from '../utils/Pages';
 
 class App {
-
   private readonly roomId: string;
 
   constructor() {
@@ -18,6 +23,9 @@ class App {
     }
   }
 
+  /**
+   * Initialisation
+   */
   init() {
     PAGES.show('app');
     FullScreen.applyOnElement(document.body);
@@ -30,34 +38,59 @@ class App {
     this.start();
   }
 
+  /**
+   * Initialisation du PauseManager
+   */
   initPauseManager() {
     PauseManager.init();
   }
 
+  /**
+   * Initialisation du ZoomManager
+   */
   initSlider() {
     ZoomManager.init();
   }
 
+  /**
+   * Initialisation du TimerManager
+   */
   initTimer() {
     Timer.start();
   }
 
+  /**
+   * Initialisation de l'EnvelopesManager
+   */
   initEnvelopesManager() {
     EnvelopesManager.init();
   }
 
+  /**
+   * Initialisation du CamerasManager
+   */
   initCamerasManager() {
     CamerasManager.init();
   }
 
+  /**
+   * Rejoins la room Socket.IO crée depuis le desktop.
+   */
   joinRoom() {
     Socket.emit('room:join', this.roomId);
   }
 
+  /**
+   * Ecoute l'orientation du smartphone.
+   */
   start() {
     window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this));
   }
 
+  /**
+   * Envoie les informations de rotation au serveur.
+   * @param e
+   */
   onDeviceOrientation(e: DeviceOrientationEvent) {
     console.log(e);
     Socket.emit('camera:orientation', {
