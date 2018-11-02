@@ -76,7 +76,7 @@ Télécharger la branche `master` [ici](https://github.com/Treast/webgl-trump/ar
 
 
 ## TO DO
-*Voir également le Trello.*
+*Voir également le Trello : https://trello.com/b/uv8OCmrB/trump-la-russie*
 
  - [x] Création du projet
  - [x] Intégration de la scène
