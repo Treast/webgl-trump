@@ -1,11 +1,13 @@
 .inventory {
-  > div {
+  > .inventory_title {
     position: relative;
     display: block;
     text-align: center;
     margin: 0 auto -2px;
     width: 212px;
     background-color: $background-color;
+    color: #ffffff;
+    text-shadow: 0 0 5px #ffffff;
     span {
       position: relative;
       padding: 7px 20px;

@@ -1,0 +1,226 @@
+[data-page="over"] {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+
+    .timer {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      flex-grow: 3;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+
+      h1, h2 {
+        font-family: 'Bai Jamjuree', sans-serif;
+        color: #ffffff;
+        text-shadow: 0 0 5px #ffffff;
+        flex-grow: 0;
+      }
+
+      h1 {
+        font-size: 64px;
+        letter-spacing: 1px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+    }
+
+    .inventory {
+      flex-grow: 1;
+      width: 100%;
+
+      .description {
+        text-align: center;
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 18px;
+        margin: 0 20px 0;
+        padding: 20px 0 0;
+        border-top: 1px solid #fff;
+      }
+
+      ul.inventory_list {
+        border-top: none;
+        li.inventory_item {
+          flex-direction: column;
+          flex-wrap: nowrap;
+
+          > span {
+            height: 80px;
+            width: 80px;
+          }
+
+          img {
+            width: 40px;
+          }
+
+          > .inventory_item_number {
+            margin-bottom: 10px;
+            font-family: 'Chakra Petch', sans-serif;
+            font-size: 14px;
+            color: #ffffff;
+            text-shadow: 0 0 5px #ffffff;
+          }
+        }
+      }
+    }
+
+    .next-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      width: 100%;
+      flex-grow: 1;
+      padding: 30px;
+
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff;
+      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      font-family: 'Bai Jamjuree', sans-serif;
+      span.arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #ffffff;
+        box-shadow: 0 0 5px #ffffff;
+        transform: rotate(-45deg);
+        margin-bottom: 25px;
+
+        img {
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+
+  .envelope {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: $background-color;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .go-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 30px;
+    }
+
+    .header {
+      position: relative;
+      flex-grow: 2;
+      text-align: center;
+      overflow: hidden;
+      margin-top: 40px;
+      padding-bottom: 10px;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 24px;
+        left: -68px;
+        transform: translateX(-50%);
+        height: 1px;
+        width: 100%;
+        background-color: #ffffff;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 28px;
+        right: -68px;
+        transform: translateX(50%);
+        height: 1px;
+        width: 100%;
+        background-color: #ffffff;
+      }
+
+      h1 {
+        @extend .text;
+        text-align: center;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-size: 25px;
+        position: relative;
+        display: inline-block;
+        margin: 0 auto 20px;
+        width: 90px;
+        background-color: $background-color;
+        z-index: 3;
+        padding: 10px 30px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 23px;
+          right: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    h2 {
+      flex-grow: 1;
+      @extend .text;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 27px;
+      line-height: 32px;
+      letter-spacing: 1px;
+      margin: 30px 0 40px;
+    }
+
+    .content {
+      flex-grow: 3;
+      overflow: scroll;
+      p {
+        @extend .text;
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 20px;
+      }
+    }
+  }
+}
