@@ -1,0 +1,66 @@
+@media (max-width: 320px)  {
+  .inventory {
+    .description {
+      padding-top: 15px;
+    }
+    ul.inventory_list li.inventory_item {
+      margin-bottom: 15px;
+      > span {
+        height: 40px;
+        width: 40px;
+        img {
+          width: 24px;
+        }
+      }
+    }
+  }
+
+  .controller .main-container .zoom-slider {
+    padding-top: 0;
+    .range {
+      height: 200px;
+    }
+  }
+
+  .over .content {
+    .inventory ul.inventory_list li.inventory_item {
+      > span {
+        height: 60px;
+        width: 60px;
+        img {
+          width: 30px;
+        }
+      }
+    }
+
+    .next-step {
+      padding: 20px 30px;
+      span.arrow {
+        width: 40px;
+        height: 40px;
+
+        img {
+          width: 30px
+        }
+      }
+    }
+  }
+
+  .phone .content {
+    .numbers .number {
+      margin: 7px 0;
+      span {
+        font-size: 20px;
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+
+  .call .content {
+    .end-call span {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { PAGES } from '../utils/Pages';
+import AudioManager from './AudioManager';
 
 class PhoneManager {
   private readonly numbers: NodeListOf<HTMLElement>;
@@ -6,6 +7,7 @@ class PhoneManager {
   private readonly deleteInput: HTMLElement;
   private readonly callInput: HTMLElement;
   private readonly goBack: HTMLElement;
+  private readonly endCallButton: HTMLElement;
 
   constructor() {
     this.numbers = document.querySelectorAll('.phone .numbers .number span');
@@ -13,6 +15,7 @@ class PhoneManager {
     this.callInput = document.querySelector('.phone .numbers .number.call');
     this.input = document.querySelector('.phone .phone-number');
     this.goBack = document.querySelector('.phone .go-back');
+    this.endCallButton = document.querySelector('.call .end-call');
   }
 
   init() {
@@ -27,8 +30,7 @@ class PhoneManager {
         const sound: string = element.getAttribute('data-sound');
         if (number) this.addNumber(number);
         if (sound) {
-          const audio = new Audio(`./assets/sounds/${sound}`);
-          audio.play();
+          AudioManager.play(sound);
         }
       });
     }
@@ -39,10 +41,11 @@ class PhoneManager {
       this.call();
     });
     this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
+    this.endCallButton.addEventListener('click', this.endCall.bind(this));
   }
 
   onClickGoBack() {
-    PAGES.show('over');
+    PAGES.fade('over');
   }
 
   addNumber(number: string) {
@@ -58,7 +61,12 @@ class PhoneManager {
   }
 
   call() {
+    PAGES.fade('call');
+  }
 
+  endCall() {
+    const audio = new Audio('./assets/sounds/fortnite-death-sound.mp3');
+    audio.play();
   }
 }
 

@@ -10,7 +10,7 @@
 <body>
     <div class="app" data-page="app">
         <div class="controller">
-            <div id="pause">
+            <div class="pause-button">
                 <span></span>
             </div>
             <div class="header">
@@ -97,12 +97,13 @@
             </div>
         </div>
     </div>
-    <div class="pause" data-page="pause">
+    <div id="pause">
         <div class="content">
             <h1>Pause</h1>
-
-            <h2 class="timer-run">Reprendre</h2>
-            <h2>Quitter</h2>
+            <h2 class="timer-run">
+                <span>Reprendre</span>
+            </h2>
+            <h2 class="play-again">Rejouer</h2>
         </div>
     </div>
     <div class="over" data-page="over">
@@ -111,15 +112,17 @@
                 <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
             </div>
             <div class="header">
-                <h1>01</h1>
+                <h1></h1>
             </div>
-            <h2>Malesuada Ridiculus Risus</h2>
+            <h2></h2>
             <div class="content">
-                <p>Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-                <p>Donec ullamcorper nulla non metus auctor fringilla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed posuere consectetur est at lobortis. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Nullam quis risus eget urna mollis ornare vel eu leo. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Nulla vitae elit libero, a pharetra augue. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Maecenas faucibus mollis interdum.</p>
+                <p></p>
             </div>
         </div>
         <div class="content">
+            <div class="pause-button">
+                <span></span>
+            </div>
             <div class="timer">
                 <div class="timer_content">
                     <h1>0:00</h1>
@@ -136,37 +139,37 @@
                 <ul class="inventory_list">
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">01</div>
-                        <span class="inventory_1">
+                        <span class="inventory_1" data-envelope="0">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">02</div>
-                        <span class="inventory_2">
+                        <span class="inventory_2" data-envelope="1">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">03</div>
-                        <span class="inventory_3">
+                        <span class="inventory_3" data-envelope="2">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">04</div>
-                        <span class="inventory_4">
+                        <span class="inventory_4" data-envelope="0">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">05</div>
-                        <span class="inventory_5">
+                        <span class="inventory_5" data-envelope="1">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                     <li class="inventory_item inventory_item-active">
                         <div class="inventory_item_number">06</div>
-                        <span class="inventory_6">
+                        <span class="inventory_6" data-envelope="2">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
@@ -181,6 +184,9 @@
         </div>
     </div>
     <div class="phone" data-page="phone">
+        <div class="pause-button">
+            <span></span>
+        </div>
         <div class="content">
             <div class="go-back">
                 <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">

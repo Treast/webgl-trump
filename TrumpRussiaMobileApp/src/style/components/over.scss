@@ -64,6 +64,7 @@
 
           img {
             width: 40px;
+            pointer-events: none;
           }
 
           > .inventory_item_number {
@@ -226,7 +227,8 @@
       p {
         @extend .text;
         font-family: 'Chakra Petch', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
+        text-align: justify;
       }
     }
   }

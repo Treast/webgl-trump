@@ -7,13 +7,13 @@ import Timer from './Timer';
 import { PAGES } from '../utils/Pages';
 
 class PauseManager {
-  private element: HTMLElement;
+  private elements: NodeListOf<HTMLElement>;
 
   /**
    * Initialisation
    */
   init() {
-    this.element = document.querySelector('#pause');
+    this.elements = document.querySelectorAll('.pause-button');
     this.setupListener();
   }
 
@@ -22,16 +22,18 @@ class PauseManager {
    * S'il clique sur "Reprendre", le timer reprend et l'écran de pause.
    */
   setupListener() {
-    this.element.addEventListener('click', () => {
-      Socket.emit('pause:on');
-      Timer.stop();
-      PAGES.show('pause');
-    });
+    for (const element of this.elements) {
+      element.addEventListener('click', () => {
+        Socket.emit('pause:on');
+        Timer.stop();
+        document.body.classList.add('paused');
+      });
+    }
 
     document.querySelector('.timer-run').addEventListener('click', () => {
       Socket.emit('pause:off');
       Timer.run();
-      PAGES.show('app');
+      document.body.classList.remove('paused');
     });
   }
 }

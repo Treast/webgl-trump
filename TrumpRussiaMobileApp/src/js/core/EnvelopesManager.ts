@@ -7,10 +7,14 @@
 import Socket from '../utils/Socket';
 import { Draggable } from '../utils/Draggable';
 import { PAGES } from '../utils/Pages';
+import { CONFIG } from '../config';
+import App from './App';
+import Timer from './Timer';
 
 class EnvelopesManager {
 
   private static INACTIVE_OPACITY = '0.4';
+  private static NUMBER_ENVELOPES: number = 6;
 
   private readonly draggableEnvelope: HTMLImageElement;
   private readonly inventory: HTMLElement;
@@ -38,7 +42,12 @@ class EnvelopesManager {
     this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
-  onClickActive() {
+  onClickActive(e: Event) {
+    const element = e.target as HTMLElement;
+    const id = parseInt(element.getAttribute('data-envelope'), 10);
+    document.querySelector('.over .envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
+    document.querySelector('.over .envelope h2').innerHTML = CONFIG.ENVELOPES[id].title;
+    document.querySelector('.over .envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
     document.querySelector('.over .envelope').classList.add('active');
   }
 
@@ -47,7 +56,7 @@ class EnvelopesManager {
   }
 
   onClickGoNext() {
-    PAGES.show('phone');
+    PAGES.fade('phone');
   }
 
   /**
@@ -79,6 +88,11 @@ class EnvelopesManager {
     const actives = this.inventory.querySelectorAll('.inventory_item-active');
     this.envelopes[actives.length].classList.add('inventory_item-active');
     Socket.emit('envelope:dragged', this.currentHover);
+
+    if ((actives.length + 1) >= EnvelopesManager.NUMBER_ENVELOPES) {
+      App.setWinState(true, Timer.remainingTime);
+      PAGES.fade('over');
+    }
   }
 }
 

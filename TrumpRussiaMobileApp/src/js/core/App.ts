@@ -12,6 +12,7 @@ import EnvelopesManager from './EnvelopesManager';
 import ZoomManager from './ZoomManager';
 import PauseManager from './PauseManager';
 import PhoneManager from './PhoneManager';
+import AudioManager from './AudioManager';
 import { PAGES } from '../utils/Pages';
 
 class App {
@@ -34,17 +35,36 @@ class App {
     this.initCamerasManager();
     this.initEnvelopesManager();
     this.initPauseManager();
+    this.initAudioManager();
     this.initSlider();
     this.initTimer();
     this.initPhone();
     this.start();
   }
 
-    /**
-     * Initialisation du PauseManager
-     */
+  setWinState(hasWin: boolean, remainingTime: number = 0) {
+    if (hasWin) {
+      const converted = Timer.convertToMinutes(remainingTime);
+      document.querySelector('.over .content .timer .timer_content h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
+      document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Bravo';
+    } else {
+      document.querySelector('.over .content .timer .timer_content h1').innerHTML = '00:00';
+      document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Temps écoulé !';
+    }
+  }
+
+  /**
+   * Initialisation du PauseManager
+   */
   initPauseManager() {
     PauseManager.init();
+  }
+
+  /**
+   * Initialisation du AudioManager
+   */
+  initAudioManager() {
+    AudioManager.init();
   }
 
     /**
