@@ -1,17 +1,19 @@
 import { CONFIG } from '../config';
+import lowLag from '../lib/lowLag';
 
 class AudioManager {
   private audios: any = {};
   private static SOUNDS_BASE_URL: string = './assets/sounds/';
 
   init() {
+    lowLag.init();
     for (const sound of CONFIG.SOUNDS) {
-      this.audios[sound] = new Audio(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
+      lowLag.load(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
     }
   }
 
-  play(uri: string) {
-    this.audios[uri].play();
+  play(sound: string) {
+    lowLag.play(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
   }
 }
 
