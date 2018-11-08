@@ -1,4 +1,6 @@
-*{
+$background: url('./images/MotifBG.jpg') repeat;
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,4 +8,26 @@
 
 canvas{
   display: block;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $background, radial-gradient(ellipse at center, #ffffff 40%, #000000 100%);
+  background-blend-mode: multiply;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('./images/Pattern.svg') repeat;
+    background-size: 40px 40px;
+    opacity: 0.5;
+  }
 }
