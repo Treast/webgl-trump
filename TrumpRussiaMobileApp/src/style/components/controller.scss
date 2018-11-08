@@ -42,7 +42,6 @@
       display: inline-block;
       margin: 0 auto 20px;
       width: 160px;
-      background-color: $background-color;
       z-index: 2;
       padding: 10px 30px;
       border-top: 1px solid #ffffff;
@@ -149,13 +148,23 @@
     }
 
     #envelop {
+      position: relative;
       text-align: center;
       flex-grow: 2;
       flex-basis: 50%;
 
-      img {
+      img.envelope-draggable {
         width: 110px;
         height: 80px;
+      }
+
+      img.picto {
+        position: absolute;
+        width: 38px;
+        height: 43px;
+        top: 50%;
+        left: calc(50% + 25px);
+
       }
     }
 

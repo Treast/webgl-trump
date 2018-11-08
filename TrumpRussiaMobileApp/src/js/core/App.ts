@@ -28,7 +28,7 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('phone');
+    PAGES.show('app');
     FullScreen.applyOnElement(document.body);
     this.joinRoom();
     this.initCamerasManager();
@@ -43,16 +43,16 @@ class App {
     /**
      * Initialisation du PauseManager
      */
-    initPauseManager() {
-        PauseManager.init();
-    }
+  initPauseManager() {
+    PauseManager.init();
+  }
 
     /**
      * Initialisation du Phone
      */
-    initPhone() {
-        PhoneManager.init();
-    }
+  initPhone() {
+    PhoneManager.init();
+  }
 
   /**
    * Initialisation du ZoomManager
