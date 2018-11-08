@@ -11,6 +11,7 @@ import Socket from '../utils/Socket';
 import EnvelopesManager from './EnvelopesManager';
 import ZoomManager from './ZoomManager';
 import PauseManager from './PauseManager';
+import PhoneManager from './PhoneManager';
 import { PAGES } from '../utils/Pages';
 
 class App {
@@ -27,7 +28,7 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('over');
+    PAGES.show('phone');
     FullScreen.applyOnElement(document.body);
     this.joinRoom();
     this.initCamerasManager();
@@ -35,15 +36,23 @@ class App {
     this.initPauseManager();
     this.initSlider();
     this.initTimer();
+    this.initPhone();
     this.start();
   }
 
-  /**
-   * Initialisation du PauseManager
-   */
-  initPauseManager() {
-    PauseManager.init();
-  }
+    /**
+     * Initialisation du PauseManager
+     */
+    initPauseManager() {
+        PauseManager.init();
+    }
+
+    /**
+     * Initialisation du Phone
+     */
+    initPhone() {
+        PhoneManager.init();
+    }
 
   /**
    * Initialisation du ZoomManager
