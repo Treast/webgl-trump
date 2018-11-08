@@ -14,8 +14,6 @@ const app = new App();
 
 onDomReady(() => {
   PAGES.init();
-
   Pagination.init();
-
   app.init();
 });

@@ -1,4 +1,4 @@
-const HtmlPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
@@ -56,13 +56,17 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader'
+      }
     ],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new HtmlPlugin({
+    new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
     new MiniCssExtractPlugin({

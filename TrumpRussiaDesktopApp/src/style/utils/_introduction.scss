@@ -113,20 +113,16 @@ section[data-page="introduction"] {
       align-items: center;
       .arrow {
         display: block;
-        height: 50px;
-        width: 50px;
-        border: 1px solid #fff;
-        box-shadow: 0 0 5px #ffffff;
-        transform: rotate(-45deg);
+        height: 80px;
+        width: 80px;
         transition: all 0.4s ease-in-out;
 
         &.disabled {
-          border: 1px solid rgba(#fff, 0.2);
-          box-shadow: 0 0 5px rgba(#fff, 0.2);
         }
 
         &.arrow-left {
           margin-right: 45px;
+          transform: rotate(-180deg);
         }
 
         &.arrow-right {

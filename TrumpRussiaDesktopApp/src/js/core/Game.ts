@@ -20,6 +20,7 @@ import CamerasManager from './CamerasManager';
 import EnvelopesManager from './EnvelopesManager';
 import EffectManager from './EffectManager';
 import TimerManager from './TimerManager';
+import { VideoObject } from '../utils/VideoObject';
 
 class Game {
   private width: number;
@@ -82,6 +83,7 @@ class Game {
     EnvelopesManager.init();
     CamerasManager.init(this.scene, this.camera);
     CamerasManager.setCamera(0);
+    VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
   }
 
   /**

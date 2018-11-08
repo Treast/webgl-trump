@@ -27,8 +27,7 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('over');
-    FullScreen.applyOnElement(document.body);
+    PAGES.show('app');
     this.joinRoom();
     this.initCamerasManager();
     this.initEnvelopesManager();
