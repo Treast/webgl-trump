@@ -9,12 +9,13 @@ import EnvelopesManager from './EnvelopesManager';
 import App from './App';
 
 class Timer {
+  public static TIME: number = 300;
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
 
   constructor() {
-    this.remainingTime = 300; // 300;
+    this.remainingTime = Timer.TIME; // 300;
     this.interval = null;
   }
 
@@ -23,6 +24,10 @@ class Timer {
    */
   stop() {
     this.isRunning = false;
+  }
+
+  getTime() {
+    return Timer.TIME;
   }
 
   /**

@@ -43,7 +43,7 @@ class App {
 
   setWinState(hasWin: boolean, remainingTime: number = 0) {
     if (hasWin) {
-      const converted = Timer.convertToMinutes(remainingTime);
+      const converted = Timer.convertToMinutes(Timer.getTime() - remainingTime);
       document.querySelector('.over .content .timer .timer_content h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
       document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Bravo';
     } else {
