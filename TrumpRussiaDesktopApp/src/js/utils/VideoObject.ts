@@ -16,7 +16,7 @@ export class VideoObject {
       color: 0xffffff
     });*/
 
-    /* That it work !*/
+    /* it works !*/
     object.traverse((node: Object3D) => {
       // @ts-ignore
       if (node.isMesh) {

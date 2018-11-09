@@ -3,10 +3,14 @@
 
 /* Utils */
 @import "utils/base";
-@import "utils/introduction";
+@import "utils/text";
+@import "utils/_introduction";
 
 /* Views */
 @import "views/linker";
+@import "views/introduction";
+@import "views/phone";
 
 /* Components */
 @import "components/camera";
+@import "components/page";

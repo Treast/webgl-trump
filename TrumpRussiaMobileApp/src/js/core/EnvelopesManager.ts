@@ -6,14 +6,22 @@
 
 import Socket from '../utils/Socket';
 import { Draggable } from '../utils/Draggable';
+import { PAGES } from '../utils/Pages';
+import { CONFIG } from '../config';
+import App from './App';
+import Timer from './Timer';
 
 class EnvelopesManager {
 
   private static INACTIVE_OPACITY = '0.4';
+  private static NUMBER_ENVELOPES: number = 3;
 
   private readonly draggableEnvelope: HTMLImageElement;
   private readonly inventory: HTMLElement;
   private envelopes: NodeListOf<HTMLElement>;
+  private readonly envelopesActives: NodeListOf<HTMLElement>;
+  private readonly goBack: HTMLElement;
+  private readonly goNext: HTMLElement;
   private draggable: Draggable;
   private currentHover: any;
 
@@ -21,6 +29,9 @@ class EnvelopesManager {
     this.draggableEnvelope = (document.getElementById('envelope-draggable') as HTMLImageElement);
     this.inventory = document.getElementById('inventory');
     this.envelopes = this.inventory.querySelectorAll('.inventory_item');
+    this.envelopesActives = document.querySelectorAll('.over .inventory_item-active span');
+    this.goBack = document.querySelector('.over .go-back');
+    this.goNext = document.querySelector('.over .next-step');
     this.draggable = new Draggable(
       this.draggableEnvelope,
       this.inventory,
@@ -31,11 +42,33 @@ class EnvelopesManager {
     this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
+  onClickActive(e: Event) {
+    const element = e.target as HTMLElement;
+    const id = parseInt(element.getAttribute('data-envelope'), 10);
+    document.querySelector('.over .envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
+    document.querySelector('.over .envelope h2').innerHTML = CONFIG.ENVELOPES[id].title;
+    document.querySelector('.over .envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
+    document.querySelector('.over .envelope').classList.add('active');
+  }
+
+  onClickGoBack() {
+    document.querySelector('.over .envelope').classList.remove('active');
+  }
+
+  onClickGoNext() {
+    PAGES.fade('phone', true);
+  }
+
   /**
    * On écoute l'événement "hover" reçu par le serveur.
    */
   init() {
     Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
+    for (const envelope of this.envelopesActives) {
+      envelope.addEventListener('click', this.onClickActive.bind(this));
+    }
+    this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
+    this.goNext.addEventListener('click', this.onClickGoNext.bind(this));
   }
 
   /**
@@ -55,6 +88,10 @@ class EnvelopesManager {
     const actives = this.inventory.querySelectorAll('.inventory_item-active');
     this.envelopes[actives.length].classList.add('inventory_item-active');
     Socket.emit('envelope:dragged', this.currentHover);
+    if ((actives.length + 1) >= EnvelopesManager.NUMBER_ENVELOPES) {
+      App.setWinState(true, Timer.remainingTime);
+      PAGES.fade('over');
+    }
   }
 }
 

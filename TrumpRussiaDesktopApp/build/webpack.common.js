@@ -82,6 +82,10 @@ module.exports = {
         from: path.join(__dirname, './../src', 'images'),
         to: 'assets/',
       },
+      {
+        from: path.join(__dirname, './../src', 'static'),
+        to: 'static/',
+      },
     ]),
   ],
   node: {

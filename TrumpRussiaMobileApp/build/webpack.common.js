@@ -49,13 +49,10 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader',
-            options: {
-              outputPath: 'assets/'
-            }
+            loader: 'file-loader'
           }
         ]
       }
@@ -74,7 +71,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: path.join(__dirname, './../src', 'images'),
+        from: path.join(__dirname, './../src', 'static'),
         to: 'assets/',
       },
     ]),

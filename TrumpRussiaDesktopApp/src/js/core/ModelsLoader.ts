@@ -67,7 +67,7 @@ export class ModelsLoader {
    * @param modelData
    */
   loadOBJ (modelData: any) {
-    const mltLoader = new MTLLoader(this.loadingManager);
+    /*const mltLoader = new MTLLoader(this.loadingManager);
     mltLoader.load(`./models/${modelData.filename.replace('.obj', '.mtl')}`, (materials: MaterialCreator) => {
       materials.preload();
       const objLoader = new OBJLoader(this.loadingManager);
@@ -75,7 +75,7 @@ export class ModelsLoader {
       objLoader.load(`./models/${modelData.filename}`, (obj: Object3D) => {
         this.onSceneLoaded(obj);
       });
-    });
+    });*/
   }
 
 }

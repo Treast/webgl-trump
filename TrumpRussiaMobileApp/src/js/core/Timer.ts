@@ -4,9 +4,12 @@
  */
 
 import Socket from '../utils/Socket';
+import { PAGES } from '../utils/Pages';
+import EnvelopesManager from './EnvelopesManager';
+import App from './App';
 
 class Timer {
-  private remainingTime: number;
+  public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
 
@@ -40,8 +43,10 @@ class Timer {
         document.querySelector('#timer').innerHTML = `${converted.minutes}:${converted.seconds}`;
         Socket.emit('timer:change', converted);
         if (this.remainingTime === 0) {
+          App.setWinState(false);
           Socket.emit('timer:end');
           clearInterval(this.interval);
+          PAGES.fade('over');
         }
       }
     },                          1000);

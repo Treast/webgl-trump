@@ -3,6 +3,7 @@
   height: 100%;
   width: 100%;
   z-index: 1;
+  overflow: hidden;
 
   .content {
     display: flex;
@@ -63,6 +64,7 @@
 
           img {
             width: 40px;
+            pointer-events: none;
           }
 
           > .inventory_item_number {
@@ -112,16 +114,22 @@
   .envelope {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 100%;
     bottom: 0;
     height: 100%;
     width: 100%;
     z-index: 2;
-    background: $background-color;
+    background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
+    background-blend-mode: multiply;
     padding: 35px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: left 0.4s ease-in-out;
+
+    &.active {
+      left: 0;
+    }
 
     .go-back {
       position: absolute;
@@ -171,7 +179,7 @@
         display: inline-block;
         margin: 0 auto 20px;
         width: 90px;
-        background-color: $background-color;
+        background: $background;
         z-index: 3;
         padding: 10px 30px;
         border-top: 1px solid #ffffff;
@@ -219,7 +227,8 @@
       p {
         @extend .text;
         font-family: 'Chakra Petch', sans-serif;
-        font-size: 20px;
+        font-size: 18px;
+        text-align: justify;
       }
     }
   }

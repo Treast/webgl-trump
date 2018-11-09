@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <title>Real Donald Trump</title>
     </head>
-    <body>
-        <section data-page="introduction">
+    <body style="display: none">
+        <section data-page="introduction" class="introduction">
             <div class="inner">
                 <div class="inner-top"></div>
                 <div class="inner-bottom"></div>
@@ -16,8 +16,12 @@
                     <div class="inner-page" data-inner-page="2">
                         <p>_ Ce texte aura pour but de mettre l’utilisateur dans la peau d’un agent secret étant sur le point d’infiltrer le réseau d’un bâtiment pour avoir accès à des caméras de surveillance d’une pièce secrète où se trouvent Trump et Poutine. </p>
                     </div>
-                    <div class="inner-page" data-inner-page="3">
-                        <p>_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                    <div class="inner-page introduction_map" data-inner-page="3">
+                        <h2 class="page_title">Pièce secrète</h2>
+                        <div class="introduction_map_content">
+                            <img class="introduction_map_image" src="images/Map.png">
+                            <p class="introduction_map_text">_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                        </div>
                     </div>
                     <div class="inner-page" data-inner-page="4">
                         <div id="qrcode"></div>
@@ -54,6 +58,40 @@
         <section data-page="game-result">
             <div data-state-game="win"></div>
             <div data-state-game="lose"></div>
+        </section>
+        <section class="phone" data-page="phone">
+            <div class="inner">
+                <p>
+                    <span>On dirait que les chiffres marqués sur les enveloppes correspondent à un</span>
+                    <span>numéro de téléphone…</span>
+                </p>
+                <ul class="envelopes">
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">01</span>
+                        <img class="envelopes_item_image" src="images/envelope_1.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">02</span>
+                        <img class="envelopes_item_image" src="images/envelope_2.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">03</span>
+                        <img class="envelopes_item_image" src="images/envelope_3.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">04</span>
+                        <img class="envelopes_item_image" src="images/envelope_4.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">05</span>
+                        <img class="envelopes_item_image" src="images/envelope_5.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">06</span>
+                        <img class="envelopes_item_image" src="images/envelope_6.png">
+                    </li>
+                </ul>
+            </div>
         </section>
         <video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">
             <source src="videos/trump_poutine.mp4" type='video/mp4'>

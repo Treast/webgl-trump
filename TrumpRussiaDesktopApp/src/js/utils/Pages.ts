@@ -1,6 +1,7 @@
 /**
  * Système de pages qui nous permet d'afficher des écrans prédéfinis tout au long de l'expérience.
  */
+import Socket from '../core/Socket';
 
 interface PagesManager {
   items: string[];
@@ -9,7 +10,6 @@ interface PagesManager {
 }
 
 export const PAGES: PagesManager = {
-
   items: [],
 
   /**
@@ -18,6 +18,9 @@ export const PAGES: PagesManager = {
   init () {
     this.items = document.querySelectorAll('[data-page]');
     this.items.forEach((item: any) => item.style.display = 'none');
+    document.body.style.display = 'block';
+
+    Socket.on('page:show', this.show.bind(this));
   },
 
   /**
@@ -26,7 +29,13 @@ export const PAGES: PagesManager = {
    */
   show (name: string) {
     this.items.forEach((item: any) => {
-      item.style.display = item.getAttribute('data-page') === name ? 'block' : 'none';
+      if (item.getAttribute('data-page') === name) {
+        item.style.display = 'block';
+        item.classList.add('page-active');
+      } else {
+        item.style.display = 'none';
+        item.classList.remove('page-active');
+      }
     });
   },
 
