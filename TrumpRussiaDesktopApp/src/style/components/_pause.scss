@@ -1,0 +1,121 @@
+#pause {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+
+  .content {
+    width: 100%;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: #fff;
+
+    font-family: 'Bai Jamjuree', sans-serif;
+
+    h1 {
+      text-transform: uppercase;
+      font-size: 40px;
+      text-align: center;
+      letter-spacing: 8px;
+      margin-bottom: 150px;
+      text-shadow: 0 0 5px #ffffff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 20px;
+      letter-spacing: 3px;
+      padding: 15px;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      &.play-again {
+        color: #F00;
+      }
+    }
+    .timer-run {
+      position: relative;
+      flex-grow: 1;
+      text-align: center;
+      overflow: hidden;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 38px;
+        left: 372px;
+        transform: translateX(-50%);
+        height: 1px;
+        width: 150px;
+        background-color: #ffffff;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 38px;
+        right: 372px;
+        transform: translateX(50%);
+        height: 1px;
+        width: 150px;
+        background-color: #ffffff;
+      }
+
+      span {
+        position: relative;
+        display: inline-block;
+        margin: 0 auto 20px;
+        width: 160px;
+        z-index: 2;
+        padding: 10px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 18px;
+          right: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+      }
+    }
+  }
+}
+
+body.paused {
+  [data-page] {
+    filter: blur(8px);
+  }
+
+  #pause {
+    display: block;
+  }
+}

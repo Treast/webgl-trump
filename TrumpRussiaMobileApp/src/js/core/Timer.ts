@@ -7,16 +7,22 @@ import Socket from '../utils/Socket';
 import { PAGES } from '../utils/Pages';
 import EnvelopesManager from './EnvelopesManager';
 import App from './App';
+import { TweenMax } from 'gsap';
 
 class Timer {
   public static TIME: number = 300;
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
+  private countOuter: HTMLElement;
+  private countInner: HTMLElement;
 
   constructor() {
     this.remainingTime = Timer.TIME; // 300;
     this.interval = null;
+    this.countOuter = document.querySelector('[data-page="count"] .count .outer');
+    this.countInner = document.querySelector('[data-page="count"] .count .inner');
+    this.runCount();
   }
 
   /**
@@ -28,6 +34,42 @@ class Timer {
 
   getTime() {
     return Timer.TIME;
+  }
+
+  runCount() {
+    let count = 6;
+    const interval = setInterval(() => {
+      TweenMax.fromTo(this.countOuter, 1, {
+        y: 0,
+        alpha: 1,
+      },              {
+        y: -77,
+        alpha: 0,
+        onStart: () => {
+          count = count - 1;
+          this.countInner.innerText = count.toString();
+        },
+        onComplete: () => {
+          if (count <= 0) {
+            clearInterval(interval);
+          }
+        },
+      });
+      TweenMax.fromTo(this.countInner, 1, {
+        y: 77,
+        alpha: 0,
+      },              {
+        y: 0,
+        alpha: 1,
+        onComplete: () => {
+          if (count <= -1) {
+            clearInterval(interval);
+          } else {
+            this.countOuter.innerText = count.toString();
+          }
+        },
+      });
+    },                           1000);
   }
 
   /**
