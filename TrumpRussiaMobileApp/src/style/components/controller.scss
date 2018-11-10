@@ -46,6 +46,7 @@
       padding: 10px 30px;
       border-top: 1px solid #ffffff;
       border-bottom: 1px solid #ffffff;
+      font-size: 25px;
 
       &::before {
         content: '';
@@ -75,7 +76,6 @@
 
   .main-container {
     flex-grow: 2;
-    max-height: 50%;
   }
 
   .inventory {
@@ -150,24 +150,22 @@
     #envelop {
       position: relative;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       flex-grow: 2;
       flex-basis: 50%;
-      padding-bottom: 40px;
 
       img.envelope-draggable {
-        width: 110px;
-        height: 80px;
+        width: 108px;
+        height: 67px;
       }
-
-      img.picto {
-        position: absolute;
-        width: 38px;
-        height: 43px;
-        top: 75%;
-        left: calc(50% + 25px);
+      .envelope-count {
+        @extend .text;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-size: 38px;
+        margin-top: 20px;
       }
     }
 
@@ -237,17 +235,3 @@
   text-align: center;
   padding: 0 10px 10px;
 }
-
-/* .timer{
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 8px;
-  background-color: grey;
-  color: white;
-  font-weight: bold;
-}
-
-.order{
-  text-align: center;
-} */

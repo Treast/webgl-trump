@@ -1,0 +1,135 @@
+#menu {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  height: 120px;
+  width: 100%;
+
+  .menu_title {
+    div {
+      display: block;
+      text-align: center;
+      margin: 0 auto -2px;
+      width: 160px;
+      position: relative;
+      background: $background;
+    }
+    span {
+      @extend .text;
+      padding: 7px 34px;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-top: 1px solid #ffffff;
+      background: $background;
+      height: 32px;
+
+      &::before {
+        position: absolute;
+        content: '';
+        display: block;
+        top: -13px;
+        left: 11px;
+        bottom: 0;
+        height: 35px;
+        width: 1px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+      }
+
+      &::after{
+        position: absolute;
+        content: '';
+        display: block;
+        top: -13px;
+        right: 11px;
+        bottom: 0;
+        height: 35px;
+        width: 1px;
+        background-color: #ffffff;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .menu_items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    width: 90%;
+    height: 88px;
+    margin: 0 auto;
+    border-top: 1px solid #fff;
+
+    .menu_item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 33%;
+
+      &.menu_item-active {
+        span {
+          filter: brightness(1);
+        }
+      }
+
+      &.menu_item-on {
+        span {
+          position: relative;
+          overflow: hidden;
+          &::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            height: 28px;
+            width: 28px;
+            background-color: #000;
+            transform: rotate(45deg);
+          }
+        }
+      }
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55px;
+        height: 55px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 0 5px #ffffff;
+        filter: brightness(0.5);
+
+        img {
+          pointer-events: none;
+        }
+
+        &.menu_phone img {
+          width: 27px;
+          height: 27px;
+        }
+
+        &.menu_app img {
+          width: 30px;
+          height: 32px;
+        }
+
+        &.menu_envelope img {
+          width: 27px;
+          height: 17px;
+        }
+      }
+    }
+  }
+}
+
+[data-page] {
+  padding-bottom: 130px;
+}

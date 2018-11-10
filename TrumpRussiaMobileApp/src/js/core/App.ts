@@ -13,6 +13,7 @@ import ZoomManager from './ZoomManager';
 import PauseManager from './PauseManager';
 import PhoneManager from './PhoneManager';
 import AudioManager from './AudioManager';
+import MenuManager from './MenuManager';
 import { PAGES } from '../utils/Pages';
 
 class App {
@@ -29,11 +30,12 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('count');
+    PAGES.show('phone');
     this.joinRoom();
     this.initCamerasManager();
-    this.initEnvelopesManager();
+    // this.initEnvelopesManager();
     this.initPauseManager();
+    this.initMenuManager();
     this.initAudioManager();
     this.initSlider();
     this.initTimer();
@@ -64,6 +66,13 @@ class App {
    */
   initAudioManager() {
     AudioManager.init();
+  }
+
+  /**
+   * Initialisation du MenuManager
+   */
+  initMenuManager() {
+    MenuManager.init();
   }
 
     /**

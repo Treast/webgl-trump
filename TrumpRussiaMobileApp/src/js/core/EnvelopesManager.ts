@@ -28,15 +28,10 @@ class EnvelopesManager {
   constructor() {
     this.draggableEnvelope = (document.getElementById('envelope-draggable') as HTMLImageElement);
     this.inventory = document.getElementById('inventory');
-    this.envelopes = this.inventory.querySelectorAll('.inventory_item');
-    this.envelopesActives = document.querySelectorAll('.over .inventory_item-active span');
-    this.goBack = document.querySelector('.over .go-back');
-    this.goNext = document.querySelector('.over .next-step');
-    this.draggable = new Draggable(
-      this.draggableEnvelope,
-      this.inventory,
-      this.onDraggedEnvelope.bind(this),
-    );
+    // this.envelopes = this.inventory.querySelectorAll('.inventory_item');
+    this.envelopesActives = document.querySelectorAll('.inventory .inventory_item-active span');
+    this.goBack = document.querySelector('.inventory .go-back');
+    this.goNext = document.querySelector('.inventory .next-step');
     this.currentHover = null;
 
     this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
@@ -45,14 +40,14 @@ class EnvelopesManager {
   onClickActive(e: Event) {
     const element = e.target as HTMLElement;
     const id = parseInt(element.getAttribute('data-envelope'), 10);
-    document.querySelector('.over .envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
-    document.querySelector('.over .envelope h2').innerHTML = CONFIG.ENVELOPES[id].title;
-    document.querySelector('.over .envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
-    document.querySelector('.over .envelope').classList.add('active');
+    document.querySelector('.inventory .envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
+    document.querySelector('.inventory .envelope h2').innerHTML = CONFIG.ENVELOPES[id].title;
+    document.querySelector('.inventory .envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
+    document.querySelector('.inventory .envelope').classList.add('active');
   }
 
   onClickGoBack() {
-    document.querySelector('.over .envelope').classList.remove('active');
+    document.querySelector('.inventory .envelope').classList.remove('active');
   }
 
   onClickGoNext() {

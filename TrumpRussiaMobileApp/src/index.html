@@ -15,7 +15,7 @@
             </div>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
-                <p class="order">Essayez de récolter des informations secrètes en switchant entre les caméras</p>
+                <p class="order">Explore la pièce pour trouver les enveloppes.</p>
             </div>
             <div class="main-container">
                 <ul class="cameras_list">
@@ -49,7 +49,7 @@
                 </ul>
                 <div id="envelop">
                     <img class="envelope-draggable" id="envelope-draggable" src="./assets/images/envelop@2x.png" alt="">
-                    <img src="./assets/images/Drag@2x.png" alt="" class="picto">
+                    <div class="envelope-count"><span>0</span>/5</div>
                 </div>
                 <div class="zoom-slider">
                     <div class="range noUiSlider"></div>
@@ -57,43 +57,6 @@
                         0 %
                     </div>
                 </div>
-            </div>
-            <div class="inventory" id="inventory">
-                <div class="inventory_title">
-                    <span>Inventaire</span>
-                </div>
-                <ul class="inventory_list">
-                    <li class="inventory_item">
-                        <span id="inventory_1">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_2">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_3">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_4">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_5">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_6">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>
@@ -106,6 +69,30 @@
             <h2 class="play-again">Rejouer</h2>
         </div>
     </div>
+    <div id="menu">
+        <div class="menu_title">
+            <div>
+                <span>Menu</span>
+            </div>
+        </div>
+        <ul class="menu_items">
+            <li class="menu_item menu_item-on menu_item-active">
+                <span class="menu_app" data-click-page="app">
+                    <img src="./assets/images/App@2x.png" alt="">
+                </span>
+            </li>
+            <li class="menu_item">
+                <span class="menu_envelope" data-click-page="inventory">
+                    <img src="./assets/images/envelop@2x-active.png" alt="">
+                </span>
+            </li>
+            <li class="menu_item">
+                <span class="menu_phone" data-click-page="phone">
+                    <img src="./assets/images/Phone@2x.png" alt="">
+                </span>
+            </li>
+        </ul>
+    </div>
     <div class="count" data-page="count">
         <div class="content">
             <div class="count">
@@ -114,7 +101,7 @@
             </div>
         </div>
     </div>
-    <div class="over" data-page="over">
+    <div class="inventory" data-page="inventory">
         <div class="envelope">
             <div class="go-back">
                 <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
@@ -131,18 +118,12 @@
             <div class="pause-button">
                 <span></span>
             </div>
-            <div class="timer">
-                <div class="timer_content">
-                    <h1>0:00</h1>
-                    <h2>Temps écoulé !</h2>
-                </div>
-            </div>
             <div class="inventory">
                 <div class="inventory_title">
                     <span>Inventaire</span>
                 </div>
                 <div class="text description">
-                    Tu peux observer tes trouvailles
+                    Découvre le contenu des enveloppes
                 </div>
                 <ul class="inventory_list">
                     <li class="inventory_item inventory_item-active">
@@ -175,19 +156,7 @@
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item inventory_item-active">
-                        <div class="inventory_item_number">06</div>
-                        <span class="inventory_6" data-envelope="2">
-                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
                 </ul>
-            </div>
-            <div class="next-step">
-                    <span class="arrow">
-                        <img src="./assets/images/arrow-right@2x.png" alt="">
-                    </span>
-                Etape suivante
             </div>
         </div>
     </div>

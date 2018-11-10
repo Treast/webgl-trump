@@ -1,65 +1,57 @@
-.inventory {
-  > .inventory_title {
-    position: relative;
-    display: block;
+[data-page="inventory"] {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  overflow: hidden;
+
+  .content, .content .inventory {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+  }
+
+  .description {
+    @extend .text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin: 0 auto -2px;
-    width: 212px;
-    background: $background;
-    color: #ffffff;
-    text-shadow: 0 0 5px #ffffff;
-    span {
-      position: relative;
-      padding: 7px 20px;
-      font-family: 'Bai Jamjuree', sans-serif;
-      font-size: 18px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-top: 1px solid #ffffff;
-      background: $background;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 18px;
+    flex-grow: 1;
+  }
 
-      &::before {
-        position: absolute;
-        content: '';
-        display: block;
-        top: -7px;
-        left: -15px;
-        bottom: 0;
-        height: 42px;
-        width: 1px;
-        background-color: #ffffff;
-        box-shadow: 0 0 5px #ffffff;
-        transform: rotate(45deg);
-      }
-
-      &::after{
-        position: absolute;
-        content: '';
-        display: block;
-        top: -7px;
-        right: -15px;
-        bottom: 0;
-        height: 42px;
-        width: 1px;
-        background-color: #ffffff;
-        box-shadow: 0 0 5px #ffffff;
-        transform: rotate(-45deg);
-      }
-    }
+  .inventory_title {
+    @extend .text;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 35px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    text-align: center;
+    flex-grow: 7;
   }
 
   .inventory_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     width: 90%;
-    margin: 0 auto;
+    margin: 40px auto 80px;
     padding: 20px 20px 0;
-    border-top: 1px solid #ffffff;
-    //box-shadow: 0 0 5px #ffffff;
+    flex-grow: 1;
 
     .inventory_item {
       display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
       align-items: center;
       justify-content: center;
       width: 33%;
@@ -67,8 +59,8 @@
       margin-bottom: 20px;
 
       img {
-        width: 28px;
-        opacity: 0;
+        width: 40px;
+        pointer-events: none;
         transition: opacity 0.4s ease-in-out;
       }
 
@@ -81,12 +73,20 @@
         }
       }
 
+      > .inventory_item_number {
+        margin-bottom: 10px;
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 14px;
+        color: #ffffff;
+        text-shadow: 0 0 5px #ffffff;
+      }
+
       span {
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 60px;
-        width: 60px;
+        height: 80px;
+        width: 80px;
         box-shadow: 0 0 5px #ffffff;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
@@ -94,9 +94,125 @@
     }
   }
 
-}
+  .envelope {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
+    background-blend-mode: multiply;
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: left 0.4s ease-in-out;
 
-.envelope-draggable{
-  position: relative;
-  z-index: 10;
+    &.active {
+      left: 0;
+    }
+
+    .go-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 30px;
+    }
+
+    .header {
+      position: relative;
+      flex-grow: 2;
+      text-align: center;
+      overflow: hidden;
+      margin-top: 40px;
+      padding-bottom: 10px;
+
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 24px;
+        left: -68px;
+        transform: translateX(-50%);
+        height: 1px;
+        width: 100%;
+        background-color: #ffffff;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 28px;
+        right: -68px;
+        transform: translateX(50%);
+        height: 1px;
+        width: 100%;
+        background-color: #ffffff;
+      }
+
+      h1 {
+        @extend .text;
+        text-align: center;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-size: 25px;
+        position: relative;
+        display: inline-block;
+        margin: 0 auto 20px;
+        width: 90px;
+        background: $background;
+        z-index: 3;
+        padding: 10px 30px;
+        border-top: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 23px;
+          right: -12px;
+          display: block;
+          height: 33px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+      }
+    }
+
+    h2 {
+      flex-grow: 1;
+      @extend .text;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 27px;
+      line-height: 32px;
+      letter-spacing: 1px;
+      margin: 30px 0 40px;
+    }
+
+    .content {
+      flex-grow: 3;
+      overflow: scroll;
+      p {
+        @extend .text;
+        font-family: 'Chakra Petch', sans-serif;
+        font-size: 18px;
+        text-align: justify;
+      }
+    }
+  }
 }
