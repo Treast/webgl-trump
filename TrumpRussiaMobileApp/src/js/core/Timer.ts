@@ -10,7 +10,7 @@ import App from './App';
 import { TweenMax } from 'gsap';
 
 class Timer {
-  public static TIME: number = 300;
+  public static TIME: number = 180;
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
@@ -18,7 +18,7 @@ class Timer {
   private countInner: HTMLElement;
 
   constructor() {
-    this.remainingTime = Timer.TIME; // 300;
+    this.remainingTime = Timer.TIME;
     this.interval = null;
     this.countOuter = document.querySelector('[data-page="count"] .count .outer');
     this.countInner = document.querySelector('[data-page="count"] .count .inner');

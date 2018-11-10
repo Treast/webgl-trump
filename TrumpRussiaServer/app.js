@@ -4,10 +4,22 @@ const io = require('socket.io')(http);
 
 const rooms = require('./modules/rooms');
 
+/*
+*
+* 1.Rooms
+* 2.Game
+* 3.Cameras
+* 4.Timer
+* 5.Pause
+* 6.Envelopes
+* 7.Pages
+*
+* */
+
 io.on('connection', socket => {
 
   /**
-   * Rooms
+   * 1.Rooms
    */
 
   socket.on('room:create', callback => {
@@ -26,7 +38,7 @@ io.on('connection', socket => {
   });
 
   /**
-   * Game
+   * 2.Game
    */
 
   socket.on('game:win', () => {
@@ -38,7 +50,7 @@ io.on('connection', socket => {
   });
 
   /**
-   * Cameras
+   * 3.Cameras
    */
 
   socket.on('camera:set', id => {
@@ -54,7 +66,7 @@ io.on('connection', socket => {
   });
 
   /**
-   * Timer
+   * 4.Timer
    */
 
   socket.on('timer:change', data => {
@@ -66,7 +78,7 @@ io.on('connection', socket => {
   });
 
   /**
-   * Pause
+   * 5.Pause
    */
 
   socket.on('pause:on', data => {
@@ -78,7 +90,7 @@ io.on('connection', socket => {
   });
 
   /**
-   * Enveloppe
+   * 6.Enveloppe
    */
 
   socket.on('envelope:hover', envelope => {
@@ -90,11 +102,10 @@ io.on('connection', socket => {
   });
 
   /**
-   * Pages
+   * 7.Pages
    */
 
   socket.on('page:show', name => {
-    console.log(name, socket.roomId);
     io.to(socket.roomId).emit('page:show', name);
   });
 
