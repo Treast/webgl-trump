@@ -72,15 +72,14 @@
       justify-content: center;
       width: 33%;
 
-      &.menu_item-active {
+      &:not(.menu_item-active) {
         span {
-          filter: brightness(1);
+          background-color: #808080;
         }
       }
 
       &.menu_item-on {
         span {
-          position: relative;
           overflow: hidden;
           &::before {
             content: '';
@@ -99,13 +98,30 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
         width: 55px;
         height: 55px;
         border-top-right-radius: 10px;
         border-bottom-left-radius: 10px;
         background-color: #fff;
         box-shadow: 0 0 5px #ffffff;
-        filter: brightness(0.5);
+
+        .badge {
+          @extend .text;
+          position: absolute;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 25px;
+          width: 25px;
+          border-radius: 50%;
+          background-color: #F00;
+          top: -10px;
+          right: -10px;
+          font-family: 'Bai Jamjuree', sans-serif;
+          font-size: 14px;
+          box-shadow: 0px 0px 5px #f00;
+        }
 
         img {
           pointer-events: none;

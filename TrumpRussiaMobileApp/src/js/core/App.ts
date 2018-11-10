@@ -30,7 +30,7 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('phone');
+    PAGES.show('inventory');
     this.joinRoom();
     this.initCamerasManager();
     // this.initEnvelopesManager();
