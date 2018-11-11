@@ -118,7 +118,7 @@ section[data-page="introduction"] {
         width: 80px;
         transition: all 0.4s ease-in-out;
 
-        &:before{
+        &:not(&.disabled):before{
           content: "";
           display: block;
           position: absolute;
@@ -139,6 +139,7 @@ section[data-page="introduction"] {
         }
 
         &.disabled {
+          opacity: 0.4;
         }
 
         &.arrow-left {
@@ -149,6 +150,14 @@ section[data-page="introduction"] {
         &.arrow-right {
           margin-left: 15px;
         }
+      }
+
+      .pagination-pass{
+        cursor: pointer;
+        position: absolute;
+        bottom: -10px;
+        font-weight: 500;
+        font-size: 13px;
       }
 
       .pages {

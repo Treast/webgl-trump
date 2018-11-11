@@ -79,7 +79,7 @@ class EnvelopesManager {
     this.updateCountEnvelope();
     if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {
       // todo: implements win state
-      // App.setWinState(true, Timer.remainingTime);
+      App.setWinState(true, Timer.remainingTime);
     }
   }
 

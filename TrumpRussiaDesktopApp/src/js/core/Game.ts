@@ -124,7 +124,8 @@ class Game {
    */
   onGameFinish (isWinning: boolean) {
     if (isWinning) {
-      PAGES.show('game-result');
+      // PAGES.show('game-result');
+      CamerasManager.setEnableMovement(false);
     } else {
       EffectManager.setBreakScreen(true);
       (document.getElementById('experience')).classList.add('experience-finish');

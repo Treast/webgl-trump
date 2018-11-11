@@ -14,6 +14,7 @@ class CamerasManager {
   private camera: PerspectiveCamera;
   private scene: Scene;
   private numberElement: any;
+  private enableMovement: boolean = true;
 
   constructor () {
     this.numberElement = document.getElementById('camera_number');
@@ -76,6 +77,14 @@ class CamerasManager {
     const difference = originalFOV * (zoom / 100);
     this.camera.fov = originalFOV - difference;
     this.camera.updateProjectionMatrix();
+  }
+
+  /**
+   * Défini l'activation du mouvement de la caméra
+   * @param {boolean} value
+   */
+  setEnableMovement(value: boolean) {
+    this.enableMovement = value;
   }
 }
 

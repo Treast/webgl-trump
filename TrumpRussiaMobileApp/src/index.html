@@ -15,7 +15,13 @@
             </div>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
-                <p class="order">Explore la pièce pour trouver les enveloppes.</p>
+                <div data-game-state="Running">
+                    <p class="order">Explore la pièce pour trouver les enveloppes.</p>
+                </div>
+                <div data-game-state="Losing|Wining" class="app-result">
+                    <h1></h1>
+                    <h2></h2>
+                </div>
             </div>
             <div class="main-container">
                 <ul class="cameras_list">

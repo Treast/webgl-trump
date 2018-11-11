@@ -42,6 +42,7 @@ class Pagination {
   private initListeners() {
     this.element.querySelector('.arrow-left').addEventListener('click', () => { this.goPrev(); });
     this.element.querySelector('.arrow-right').addEventListener('click', () => { this.goNext(); });
+    this.element.querySelector('.pagination-pass').addEventListener('click', () => { this.goToEnd(); });
   }
 
   /**
@@ -104,6 +105,14 @@ class Pagination {
       this.currentIndex = this.maxIndex;
     }
 
+    this.refreshPage();
+  }
+
+  /**
+   * Aller à la dernière page.
+   */
+  private goToEnd() {
+    this.currentIndex = this.maxIndex;
     this.refreshPage();
   }
 

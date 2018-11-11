@@ -15,7 +15,6 @@ import PhoneManager from './PhoneManager';
 import AudioManager from './AudioManager';
 import MenuManager from './MenuManager';
 import { PAGES } from '../utils/Pages';
-import NavigationBarManager from './NavigationBarManager';
 import GameManager from './GameManager';
 
 const Gyronorm = require('gyronorm/dist/gyronorm.complete.min');
@@ -42,21 +41,20 @@ class App {
     this.initMenuManager();
     this.initAudioManager();
     this.initTimerManager();
-    this.initNavigationBarManager();
-    this.initGameManager();
     this.initSlider();
     this.initPhone();
+    this.initGameManager();
     this.start();
   }
 
   setWinState(hasWin: boolean, remainingTime: number = 0) {
     if (hasWin) {
       const converted = TimerManager.convertToMinutes(TimerManager.getTime() - remainingTime);
-      document.querySelector('.over .content .timer .timer_content h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
-      document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Bravo';
+      document.querySelector('.app-result h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
+      document.querySelector('.app-result h2').innerHTML = 'Bravo';
     } else {
-      document.querySelector('.over .content .timer .timer_content h1').innerHTML = '00:00';
-      document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Temps écoulé !';
+      document.querySelector('.app-result h1').innerHTML = '00:00';
+      document.querySelector('.app-result h2').innerHTML = 'Temps écoulé !';
     }
   }
 
@@ -121,13 +119,6 @@ class App {
    */
   private initGameManager() {
     GameManager.init();
-  }
-
-  /**
-   * Initialisation du NavigationBarManager
-   */
-  private initNavigationBarManager() {
-    NavigationBarManager.init();
   }
 
   /**

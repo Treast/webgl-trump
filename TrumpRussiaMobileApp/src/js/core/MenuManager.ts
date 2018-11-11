@@ -1,12 +1,22 @@
 import { PAGES } from '../utils/Pages';
+import { GameState } from './GameManager';
 
 class MenuManager {
   private menuElement: HTMLElement;
   private readonly menuButtons: NodeListOf<HTMLElement>;
+  private btnController: HTMLElement;
+  private btnInventory: HTMLElement;
+  private btnPhone: HTMLElement;
+
+  private static BTN_ENABLE_OPACITY: string = '1';
+  private static BTN_DISABLE_OPACITY: string = '0.3';
 
   constructor() {
     this.menuElement = document.querySelector('#menu');
     this.menuButtons = this.menuElement.querySelectorAll('.menu_item span');
+    this.btnController = document.querySelector('.menu_app');
+    this.btnInventory = document.querySelector('.menu_envelope');
+    this.btnPhone = document.querySelector('.menu_phone');
   }
 
   init() {
@@ -31,6 +41,31 @@ class MenuManager {
         document.querySelector(clickClass).classList.add('show');
       }
     }
+  }
+
+  handleGameState(gameState: GameState) {
+    switch (gameState) {
+      case GameState.Wining: {
+        this.enable(this.btnController);
+        this.enable(this.btnInventory);
+        this.enable(this.btnPhone);
+        break;
+      }
+      default: {
+        this.enable(this.btnController);
+        this.disable(this.btnInventory);
+        this.disable(this.btnPhone);
+        break;
+      }
+    }
+  }
+
+  enable(btn: HTMLElement) {
+    btn.style.opacity = MenuManager.BTN_ENABLE_OPACITY;
+  }
+
+  disable(btn: HTMLElement) {
+    btn.style.opacity = MenuManager.BTN_DISABLE_OPACITY;
   }
 }
 
