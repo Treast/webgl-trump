@@ -76,20 +76,20 @@
             </div>
         </div>
         <ul class="menu_items">
+            <div class="badge">5</div>
             <li class="menu_item menu_item-on menu_item-active">
                 <span class="menu_app" data-click-page="app">
                     <img src="./assets/images/App@2x.png" alt="">
                 </span>
             </li>
-            <li class="menu_item">
+            <li class="menu_item menu_item-active">
                 <span class="menu_envelope" data-click-page="inventory">
-                    <div class="badge">5</div>
                     <img src="./assets/images/envelop@2x-active.png" alt="">
                 </span>
             </li>
-            <li class="menu_item">
-                <span class="menu_phone" data-click-page="phone">
-                    <img src="./assets/images/Phone@2x.png" alt="">
+            <li class="menu_item menu_item-active">
+                <span class="menu_phone" data-click-class=".phone">
+                    <img src="./assets/images/MenuPhone@2x.png" alt="">
                 </span>
             </li>
         </ul>
@@ -103,18 +103,6 @@
         </div>
     </div>
     <div class="inventory" data-page="inventory">
-        <div class="envelope">
-            <div class="go-back">
-                <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
-            </div>
-            <div class="header">
-                <h1></h1>
-            </div>
-            <h2></h2>
-            <div class="content">
-                <p></p>
-            </div>
-        </div>
         <div class="content">
             <div class="pause-button">
                 <span></span>
@@ -161,14 +149,27 @@
             </div>
         </div>
     </div>
-    <div class="phone" data-page="phone">
+    <div class="envelope">
+        <div class="go-back">
+            <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
+        </div>
+        <div class="header">
+            <h1></h1>
+        </div>
+        <h2 class="title"></h2>
+        <h2 class="source"></h2>
+        <div class="content">
+            <p></p>
+        </div>
+    </div>
+    <div class="phone">
         <div class="pause-button">
             <span></span>
         </div>
+        <div class="go-back">
+            <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
+        </div>
         <div class="content">
-            <div class="go-back">
-                <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
-            </div>
             <h1>Entrer le numéro de téléphone</h1>
             <div class="phone-number"></div>
             <div class="separator"><span></span></div>

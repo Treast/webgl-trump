@@ -9,7 +9,7 @@ import { Draggable } from '../utils/Draggable';
 import { PAGES } from '../utils/Pages';
 import { CONFIG } from '../config';
 import App from './App';
-import Timer from './Timer';
+import Timer from './TimerManager';
 
 class EnvelopesManager {
 
@@ -21,7 +21,6 @@ class EnvelopesManager {
   private envelopes: NodeListOf<HTMLElement>;
   private readonly envelopesActives: NodeListOf<HTMLElement>;
   private readonly goBack: HTMLElement;
-  private readonly goNext: HTMLElement;
   private draggable: Draggable;
   private currentHover: any;
 
@@ -30,8 +29,7 @@ class EnvelopesManager {
     this.inventory = document.getElementById('inventory');
     // this.envelopes = this.inventory.querySelectorAll('.inventory_item');
     this.envelopesActives = document.querySelectorAll('.inventory .inventory_item-active span');
-    this.goBack = document.querySelector('.inventory .go-back');
-    this.goNext = document.querySelector('.inventory .next-step');
+    this.goBack = document.querySelector('.envelope .go-back');
     this.currentHover = null;
 
     this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
@@ -40,18 +38,11 @@ class EnvelopesManager {
   onClickActive(e: Event) {
     const element = e.target as HTMLElement;
     const id = parseInt(element.getAttribute('data-envelope'), 10);
-    document.querySelector('.inventory .envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
-    document.querySelector('.inventory .envelope h2').innerHTML = CONFIG.ENVELOPES[id].title;
-    document.querySelector('.inventory .envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
-    document.querySelector('.inventory .envelope').classList.add('active');
-  }
-
-  onClickGoBack() {
-    document.querySelector('.inventory .envelope').classList.remove('active');
-  }
-
-  onClickGoNext() {
-    PAGES.fade('phone', true);
+    document.querySelector('.envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
+    document.querySelector('.envelope h2.title').innerHTML = CONFIG.ENVELOPES[id].title;
+    document.querySelector('.envelope h2.source').innerHTML = CONFIG.ENVELOPES[id].source;
+    document.querySelector('.envelope .content p').innerHTML = CONFIG.ENVELOPES[id].content;
+    document.querySelector('.envelope').classList.add('active');
   }
 
   /**
@@ -59,11 +50,14 @@ class EnvelopesManager {
    */
   init() {
     Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
+    this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
     for (const envelope of this.envelopesActives) {
       envelope.addEventListener('click', this.onClickActive.bind(this));
     }
-    this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
-    this.goNext.addEventListener('click', this.onClickGoNext.bind(this));
+  }
+
+  onClickGoBack() {
+    document.querySelector('.envelope').classList.remove('active');
   }
 
   /**
@@ -72,7 +66,6 @@ class EnvelopesManager {
    */
   onHoverEnvelope(envelope: HTMLElement) {
     this.currentHover = envelope;
-    this.draggable.enable = envelope !== null;
     this.draggableEnvelope.style.opacity = this.draggable.enable ? '1' : EnvelopesManager.INACTIVE_OPACITY;
   }
 

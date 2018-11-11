@@ -9,7 +9,7 @@ import EnvelopesManager from './EnvelopesManager';
 import App from './App';
 import { TweenMax } from 'gsap';
 
-class Timer {
+class TimerManager {
   public static TIME: number = 180;
   public remainingTime: number;
   private interval: any;
@@ -18,7 +18,7 @@ class Timer {
   private countInner: HTMLElement;
 
   constructor() {
-    this.remainingTime = Timer.TIME;
+    this.remainingTime = TimerManager.TIME;
     this.interval = null;
     this.countOuter = document.querySelector('[data-page="count"] .count .outer');
     this.countInner = document.querySelector('[data-page="count"] .count .inner');
@@ -33,7 +33,7 @@ class Timer {
   }
 
   getTime() {
-    return Timer.TIME;
+    return TimerManager.TIME;
   }
 
   runCount() {
@@ -52,6 +52,7 @@ class Timer {
         onComplete: () => {
           if (count <= 0) {
             clearInterval(interval);
+            PAGES.fade('app');
           }
         },
       });
@@ -64,6 +65,7 @@ class Timer {
         onComplete: () => {
           if (count <= -1) {
             clearInterval(interval);
+            PAGES.fade('app');
           } else {
             this.countOuter.innerText = count.toString();
           }
@@ -113,4 +115,4 @@ class Timer {
   }
 }
 
-export default new Timer();
+export default new TimerManager();

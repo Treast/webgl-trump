@@ -4,7 +4,7 @@
  * que toutes les pages de l'application, et envoie régulièrement des informations sur l'orientation du mobile au serveur.
  */
 
-import Timer from './Timer';
+import TimerManager from './TimerManager';
 import { FullScreen } from '../utils/FullScreen';
 import CamerasManager from './CamerasManager';
 import Socket from '../utils/Socket';
@@ -30,22 +30,22 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('inventory');
+    PAGES.show('count');
     this.joinRoom();
     this.initCamerasManager();
-    // this.initEnvelopesManager();
+    this.initEnvelopesManager();
     this.initPauseManager();
     this.initMenuManager();
     this.initAudioManager();
+    this.initTimerManager();
     this.initSlider();
-    this.initTimer();
     this.initPhone();
     this.start();
   }
 
   setWinState(hasWin: boolean, remainingTime: number = 0) {
     if (hasWin) {
-      const converted = Timer.convertToMinutes(Timer.getTime() - remainingTime);
+      const converted = TimerManager.convertToMinutes(TimerManager.getTime() - remainingTime);
       document.querySelector('.over .content .timer .timer_content h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
       document.querySelector('.over .content .timer .timer_content h2').innerHTML = 'Bravo';
     } else {
@@ -92,8 +92,8 @@ class App {
   /**
    * Initialisation du TimerManager
    */
-  initTimer() {
-    Timer.start();
+  initTimerManager() {
+    TimerManager.start();
   }
 
   /**

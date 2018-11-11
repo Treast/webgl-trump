@@ -3,7 +3,7 @@
  */
 
 import Socket from '../utils/Socket';
-import Timer from './Timer';
+import Timer from './TimerManager';
 import { PAGES } from '../utils/Pages';
 
 class PauseManager {

@@ -93,126 +93,134 @@
       }
     }
   }
+}
 
-  .envelope {
+.envelope {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 200;
+  background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
+  background-blend-mode: multiply;
+  padding: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: left 0.4s ease-in-out;
+
+  &.active {
+    left: 0;
+  }
+
+  .go-back {
     position: absolute;
     top: 0;
-    left: 100%;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
-    background-blend-mode: multiply;
-    padding: 35px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: left 0.4s ease-in-out;
+    left: 0;
+    padding: 30px;
+  }
 
-    &.active {
-      left: 0;
-    }
+  .header {
+    position: relative;
+    flex-grow: 2;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 40px;
+    padding-bottom: 10px;
 
-    .go-back {
+    &::before {
+      content: '';
+      display: block;
       position: absolute;
-      top: 0;
-      left: 0;
-      padding: 30px;
+      top: 24px;
+      left: -68px;
+      transform: translateX(-50%);
+      height: 1px;
+      width: 100%;
+      background-color: #ffffff;
     }
 
-    .header {
-      position: relative;
-      flex-grow: 2;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 28px;
+      right: -68px;
+      transform: translateX(50%);
+      height: 1px;
+      width: 100%;
+      background-color: #ffffff;
+    }
+
+    h1 {
+      @extend .text;
       text-align: center;
-      overflow: hidden;
-      margin-top: 40px;
-      padding-bottom: 10px;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 25px;
+      position: relative;
+      display: inline-block;
+      margin: 0 auto 20px;
+      width: 90px;
+      background: $background;
+      z-index: 3;
+      padding: 10px 30px;
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #ffffff;
 
       &::before {
         content: '';
-        display: block;
         position: absolute;
-        top: 24px;
-        left: -68px;
-        transform: translateX(-50%);
-        height: 1px;
-        width: 100%;
+        top: -5px;
+        left: -12px;
+        display: block;
+        height: 33px;
+        width: 1px;
         background-color: #ffffff;
+        transform: rotate(45deg);
       }
 
       &::after {
         content: '';
-        display: block;
         position: absolute;
-        top: 28px;
-        right: -68px;
-        transform: translateX(50%);
-        height: 1px;
-        width: 100%;
+        top: 23px;
+        right: -12px;
+        display: block;
+        height: 33px;
+        width: 1px;
         background-color: #ffffff;
-      }
-
-      h1 {
-        @extend .text;
-        text-align: center;
-        font-family: 'Bai Jamjuree', sans-serif;
-        font-size: 25px;
-        position: relative;
-        display: inline-block;
-        margin: 0 auto 20px;
-        width: 90px;
-        background: $background;
-        z-index: 3;
-        padding: 10px 30px;
-        border-top: 1px solid #ffffff;
-        border-bottom: 1px solid #ffffff;
-
-        &::before {
-          content: '';
-          position: absolute;
-          top: -5px;
-          left: -12px;
-          display: block;
-          height: 33px;
-          width: 1px;
-          background-color: #ffffff;
-          transform: rotate(45deg);
-        }
-
-        &::after {
-          content: '';
-          position: absolute;
-          top: 23px;
-          right: -12px;
-          display: block;
-          height: 33px;
-          width: 1px;
-          background-color: #ffffff;
-          transform: rotate(45deg);
-        }
+        transform: rotate(45deg);
       }
     }
+  }
 
-    h2 {
-      flex-grow: 1;
+  h2.title {
+    flex-grow: 1;
+    @extend .text;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 27px;
+    line-height: 32px;
+    letter-spacing: 1px;
+    margin: 30px 0 20px;
+  }
+
+  h2.source {
+    flex-grow: 1;
+    @extend .text;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .content {
+    flex-grow: 3;
+    overflow: scroll;
+    p {
       @extend .text;
-      font-family: 'Bai Jamjuree', sans-serif;
-      font-size: 27px;
-      line-height: 32px;
-      letter-spacing: 1px;
-      margin: 30px 0 40px;
-    }
-
-    .content {
-      flex-grow: 3;
-      overflow: scroll;
-      p {
-        @extend .text;
-        font-family: 'Chakra Petch', sans-serif;
-        font-size: 18px;
-        text-align: justify;
-      }
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 18px;
+      text-align: justify;
     }
   }
 }

@@ -4,6 +4,7 @@ export const CONFIG = {
     {
       id: '01',
       title: 'Lorem ipsum 1',
+      source: 'New York Times, 11/11/2018',
       content: 'Hac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis ' +
         'insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, ' +
         'multitudine missilium sterneretur et lapidum.Hac ita persuasione reducti intra moenia bellatores obseratis ' +
@@ -13,6 +14,7 @@ export const CONFIG = {
     {
       id: '02',
       title: 'Lorem ipsum 2',
+      source: 'New York Times, 11/11/2018',
       content: 'Hac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis ' +
         'insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, ' +
         'multitudine missilium sterneretur et lapidum.Hac ita persuasione reducti intra moenia bellatores obseratis ' +
@@ -22,6 +24,7 @@ export const CONFIG = {
     {
       id: '03',
       title: 'Lorem ipsum 3',
+      source: 'New York Times, 11/11/2018',
       content: 'Hac ita persuasione reducti intra moenia bellatores obseratis undique portarum aditibus, propugnaculis ' +
         'insistebant et pinnis, congesta undique saxa telaque habentes in promptu, ut si quis se proripuisset interius, ' +
         'multitudine missilium sterneretur et lapidum.Hac ita persuasione reducti intra moenia bellatores obseratis ' +

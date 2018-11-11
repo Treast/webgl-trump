@@ -45,7 +45,7 @@ class PhoneManager {
   }
 
   onClickGoBack() {
-    PAGES.fade('over');
+    document.querySelector('.phone').classList.remove('show');
   }
 
   addNumber(number: string) {
