@@ -1,0 +1,1 @@
+declare module 'gyronorm/dist/gyronorm.complete.min'

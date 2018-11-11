@@ -15,7 +15,7 @@
                 <h2 class="play-again">Rejouer</h2>
             </div>
         </div>
-        <section class="count" data-page="count" class="page-background">
+        <section class="count page-fade" data-page="count">
             <div class="content">
                 <h1>Début de l'infiltration dans</h1>
                 <div class="count">
@@ -28,7 +28,7 @@
                 <h2>Pour faciliter l’expérience, veuillez utiliser les deux mains.</h2>
             </div>
         </section>
-        <section data-page="loader" class="page-background">
+        <section data-page="loader" class=>
             <div class="inner">
                 <div id="loader">
                     <img src="./images/LoaderDark.svg" class="loader-black" alt="">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </section>
-        <section data-page="introduction" class="introduction page-background">
+        <section data-page="introduction" class="introduction">
             <div class="inner">
                 <div class="inner-top"></div>
                 <div class="inner-bottom"></div>
@@ -88,11 +88,11 @@
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
             <span class="camera_center"></span>
         </section>
-        <section data-page="game-result" class="page-background">
+        <section data-page="game-result">
             <div data-state-game="win"></div>
             <div data-state-game="lose"></div>
         </section>
-        <section class="phone page-background" data-page="phone">
+        <section class="phone page-fade" data-page="phone">
             <div class="inner">
                 <p>
                     <span>On dirait que les chiffres marqués sur les enveloppes correspondent à un</span>
@@ -126,8 +126,8 @@
                 </ul>
             </div>
         </section>
-        <video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">
+        <!--<video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">
             <source src="videos/trump_poutine.mp4" type='video/mp4'>
-        </video>
+        </video>-->
     </body>
 </html>

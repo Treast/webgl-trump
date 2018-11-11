@@ -15,6 +15,10 @@ import PhoneManager from './PhoneManager';
 import AudioManager from './AudioManager';
 import MenuManager from './MenuManager';
 import { PAGES } from '../utils/Pages';
+import NavigationBarManager from './NavigationBarManager';
+import GameManager from './GameManager';
+
+const Gyronorm = require('gyronorm/dist/gyronorm.complete.min');
 
 class App {
   private readonly roomId: string;
@@ -38,6 +42,8 @@ class App {
     this.initMenuManager();
     this.initAudioManager();
     this.initTimerManager();
+    this.initNavigationBarManager();
+    this.initGameManager();
     this.initSlider();
     this.initPhone();
     this.start();
@@ -57,57 +63,71 @@ class App {
   /**
    * Initialisation du PauseManager
    */
-  initPauseManager() {
+  private initPauseManager() {
     PauseManager.init();
   }
 
   /**
    * Initialisation du AudioManager
    */
-  initAudioManager() {
+  private initAudioManager() {
     AudioManager.init();
   }
 
   /**
    * Initialisation du MenuManager
    */
-  initMenuManager() {
+  private initMenuManager() {
     MenuManager.init();
   }
 
-    /**
-     * Initialisation du Phone
-     */
-  initPhone() {
+  /**
+   * Initialisation du Phone
+   */
+  private initPhone() {
     PhoneManager.init();
   }
 
   /**
    * Initialisation du ZoomManager
    */
-  initSlider() {
+  private initSlider() {
     ZoomManager.init();
   }
 
   /**
    * Initialisation du TimerManager
    */
-  initTimerManager() {
+  private initTimerManager() {
     TimerManager.start();
   }
 
   /**
    * Initialisation de l'EnvelopesManager
    */
-  initEnvelopesManager() {
+  private initEnvelopesManager() {
     EnvelopesManager.init();
   }
 
   /**
    * Initialisation du CamerasManager
    */
-  initCamerasManager() {
+  private initCamerasManager() {
     CamerasManager.init();
+  }
+
+  /**
+   * Initialisation du NavigationBarManager
+   */
+  private initGameManager() {
+    GameManager.init();
+  }
+
+  /**
+   * Initialisation du NavigationBarManager
+   */
+  private initNavigationBarManager() {
+    NavigationBarManager.init();
   }
 
   /**
@@ -120,19 +140,23 @@ class App {
   /**
    * Ecoute l'orientation du smartphone.
    */
-  start() {
-    window.addEventListener('deviceorientation', this.onDeviceOrientation.bind(this));
+  async start() {
+    const gyroscope = new Gyronorm();
+    await gyroscope.init({
+      frequency: 10,
+    });
+    gyroscope.start(this.onDeviceOrientation.bind(this));
   }
 
   /**
    * Envoie les informations de rotation au serveur.
-   * @param e
+   * @param data
    */
-  onDeviceOrientation(e: DeviceOrientationEvent) {
+  onDeviceOrientation(data: any) {
     Socket.emit('camera:orientation', {
-      alpha: e.alpha,
-      beta: e.beta,
-      gamma: e.gamma,
+      alpha: data.do.alpha,
+      beta: data.do.beta,
+      gamma: data.do.gamma,
     });
   }
 }

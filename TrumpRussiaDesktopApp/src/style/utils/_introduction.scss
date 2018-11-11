@@ -85,7 +85,7 @@ section[data-page="introduction"] {
       transform: translate(-50%, -50%);
 
       .inner-page {
-        opacity: 1;
+        opacity: 0;
         color: white;
         text-shadow: 0 0 5px #ffffff;
         font-family: 'Chakra Petch', sans-serif;
@@ -113,9 +113,30 @@ section[data-page="introduction"] {
       align-items: center;
       .arrow {
         display: block;
+        position: relative;
         height: 80px;
         width: 80px;
         transition: all 0.4s ease-in-out;
+
+        &:before{
+          content: "";
+          display: block;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 50%;
+          height: 50%;
+          border: 2px solid transparent;
+          transition: box-shadow .2s ease-in-out;
+          transform: translate(-50%,-50%) rotate(45deg);
+        }
+
+        &:hover{
+          cursor: pointer;
+          &:before{
+            box-shadow: 0 0 6px 0 rgba(255, 255, 255, 0.6), inset 0 0 6px rgba(255, 255, 255, 0.6);
+          }
+        }
 
         &.disabled {
         }

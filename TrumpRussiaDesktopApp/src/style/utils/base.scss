@@ -20,18 +20,24 @@ canvas{
   left: 0;
   right: 0;
   bottom: 0;
-  background: $background, radial-gradient(ellipse at center, #ffffff 40%, #000000 100%);
+  background: $background, radial-gradient(
+      ellipse at center,
+      hsla(0, 0%, 100%, 0.98) 38%,
+      hsla(0, 0%, 86%, 0.75) 58%,
+      #313131f0 120%
+  );
   background-blend-mode: multiply;
 
   &::before {
     content: '';
     position: absolute;
+    pointer-events: none;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./images/Pattern.svg') repeat;
-    background-size: 40px 40px;
+    background: url('../static/images/Pattern.svg') repeat;
+    background-size: 50px 50px;
     opacity: 0.5;
   }
 }

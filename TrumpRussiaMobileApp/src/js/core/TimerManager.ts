@@ -47,6 +47,7 @@ class TimerManager {
         alpha: 0,
         onStart: () => {
           count = count - 1;
+          Socket.emit('counter:change', count);
           this.countInner.innerText = count.toString();
         },
         onComplete: () => {

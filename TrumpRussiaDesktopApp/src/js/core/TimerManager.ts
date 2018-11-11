@@ -23,10 +23,9 @@ class TimerManager {
     this.countInner = document.querySelector('[data-page="count"] .count .inner');
     this.timer = document.getElementById('timer');
     this.initSocketListener();
-    this.runCount();
   }
 
-  runCount() {
+  runCount(onCountDone: () => void) {
     let count = 6;
     const interval = setInterval(() => {
       TweenMax.fromTo(this.countOuter, 1, {
@@ -41,6 +40,7 @@ class TimerManager {
         },
         onComplete: () => {
           if (count <= 0) {
+            onCountDone();
             clearInterval(interval);
           }
         },

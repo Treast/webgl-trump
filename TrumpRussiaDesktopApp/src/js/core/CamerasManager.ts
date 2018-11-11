@@ -63,8 +63,8 @@ class CamerasManager {
    * @param data
    */
   changeOrientation (data: Orientation) {
-    this.cameraParent.rotation.z = -((data.beta - 5) * Math.PI / 180) * Math.sign(this.cameraParent.position.z);
-    this.cameraParent.rotation.y = (data.alpha - 90) * Math.PI / 180;
+    this.cameraParent.rotation.z = -(data.beta * Math.PI / 180) * Math.sign(this.cameraParent.position.z);
+    this.cameraParent.rotation.y = data.alpha * Math.PI / 180;
   }
 
   /**

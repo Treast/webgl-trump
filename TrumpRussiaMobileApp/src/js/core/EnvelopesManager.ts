@@ -16,23 +16,22 @@ class EnvelopesManager {
   private static INACTIVE_OPACITY = '0.4';
   private static NUMBER_ENVELOPES: number = 3;
 
-  private readonly draggableEnvelope: HTMLImageElement;
+  private readonly btnEnvelope: HTMLImageElement;
   private readonly inventory: HTMLElement;
-  private envelopes: NodeListOf<HTMLElement>;
   private readonly envelopesActives: NodeListOf<HTMLElement>;
   private readonly goBack: HTMLElement;
-  private draggable: Draggable;
   private currentHover: any;
+  private envelopeCount: number = 0;
 
   constructor() {
-    this.draggableEnvelope = (document.getElementById('envelope-draggable') as HTMLImageElement);
+    this.btnEnvelope = (document.getElementById('envelope-draggable') as HTMLImageElement);
     this.inventory = document.getElementById('inventory');
     // this.envelopes = this.inventory.querySelectorAll('.inventory_item');
     this.envelopesActives = document.querySelectorAll('.inventory .inventory_item-active span');
     this.goBack = document.querySelector('.envelope .go-back');
     this.currentHover = null;
 
-    this.draggableEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
+    this.btnEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
   onClickActive(e: Event) {
@@ -51,9 +50,11 @@ class EnvelopesManager {
   init() {
     Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
     this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
+    this.btnEnvelope.addEventListener('click', this.onClickedEnvelope.bind(this));
     for (const envelope of this.envelopesActives) {
       envelope.addEventListener('click', this.onClickActive.bind(this));
     }
+    this.updateCountEnvelope();
   }
 
   onClickGoBack() {
@@ -64,22 +65,28 @@ class EnvelopesManager {
    * On met à jour l'affichage.
    * @param envelope
    */
-  onHoverEnvelope(envelope: HTMLElement) {
+  onHoverEnvelope(envelope?: HTMLElement) {
     this.currentHover = envelope;
-    this.draggableEnvelope.style.opacity = this.draggable.enable ? '1' : EnvelopesManager.INACTIVE_OPACITY;
+    this.btnEnvelope.style.opacity = this.currentHover === null ? EnvelopesManager.INACTIVE_OPACITY : '1';
   }
 
   /**
    * On "illumine" la case Enveloppe dans l'inventaire.
    */
-  onDraggedEnvelope() {
-    const actives = this.inventory.querySelectorAll('.inventory_item-active');
-    this.envelopes[actives.length].classList.add('inventory_item-active');
-    Socket.emit('envelope:dragged', this.currentHover);
-    if ((actives.length + 1) >= EnvelopesManager.NUMBER_ENVELOPES) {
-      App.setWinState(true, Timer.remainingTime);
-      PAGES.fade('over');
+  onClickedEnvelope() {
+    Socket.emit('envelope:pickup', this.currentHover);
+    this.envelopeCount += 1;
+    this.updateCountEnvelope();
+    if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {
+      // todo: implements win state
+      // App.setWinState(true, Timer.remainingTime);
     }
+  }
+
+  updateCountEnvelope () {
+    (document.querySelectorAll('[data-envelope-count]')).forEach((el: HTMLElement) => {
+      el.innerText = this.envelopeCount.toString();
+    });
   }
 }
 

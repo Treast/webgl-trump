@@ -77,6 +77,10 @@ io.on('connection', socket => {
     io.to(socket.roomId).emit('game:lose');
   });
 
+  socket.on('counter:change', count => {
+    io.to(socket.roomId).emit('counter:change', count);
+  });
+
   /**
    * 5.Pause
    */
@@ -97,8 +101,8 @@ io.on('connection', socket => {
     io.to(socket.roomId).emit('envelope:hover', envelope);
   });
 
-  socket.on('envelope:dragged', envelope => {
-    io.to(socket.roomId).emit('envelope:dragged', envelope);
+  socket.on('envelope:pickup', envelope => {
+    io.to(socket.roomId).emit('envelope:pickup', envelope);
   });
 
   /**

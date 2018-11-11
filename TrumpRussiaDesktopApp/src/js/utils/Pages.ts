@@ -19,7 +19,6 @@ export const PAGES: PagesManager = {
     this.items = document.querySelectorAll('[data-page]');
     this.items.forEach((item: any) => item.style.display = 'none');
     document.body.style.display = 'block';
-
     Socket.on('page:show', this.show.bind(this));
   },
 

@@ -83,7 +83,7 @@ class Game {
     EnvelopesManager.init();
     CamerasManager.init(this.scene, this.camera);
     CamerasManager.setCamera(0);
-    VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
+    // VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
   }
 
   /**

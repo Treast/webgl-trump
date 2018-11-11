@@ -12,6 +12,7 @@ import { PAGES } from '../utils/Pages';
 import Game from './Game';
 import { DAT_GUI } from '../utils/DatGui';
 import Socket from './Socket';
+import TimerManager from './TimerManager';
 
 export class App {
 
@@ -19,7 +20,7 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('count');
+    PAGES.show('introduction');
     this.initRoom();
     this.initGame();
     Socket.on('game:start', this.start.bind(this));
@@ -55,8 +56,11 @@ export class App {
    * On affiche le canvas et on rend la scène THREE.JS
    */
   start () {
-    PAGES.show('experience');
-    Game.animate();
+    PAGES.show('count');
+    TimerManager.runCount(() => {
+      PAGES.show('experience');
+      Game.animate();
+    });
   }
 
 }

@@ -35,7 +35,7 @@ class EnvelopesManager {
    */
   init () {
     this.initEnvelopes();
-    Socket.on('envelope:dragged', this.onDraggedEnvelope.bind(this));
+    Socket.on('envelope:pickup', this.onPickupEnvelope.bind(this));
   }
 
   /**
@@ -73,7 +73,7 @@ class EnvelopesManager {
    * Si l'enveloppe a été sélectionnée, on l'enlève de la scène.
    * @param name
    */
-  private onDraggedEnvelope ({ name }: any) {
+  private onPickupEnvelope ({ name }: any) {
     const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
     this.removeEnvelope(envelope);
   }

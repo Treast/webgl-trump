@@ -10,29 +10,19 @@ section[data-page]{
   bottom: 0;
 }
 
-.page-background {
-  background: $background, radial-gradient(ellipse at center,rgba(67,67,67,.41961) 38%, rgba(67,67,67,.6) 58%,#000 120%);
-  background-blend-mode: multiply;
-
-  &::before {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../static/images/Pattern.svg') repeat;
-    background-size: 50px 50px;
-    opacity: 0.5;
+.page-fade{
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  &.page-active{
+    opacity: 1;
   }
+}
 
-  .page_title{
-    font-size: 30px;
-    font-family: Chakra Petch,sans-serif;
-    text-transform: uppercase;
-    text-shadow: 0 0 2px #fff;
-    letter-spacing: 6px;
-    font-weight: 500;
-  }
+.page_title{
+  font-size: 30px;
+  font-family: Chakra Petch,sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0 0 2px #fff;
+  letter-spacing: 6px;
+  font-weight: 500;
 }
