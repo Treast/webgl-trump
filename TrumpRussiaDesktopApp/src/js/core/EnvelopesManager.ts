@@ -18,6 +18,7 @@ import { CONFIG } from '../config';
 import { Envelope } from '../typing';
 import Socket from './Socket';
 import effectManager from './EffectManager';
+import CamerasManager from "./CamerasManager";
 
 class EnvelopesManager {
 
@@ -102,8 +103,10 @@ class EnvelopesManager {
     const selectedEnvelope = this.getIntersectedEnvelope(camera);
     if (selectedEnvelope !== null) {
       effectManager.getOutlinePass().selectedObjects = [selectedEnvelope.object];
+      CamerasManager.setCurstorActive(true);
     } else {
       effectManager.getOutlinePass().selectedObjects = [];
+      CamerasManager.setCurstorActive(false);
     }
     if (this.currEnvelopeSelected !== selectedEnvelope) {
       Socket.emit('envelope:hover', !selectedEnvelope ? null : {
