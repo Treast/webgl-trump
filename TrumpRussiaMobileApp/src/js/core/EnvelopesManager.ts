@@ -37,6 +37,11 @@ class EnvelopesManager {
   onClickActive(e: Event) {
     const element = e.target as HTMLElement;
     const id = parseInt(element.getAttribute('data-envelope'), 10);
+    if (element.parentElement.classList.contains('inventory_item-active')) {
+      const badge = document.querySelector('.menu_items .badge') as HTMLElement;
+      badge.innerText = (parseInt(badge.innerText, 10) - 1).toString();
+      element.parentElement.classList.remove('inventory_item-active');
+    }
     document.querySelector('.envelope h1').innerHTML = CONFIG.ENVELOPES[id].id;
     document.querySelector('.envelope h2.title').innerHTML = CONFIG.ENVELOPES[id].title;
     document.querySelector('.envelope h2.source').innerHTML = CONFIG.ENVELOPES[id].source;

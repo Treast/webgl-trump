@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Device Orientation</title>
-<link href="app.css" rel="stylesheet"><link href="app.381f296e7714d8b08401.css" rel="stylesheet"></head>
+<link href="app.css" rel="stylesheet"><link href="app.2372c7b353f4e22b75f8.css" rel="stylesheet"></head>
 <body>
     <div class="app" data-page="app">
         <div class="controller">
-            <div id="pause">
+            <div class="pause-button">
                 <span></span>
             </div>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
-                <p class="order">Essayez de récolter des informations secrètes en switchant entre les caméras</p>
+                <div data-game-state="Running">
+                    <p class="order">Explore la pièce pour trouver les enveloppes.</p>
+                </div>
+                <div data-game-state="Losing|Wining" class="app-result">
+                    <h1></h1>
+                    <h2></h2>
+                </div>
             </div>
             <div class="main-container">
                 <ul class="cameras_list">
@@ -23,7 +29,7 @@
                         <button class="cameras_item_btn" data-camera="0">
                             <span class="desactivated">1</span>
                             <span class="activated">
-                                <img src="./assets/camera@2x.png" alt="Camera">
+                                <img src="./assets/images/camera@2x.png" alt="Camera">
                             </span>
                         </button>
                     </li>
@@ -31,7 +37,7 @@
                         <button class="cameras_item_btn" data-camera="1">
                             <span class="desactivated">2</span>
                             <span class="activated">
-                                <img src="./assets/camera@2x.png" alt="Camera">
+                                <img src="./assets/images/camera@2x.png" alt="Camera">
                             </span>
                         </button>
                     </li>
@@ -39,7 +45,7 @@
                         <button class="cameras_item_btn" data-camera="2">
                             <span class="desactivated">3</span>
                             <span class="activated">
-                                <img src="./assets/camera@2x.png" alt="Camera">
+                                <img src="./assets/images/camera@2x.png" alt="Camera">
                             </span>
                         </button>
                     </li>
@@ -48,7 +54,8 @@
                     </li>
                 </ul>
                 <div id="envelop">
-                    <img class="envelope-draggable" id="envelope-draggable" src="./assets/envelop@2x.png" alt="">
+                    <img class="envelope-draggable" id="envelope-draggable" src="./assets/images/envelop@2x.png" alt="">
+                    <div class="envelope-count"><span data-envelope-count>0</span>/5</div>
                 </div>
                 <div class="zoom-slider">
                     <div class="range noUiSlider"></div>
@@ -57,51 +64,183 @@
                     </div>
                 </div>
             </div>
-            <div class="inventory" id="inventory">
-                <div>
+        </div>
+    </div>
+    <div id="pause">
+        <div class="content">
+            <h1>Pause</h1>
+            <h2 class="timer-run">
+                <span>Reprendre</span>
+            </h2>
+            <h2 class="play-again">Rejouer</h2>
+        </div>
+    </div>
+    <div id="menu">
+        <div class="menu_title">
+            <div>
+                <span>Menu</span>
+            </div>
+        </div>
+        <ul class="menu_items">
+            <div class="badge" data-envelope-count>5</div>
+            <li class="menu_item menu_item-on menu_item-active">
+                <span class="menu_app" data-click-page="app">
+                    <img src="./assets/images/App@2x.png" alt="">
+                </span>
+            </li>
+            <li class="menu_item menu_item-active">
+                <span class="menu_envelope" data-click-page="inventory">
+                    <img src="./assets/images/envelop@2x-active.png" alt="">
+                </span>
+            </li>
+            <li class="menu_item menu_item-active">
+                <span class="menu_phone" data-click-class=".phone">
+                    <img src="./assets/images/MenuPhone@2x.png" alt="">
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="count" data-page="count">
+        <div class="content">
+            <div class="count">
+                <h1 class="outer"></h1>
+                <h1 class="inner">5</h1>
+            </div>
+        </div>
+    </div>
+    <div class="inventory" data-page="inventory">
+        <div class="content">
+            <div class="pause-button">
+                <span></span>
+            </div>
+            <div class="inventory">
+                <div class="inventory_title">
                     <span>Inventaire</span>
                 </div>
+                <div class="text description">
+                    Découvre le contenu des enveloppes
+                </div>
                 <ul class="inventory_list">
-                    <li class="inventory_item">
-                        <span id="inventory_1">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                    <li class="inventory_item inventory_item-active">
+                        <div class="inventory_item_number">01</div>
+                        <span class="inventory_1" data-envelope="0">
+                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item">
-                        <span id="inventory_2">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                    <li class="inventory_item inventory_item-active">
+                        <div class="inventory_item_number">02</div>
+                        <span class="inventory_2" data-envelope="1">
+                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item">
-                        <span id="inventory_3">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                    <li class="inventory_item inventory_item-active">
+                        <div class="inventory_item_number">03</div>
+                        <span class="inventory_3" data-envelope="2">
+                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item">
-                        <span id="inventory_4">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                    <li class="inventory_item inventory_item-active">
+                        <div class="inventory_item_number">04</div>
+                        <span class="inventory_4" data-envelope="0">
+                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item">
-                        <span id="inventory_5">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
-                        </span>
-                    </li>
-                    <li class="inventory_item">
-                        <span id="inventory_6">
-                            <img src="./assets/inventory_envelop@2x.png" alt="Envelop">
+                    <li class="inventory_item inventory_item-active">
+                        <div class="inventory_item_number">05</div>
+                        <span class="inventory_5" data-envelope="1">
+                            <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="pause" data-page="pause">
+    <div class="envelope">
+        <div class="go-back">
+            <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
+        </div>
+        <div class="header">
+            <h1></h1>
+        </div>
+        <h2 class="title"></h2>
+        <h2 class="source"></h2>
         <div class="content">
-            <h1>Pause</h1>
-
-            <h2 class="timer-run">Reprendre</h2>
-            <h2>Quitter</h2>
+            <p></p>
+        </div>
+    </div>
+    <div class="phone">
+        <div class="pause-button">
+            <span></span>
+        </div>
+        <div class="go-back">
+            <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
+        </div>
+        <div class="content">
+            <h1>Entrer le numéro de téléphone</h1>
+            <div class="phone-number"></div>
+            <div class="separator"><span></span></div>
+            <div class="numbers">
+                <div class="number">
+                    <span data-number="1" data-sound="DTMF_1.wav">1</span>
+                </div>
+                <div class="number">
+                    <span data-number="2" data-sound="DTMF_2.wav">2</span>
+                </div>
+                <div class="number">
+                    <span data-number="3" data-sound="DTMF_3.wav">3</span>
+                </div>
+                <div class="number">
+                    <span data-number="4" data-sound="DTMF_4.wav">4</span>
+                </div>
+                <div class="number">
+                    <span data-number="5" data-sound="DTMF_5.wav">5</span>
+                </div>
+                <div class="number">
+                    <span data-number="6" data-sound="DTMF_6.wav">6</span>
+                </div>
+                <div class="number">
+                    <span data-number="7" data-sound="DTMF_7.wav">7</span>
+                </div>
+                <div class="number">
+                    <span data-number="8" data-sound="DTMF_8.wav">8</span>
+                </div>
+                <div class="number">
+                    <span data-number="9" data-sound="DTMF_9.wav">9</span>
+                </div>
+                <div class="number">
+                    <span data-number="*" data-sound="DTMF_Et.wav">*</span>
+                </div>
+                <div class="number">
+                    <span data-number="0" data-sound="DTMF_0.wav">0</span>
+                </div>
+                <div class="number">
+                    <span data-number="#" data-sound="DTMF_Di.wav">#</span>
+                </div>
+                <div class="number">
+                </div>
+                <div class="number call">
+                    <span class="active"><img src="./assets/images/Phone@2x.png" alt="Call"></span>
+                </div>
+                <div class="number delete">
+                    <img src="./assets/images/Delete@2x.png" alt="Call">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="call" data-page="call">
+        <div class="content">
+            <div class="called">
+                <h1>Donald Trump</h1>
+                <h2>06 12 34 56 78</h2>
+            </div>
+            <div class="profile">
+                <img src="./assets/images/Trumpicto@2x.png" alt="">
+            </div>
+            <div class="end-call">
+                <span>
+                    <img src="./assets/images/EndPhone@2x.png" alt="Call">
+                </span>
+            </div>
         </div>
     </div>
     <div class="background"></div>

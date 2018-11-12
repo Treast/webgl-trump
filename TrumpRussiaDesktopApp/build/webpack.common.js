@@ -84,7 +84,7 @@ module.exports = {
       },
       {
         from: path.join(__dirname, './../src', 'static'),
-        to: 'static/',
+        to: 'assets/',
       },
     ]),
   ],

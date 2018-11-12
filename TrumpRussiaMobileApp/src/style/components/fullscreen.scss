@@ -1,0 +1,40 @@
+#fullscreen {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+
+  .content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    h1, h2 {
+      @extend .text;
+    }
+
+    h1 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    h2 {
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 25px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 30px;
+    }
+
+    .choices {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+  }
+}
