@@ -8,9 +8,10 @@ import { PAGES } from '../utils/Pages';
 import EnvelopesManager from './EnvelopesManager';
 import App from './App';
 import { TweenMax } from 'gsap';
+import GameManager, { GameState } from './GameManager';
 
 class TimerManager {
-  public static TIME: number = 180;
+  public static TIME: number = 10;
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
@@ -22,7 +23,7 @@ class TimerManager {
     this.interval = null;
     this.countOuter = document.querySelector('[data-page="count"] .count .outer');
     this.countInner = document.querySelector('[data-page="count"] .count .inner');
-    this.runCount();
+    // this.runCount();
   }
 
   /**
@@ -36,7 +37,7 @@ class TimerManager {
     return TimerManager.TIME;
   }
 
-  runCount() {
+  public runCount() {
     let count = 6;
     const interval = setInterval(() => {
       TweenMax.fromTo(this.countOuter, 1, {
@@ -94,9 +95,9 @@ class TimerManager {
         Socket.emit('timer:change', converted);
         if (this.remainingTime === 0) {
           App.setWinState(false);
+          GameManager.updateState(GameState.Losing);
           Socket.emit('timer:end');
           clearInterval(this.interval);
-          PAGES.fade('over');
         }
       }
     },                          1000);

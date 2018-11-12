@@ -3,9 +3,42 @@
     <head>
         <meta charset="utf-8">
         <title>Real Donald Trump</title>
-    <link href="app.css" rel="stylesheet"><link href="app.3d86802dd9c3ab2baa70.css" rel="stylesheet"></head>
-    <body>
-        <section data-page="introduction">
+    <link href="app.css" rel="stylesheet"><link href="app.3718703a4678c9b037b9.css" rel="stylesheet"></head>
+    <body style="display: none">
+        <div class="background"></div>
+        <div id="pause">
+            <div class="content">
+                <h1>Pause</h1>
+                <h2 class="timer-run">
+                    <span>Reprendre</span>
+                </h2>
+                <h2 class="play-again">Rejouer</h2>
+            </div>
+        </div>
+        <section class="count page-fade" data-page="count">
+            <div class="content">
+                <h1>Début de l'infiltration dans</h1>
+                <div class="count">
+                    <h1 class="outer"></h1>
+                    <h1 class="inner">5</h1>
+                </div>
+            </div>
+            <div class="instructions">
+                <img src="./images/Zoidberg@2x.png" alt="Instructions">
+                <h2>Pour faciliter l’expérience, veuillez utiliser les deux mains.</h2>
+            </div>
+        </section>
+        <section data-page="loader" class=>
+            <div class="inner">
+                <div id="loader">
+                    <img src="./images/LoaderDark.svg" class="loader-black" alt="">
+                    <div class="loader-white">
+                        <img src="./images/LoaderWhite.svg" class="loader-white" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section data-page="introduction" class="introduction">
             <div class="inner">
                 <div class="inner-top"></div>
                 <div class="inner-bottom"></div>
@@ -16,8 +49,12 @@
                     <div class="inner-page" data-inner-page="2">
                         <p>_ Ce texte aura pour but de mettre l’utilisateur dans la peau d’un agent secret étant sur le point d’infiltrer le réseau d’un bâtiment pour avoir accès à des caméras de surveillance d’une pièce secrète où se trouvent Trump et Poutine. </p>
                     </div>
-                    <div class="inner-page" data-inner-page="3">
-                        <p>_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                    <div class="inner-page introduction_map" data-inner-page="3">
+                        <h2 class="page_title">Pièce secrète</h2>
+                        <div class="introduction_map_content">
+                            <img class="introduction_map_image" src="images/Map.png">
+                            <p class="introduction_map_text">_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                        </div>
                     </div>
                     <div class="inner-page" data-inner-page="4">
                         <div id="qrcode"></div>
@@ -26,14 +63,19 @@
                     </div>
                 </div>
                 <div class="inner-pagination">
-                    <div class="arrow arrow-left"></div>
+                    <div class="arrow arrow-left">
+                        <img src="images/arrow.svg">
+                    </div>
                     <div class="pages">
                         <div class="page selected" data-inner-page="1"></div>
                         <div class="page selected" data-inner-page="2"></div>
                         <div class="page" data-inner-page="3"></div>
                         <div class="page" data-inner-page="4"></div>
                     </div>
-                    <div class="arrow arrow-right"></div>
+                    <div class="arrow arrow-right">
+                        <img src="images/arrow.svg">
+                    </div>
+                    <div class="pagination-pass text">Passer</div>
                 </div>
             </div>
         </section>
@@ -51,5 +93,42 @@
             <div data-state-game="win"></div>
             <div data-state-game="lose"></div>
         </section>
+        <section class="phone page-fade" data-page="phone">
+            <div class="inner">
+                <p>
+                    <span>On dirait que les chiffres marqués sur les enveloppes correspondent à un</span>
+                    <span>numéro de téléphone…</span>
+                </p>
+                <ul class="envelopes">
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">01</span>
+                        <img class="envelopes_item_image" src="images/envelope_1.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">02</span>
+                        <img class="envelopes_item_image" src="images/envelope_2.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">03</span>
+                        <img class="envelopes_item_image" src="images/envelope_3.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">04</span>
+                        <img class="envelopes_item_image" src="images/envelope_4.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">05</span>
+                        <img class="envelopes_item_image" src="images/envelope_5.png">
+                    </li>
+                    <li class="envelopes_item">
+                        <span class="envelopes_item_number text">06</span>
+                        <img class="envelopes_item_image" src="images/envelope_6.png">
+                    </li>
+                </ul>
+            </div>
+        </section>
+        <!--<video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">
+            <source src="videos/trump_poutine.mp4" type='video/mp4'>
+        </video>-->
     <script type="text/javascript" src="app.js"></script></body>
 </html>

@@ -53,7 +53,7 @@ class MenuManager {
       }
       default: {
         this.enable(this.btnController);
-        this.disable(this.btnInventory);
+        this.enable(this.btnInventory);
         this.disable(this.btnPhone);
         break;
       }
@@ -61,11 +61,11 @@ class MenuManager {
   }
 
   enable(btn: HTMLElement) {
-    btn.style.opacity = MenuManager.BTN_ENABLE_OPACITY;
+    btn.parentElement.classList.add('menu_item-active');
   }
 
   disable(btn: HTMLElement) {
-    btn.style.opacity = MenuManager.BTN_DISABLE_OPACITY;
+    btn.parentElement.classList.remove('menu_item-active');
   }
 }
 
