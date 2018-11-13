@@ -26,14 +26,12 @@ io.on('connection', socket => {
     const id = rooms.create();
     socket.join(id);
     socket.roomId = id;
-    console.log('create', id);
     callback(id);
   });
 
   socket.on('room:join', id => {
     socket.join(id);
     socket.roomId = id;
-    console.log('join', id);
     io.to(id).emit('game:start');
   });
 

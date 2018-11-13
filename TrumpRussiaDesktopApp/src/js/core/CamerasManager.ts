@@ -15,6 +15,7 @@ class CamerasManager {
   private scene: Scene;
   private numberElement: any;
   private enableMovement: boolean = true;
+  private cursor: HTMLElement;
 
   constructor () {
     this.numberElement = document.getElementById('camera_number');
@@ -31,6 +32,7 @@ class CamerasManager {
     this.cameraParent = new Group();
     this.cameraParent.add(this.camera);
     this.scene.add(this.cameraParent);
+    this.cursor = document.getElementById('camera-cursor');
     this.initSocketListeners();
   }
 
@@ -85,6 +87,18 @@ class CamerasManager {
    */
   setEnableMovement(value: boolean) {
     this.enableMovement = value;
+  }
+
+  /**
+   * Défini l'activation du curseur (au survol d'une enveloppe)
+   * @param {boolean} active
+   */
+  setCurstorActive(active: boolean) {
+    if (active) {
+      this.cursor.classList.add('camera_center-active');
+    } else {
+      this.cursor.classList.remove('camera_center-active');
+    }
   }
 }
 
