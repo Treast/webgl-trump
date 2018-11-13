@@ -10,6 +10,10 @@ html, body{
   height: 100%;
 }
 
+body{
+  background-color: #1d2f42;
+}
+
 canvas{
   display: block;
 }
@@ -20,13 +24,10 @@ canvas{
   left: 0;
   right: 0;
   bottom: 0;
-  background: $background, radial-gradient(
-      ellipse at center,
-      hsla(0, 0%, 100%, 0.98) 38%,
-      hsla(0, 0%, 86%, 0.75) 58%,
-      #3131f0 120%
-  );
+  filter: brightness(155%) blur(.4px);
+  background: $background, radial-gradient(ellipse at center, rgba(174, 211, 247, 0.98) 38%, rgba(133,180,255,.75) 54%, #364565 110%);
   background-blend-mode: multiply;
+  opacity: 0.5;
 
   &::before {
     content: '';
