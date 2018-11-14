@@ -15,6 +15,7 @@ section[data-page="introduction"] {
     bottom: 100px;
     border-left: 1px solid white;
     border-right: 1px solid white;
+    @include shadow-border-left(white);
 
     .inner-top {
       position: absolute;

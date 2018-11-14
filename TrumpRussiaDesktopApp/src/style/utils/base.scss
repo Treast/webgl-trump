@@ -24,8 +24,8 @@ canvas{
   left: 0;
   right: 0;
   bottom: 0;
-  filter: brightness(155%) blur(.4px);
-  background: $background, radial-gradient(ellipse at center, rgba(174, 211, 247, 0.98) 38%, rgba(133,180,255,.75) 54%, #364565 110%);
+  filter: brightness(105%) blur(.4px);
+  background: $background, radial-gradient(ellipse at center, rgba(174, 211, 247, 0.98) 38%, rgba(133,180,255,.75) 54%, #000 110%);
   background-blend-mode: multiply;
   opacity: 0.5;
 
@@ -37,7 +37,7 @@ canvas{
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../static/images/Pattern.svg') repeat;
+    background: url('./images/Pattern.svg') repeat;
     background-size: 50px 50px;
     opacity: 0.5;
   }

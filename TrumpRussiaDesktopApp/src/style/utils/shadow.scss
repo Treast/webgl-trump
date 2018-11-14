@@ -11,5 +11,5 @@
 }
 
 @mixin shadow-border-left ($color) {
-  box-shadow: 5px 0 5px -5px $color, -5px 0 5px -5px $color;
+  box-shadow: 5px 0 5px -5px $color, inset -5px 0 5px -5px $color;
 }
