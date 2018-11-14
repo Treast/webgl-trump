@@ -1,0 +1,117 @@
+.page_end{
+  & .wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+  }
+  & header{
+    margin-top: 45px;
+    & h1{
+      @extend .text;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 52px;
+      letter-spacing: 5px;
+    }
+  }
+  & main{
+    margin: 110px 0;
+  }
+  & p{
+    line-height: 34px;
+  }
+  & .links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 23px;
+    & li {
+
+    }
+    & span{
+      @extend .text;
+      margin: 0 15px;
+    }
+  }
+  & .actions{
+    list-style: none;
+    padding: 0;
+    & li{
+      cursor: pointer;
+      position: relative;
+      margin: 20px 0;
+      padding: 10px 60px;
+      &:hover{
+        & .border{
+          display: block;
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+    }
+    & .border{
+      display: block; // none
+      position: absolute;
+      width: 110px;
+      height: 1px;
+      background-color: #fff;
+      transition: transform .5s ease-out, opacity .5s ease-out;
+      opacity: 0;
+      &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        width: 28px;
+        height: 1px;
+        background-color: #fff;
+      }
+      &:before{
+        content: '';
+        display: block;
+        position: absolute;
+        width: 65px;
+        height: 1px;
+        background-color: #fff;
+      }
+      &-top{
+        top: 0;
+        left: 0;
+        transform: translateX(-50%);
+        @include shadow-border-bottom(#fff);
+        &:before{
+          top: calc(45px / 2);
+          left: -16px;
+          transform: translateX(-100%);
+        }
+        &:after{
+          left: 6px;
+          top: 11px;
+          transform: translateX(-100%) rotate(-55deg);
+        }
+      }
+      &-bottom{
+        right: 0;
+        bottom: 0;
+        transform: translateX(50%);
+        &:before{
+          bottom: calc(45px / 2);
+          right: -16px;
+          transform: translateX(100%);
+        }
+        &:after{
+          right: 6px;
+          bottom: 11px;
+          transform: translateX(100%) rotate(-55deg);
+        }
+      }
+    }
+    & span{
+      letter-spacing: 1px;
+      font-size: 20px;
+      font-family: 'Bai Jamjuree', sans-serif;
+      text-transform: uppercase;
+      @extend .text;
+    }
+  }
+}

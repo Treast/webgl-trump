@@ -13,3 +13,14 @@
 @mixin shadow-border-left ($color) {
   box-shadow: 5px 0 5px -5px $color, inset -5px 0 5px -5px $color;
 }
+
+/*
+
+$borders: (
+  'left': (5px 0 5px -5px, inset -5px 0 5px -5px),
+  'right': (-5px 0 5px -5px, inset 5px 0 5px -5px),
+  'top': (0 -5px 5px -5px, inset 0 5px 5px -5px),
+  'bottom': (0 5px 5px -5px, inset 0 -5px 5px -5px)
+);
+
+*/

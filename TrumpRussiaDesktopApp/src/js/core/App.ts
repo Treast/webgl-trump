@@ -20,7 +20,7 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('introduction');
+    PAGES.show('end');
     this.initRoom();
     this.initGame();
     Socket.on('game:start', this.start.bind(this));

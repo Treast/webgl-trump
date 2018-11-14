@@ -24,10 +24,10 @@ canvas{
   left: 0;
   right: 0;
   bottom: 0;
-  filter: brightness(105%) blur(.4px);
-  background: $background, radial-gradient(ellipse at center, rgba(174, 211, 247, 0.98) 38%, rgba(133,180,255,.75) 54%, #000 110%);
+  filter: brightness(92%) blur(0.3px);
+  background: $background, radial-gradient(ellipse 70% 85%, rgb(214, 214, 214) 38%, rgba(107, 107, 107, 0.44) 54%, #000 107%);
   background-blend-mode: multiply;
-  opacity: 0.5;
+  opacity: 0.7;
 
   &::before {
     content: '';
@@ -39,6 +39,6 @@ canvas{
     bottom: 0;
     background: url('./images/Pattern.svg') repeat;
     background-size: 50px 50px;
-    opacity: 0.5;
+    opacity: 0.7;
   }
 }
