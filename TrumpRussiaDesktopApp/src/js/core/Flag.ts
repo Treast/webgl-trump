@@ -29,9 +29,9 @@ export default class Flag {
   private readonly scale: Vector3;
   private windForce: number;
 
-  public static OFFSETX: number = 57.7;
-  public static OFFSETY: number = 48.8;
-  public static OFFSETZ: number = 9.13;
+  public static OFFSETX: number = 53.2;
+  public static OFFSETY: number = 46;
+  public static OFFSETZ: number = 0;
 
   constructor(position: Vector3, rotation: Vector3, scale: Vector3, windForce: number) {
     this.windForce = windForce;

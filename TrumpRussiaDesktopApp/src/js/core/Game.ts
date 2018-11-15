@@ -39,6 +39,7 @@ class Game {
   private clock: Clock;
   public flags: Flag[] = [];
   private shaderTime: number = 0;
+  public isPauseOn: boolean = false;
 
   /**
    * Initialisation
@@ -67,6 +68,18 @@ class Game {
   initSocketListeners () {
     Socket.on('game:win', this.onGameFinish.bind(this, true));
     Socket.on('game:lose', this.onGameFinish.bind(this, false));
+    Socket.on('pause:on', this.onGamePauseOn.bind(this));
+    Socket.on('pause:off', this.onGamePauseOff.bind(this));
+  }
+
+  onGamePauseOn() {
+    this.isPauseOn = true;
+    document.body.classList.add('paused');
+  }
+
+  onGamePauseOff() {
+    this.isPauseOn = false;
+    document.body.classList.remove('paused');
   }
 
   /**
@@ -90,7 +103,7 @@ class Game {
     EffectManager.init();
     EnvelopesManager.init();
     CamerasManager.init(this.scene, this.camera);
-    CamerasManager.setCamera(0);
+    CamerasManager.setCamera(0, false);
     this.initFlags();
     // VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
   }
@@ -100,7 +113,6 @@ class Game {
 
     for (const flag of flags) {
       const object = this.scene.getObjectByName(flag.parent).getObjectByName(flag.name);
-      console.log(object.position);
       const flagMesh = new Flag(new Vector3(object.position.x - Flag.OFFSETX,
                                             object.position.y - Flag.OFFSETY,
                                             object.position.z - Flag.OFFSETZ),

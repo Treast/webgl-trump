@@ -5,7 +5,7 @@
  */
 
 export const CONFIG = {
-  DEBUG_MODE: true,
+  DEBUG_MODE: false,
   MOBILE_APP: process.env.MOBILE,
   SERVER: process.env.SERVER,
   GAME: {
@@ -33,5 +33,13 @@ export const CONFIG = {
       parent: 'Drapeau1.1',
       windForce: 0.001,
     },
+  ],
+  SOUNDS: [
+    'BasseFond.mp3',
+    'ChangerCam.wav',
+    'clickBouton.wav',
+    'EnveloppeRecoltee.wav',
+    'Musique_IntroFin.mp3',
+    'TimmerDepart.wav',
   ],
 };

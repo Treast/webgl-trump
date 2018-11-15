@@ -4,6 +4,7 @@
 
 // @ts-ignore
 import { TweenMax } from 'gsap';
+import AudioManager from './AudioManager';
 
 class Pagination {
   private readonly element: HTMLElement;
@@ -74,6 +75,7 @@ class Pagination {
    * On change l'opacité de la page courante et de la page suivante.
    */
   private refreshPage() {
+    AudioManager.play('clickBouton.wav');
     for (const innerPage of this.innerPages) {
       if (innerPage.getAttribute('data-inner-page') === this.currentIndex.toString(10)) {
         TweenMax.to(innerPage, 0.2, {
