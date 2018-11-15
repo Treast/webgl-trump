@@ -22,6 +22,7 @@ export class App {
   init () {
     PAGES.show('introduction');
     this.initRoom();
+    this.initPause();
     this.initGame();
     Socket.on('game:start', this.start.bind(this));
   }
@@ -63,4 +64,19 @@ export class App {
     });
   }
 
+  private initPause () {
+    // todo: change app state
+    document.querySelectorAll('[data-pause="button-on"]')
+    .forEach((el: HTMLElement) => {
+      el.addEventListener('click', () => {
+        document.body.classList.add('paused');
+      });
+    });
+    document.querySelectorAll('[data-pause="button-off"]')
+    .forEach((el: HTMLElement) => {
+      el.addEventListener('click', () => {
+        document.body.classList.remove('paused');
+      });
+    });
+  }
 }

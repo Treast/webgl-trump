@@ -5,7 +5,7 @@
  */
 
 export const CONFIG = {
-  DEBUG_MODE: true,
+  DEBUG_MODE: false,
   MOBILE_APP: process.env.MOBILE,
   SERVER: process.env.SERVER,
   GAME: {

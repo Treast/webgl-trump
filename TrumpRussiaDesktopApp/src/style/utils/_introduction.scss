@@ -15,7 +15,7 @@ section[data-page="introduction"] {
     bottom: 100px;
     border-left: 1px solid white;
     border-right: 1px solid white;
-    @include shadow-border-left(white);
+    box-shadow: shadow-border((left, right), #fff);
 
     .inner-top {
       position: absolute;
@@ -32,6 +32,7 @@ section[data-page="introduction"] {
         top: -42px;
         left: 16px;
         background-color: #fff;
+        box-shadow: shadow-border((top, bottom), #fff);
         transform: rotate(45deg);
       }
 
