@@ -6,12 +6,14 @@ import * as dat from 'dat.gui';
 import { CONFIG } from '../config';
 import { GUIParamsFilmPass } from './DatGuiParams/GUIParamsFilmPass';
 import { GUIParamsBadTVPass } from './DatGuiParams/GUIParamsBadTVPass';
+import { GUIParamsFlag } from './DatGuiParams/GUIParamsFlag';
 
 export const DAT_GUI = {
 
   params: {
-    filmPass: new GUIParamsFilmPass(),
-    badTvPadd: new GUIParamsBadTVPass(),
+    // filmPass: new GUIParamsFilmPass(),
+    // badTvPadd: new GUIParamsBadTVPass(),
+    flag: new GUIParamsFlag(),
   },
 
   gui: CONFIG.DEBUG_MODE ? new dat.GUI() : null,

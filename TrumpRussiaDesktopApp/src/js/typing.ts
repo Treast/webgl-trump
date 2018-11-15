@@ -16,6 +16,12 @@ export interface Envelope {
   name: string;
 }
 
+export interface FlagInformations {
+  name: string;
+  parent: string;
+  windForce: number;
+}
+
 export interface TimerValue {
   minutes: string;
   seconds: string;

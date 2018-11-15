@@ -5,7 +5,7 @@
  */
 
 export const CONFIG = {
-  DEBUG_MODE: false,
+  DEBUG_MODE: true,
   MOBILE_APP: process.env.MOBILE,
   SERVER: process.env.SERVER,
   GAME: {
@@ -22,4 +22,16 @@ export const CONFIG = {
       },
     ],
   },
+  FLAGS: [
+    {
+      name: 'drapeau',
+      parent: 'Drapeau1',
+      windForce: 0.001,
+    },
+    {
+      name: 'drapeau',
+      parent: 'Drapeau1.1',
+      windForce: 0.001,
+    },
+  ],
 };

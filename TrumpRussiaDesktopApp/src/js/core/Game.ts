@@ -7,7 +7,7 @@ import {
   Clock,
   LoadingManager,
   PerspectiveCamera,
-  Scene,
+  Scene, Vector3,
   WebGLRenderer,
 } from 'three';
 import { ModelsLoader } from './ModelsLoader';
@@ -21,6 +21,13 @@ import EnvelopesManager from './EnvelopesManager';
 import EffectManager from './EffectManager';
 import TimerManager from './TimerManager';
 import { VideoObject } from '../utils/VideoObject';
+import Flag from './Flag';
+
+interface FlagInformations {
+  name: string;
+  parent: string;
+  windForce: number;
+}
 
 class Game {
   private width: number;
@@ -30,6 +37,7 @@ class Game {
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
   private clock: Clock;
+  public flags: Flag[] = [];
   private shaderTime: number = 0;
 
   /**
@@ -83,7 +91,27 @@ class Game {
     EnvelopesManager.init();
     CamerasManager.init(this.scene, this.camera);
     CamerasManager.setCamera(0);
+    this.initFlags();
     // VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
+  }
+
+  initFlags() {
+    const flags: FlagInformations[] = CONFIG.FLAGS;
+
+    for (const flag of flags) {
+      const object = this.scene.getObjectByName(flag.parent).getObjectByName(flag.name);
+      console.log(object.position);
+      const flagMesh = new Flag(new Vector3(object.position.x - Flag.OFFSETX,
+                                            object.position.y - Flag.OFFSETY,
+                                            object.position.z - Flag.OFFSETZ),
+                                object.rotation.toVector3(),
+                                new Vector3(0.3, 0.3, 0.3),
+                                flag.windForce);
+      flagMesh.mesh.rotation.set(0, 0, Math.PI / 2);
+      this.scene.getObjectByName(flag.parent).add(flagMesh.mesh);
+      object.visible = false;
+      this.flags.push(flagMesh);
+    }
   }
 
   /**
@@ -111,6 +139,13 @@ class Game {
     this.shaderTime += 0.1;
     requestAnimationFrame(this.animate.bind(this, callback));
     EnvelopesManager.checkCibling(this.camera);
+
+    const time = Date.now();
+    for (const flag of this.flags) {
+      flag.simulate(time);
+      flag.update();
+    }
+
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
     if (EffectManager.getEnableBadTVPass()) EffectManager.getBadTVPass().uniforms['time'].value = this.shaderTime;
     EffectManager.getFilmPass().uniforms['time'].value = this.shaderTime;
