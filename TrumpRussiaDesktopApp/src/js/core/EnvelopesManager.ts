@@ -19,6 +19,7 @@ import { Envelope } from '../typing';
 import Socket from './Socket';
 import effectManager from './EffectManager';
 import CamerasManager from "./CamerasManager";
+import AudioManager from './AudioManager';
 
 class EnvelopesManager {
 
@@ -76,6 +77,7 @@ class EnvelopesManager {
    */
   private onPickupEnvelope ({ name }: any) {
     const envelope = this.envelopes.filter(envelope => envelope.name === name)[0];
+    AudioManager.play('EnveloppeRecoltee.wav');
     this.removeEnvelope(envelope);
   }
 

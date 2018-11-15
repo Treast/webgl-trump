@@ -34,4 +34,12 @@ export const CONFIG = {
       windForce: 0.001,
     },
   ],
+  SOUNDS: [
+    'BasseFond.mp3',
+    'ChangerCam.wav',
+    'clickBouton.wav',
+    'EnveloppeRecoltee.wav',
+    'Musique_IntroFin.mp3',
+    'TimmerDepart.wav',
+  ],
 };

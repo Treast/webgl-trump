@@ -39,6 +39,10 @@ io.on('connection', socket => {
    * 2.Game
    */
 
+  socket.on('game:count', () => {
+    io.to(socket.roomId).emit('game:count');
+  });
+
   socket.on('game:win', () => {
     io.to(socket.roomId).emit('game:win');
   });

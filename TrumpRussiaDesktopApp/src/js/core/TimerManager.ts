@@ -5,6 +5,7 @@
 import Socket from './Socket';
 import { TweenMax } from 'gsap';
 import { TimerValue } from '../typing';
+import AudioManager from './AudioManager';
 
 class TimerManager {
 
@@ -28,6 +29,7 @@ class TimerManager {
   runCount(onCountDone: () => void) {
     let count = 6;
     const interval = setInterval(() => {
+      AudioManager.play('TimmerDepart.wav');
       TweenMax.fromTo(this.countOuter, 1, {
         y: 0,
         alpha: 1,

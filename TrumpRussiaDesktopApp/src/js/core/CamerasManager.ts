@@ -7,6 +7,8 @@ import { Group, PerspectiveCamera, Scene } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
 import Socket from './Socket';
+import AudioManager from './AudioManager';
+import Game from './Game';
 
 class CamerasManager {
 
@@ -48,8 +50,9 @@ class CamerasManager {
   /**
    * On change de caméra
    * @param id
+   * @param playSound
    */
-  setCamera (id: any) {
+  setCamera (id: any, playSound: boolean = true) {
     const idn = parseInt(id, 10);
     this.cameraParent.position.set(
       CONFIG.GAME.CAMERAS[idn].POSITION.x,
@@ -58,6 +61,7 @@ class CamerasManager {
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
+    if (playSound) AudioManager.play('ChangerCam.wav');
     this.numberElement.innerText = (1 + idn).toString();
   }
 
@@ -66,8 +70,10 @@ class CamerasManager {
    * @param data
    */
   changeOrientation (data: Orientation) {
-    this.cameraParent.rotation.z = -(data.beta * Math.PI / 180) * Math.sign(this.cameraParent.position.z);
-    this.cameraParent.rotation.y = data.alpha * Math.PI / 180;
+    if (!Game.isPauseOn) {
+      this.cameraParent.rotation.z = -(data.beta * Math.PI / 180) * Math.sign(this.cameraParent.position.z);
+      this.cameraParent.rotation.y = data.alpha * Math.PI / 180;
+    }
   }
 
   /**
@@ -76,7 +82,7 @@ class CamerasManager {
    */
   changeZoom({ zoom }: any) {
     const originalFOV = 75;
-    const difference = originalFOV * (zoom / 100);
+    const difference = originalFOV * (zoom / 200);
     this.camera.fov = originalFOV - difference;
     this.camera.updateProjectionMatrix();
   }

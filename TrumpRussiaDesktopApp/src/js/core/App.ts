@@ -13,6 +13,7 @@ import Game from './Game';
 import { DAT_GUI } from '../utils/DatGui';
 import Socket from './Socket';
 import TimerManager from './TimerManager';
+import AudioManager from './AudioManager';
 
 export class App {
 
@@ -21,10 +22,16 @@ export class App {
    */
   init () {
     PAGES.show('introduction');
+    this.initAudio();
     this.initRoom();
     this.initPause();
     this.initGame();
+    // AudioManager.play('Musique_IntroFin.mp3');
     Socket.on('game:start', this.start.bind(this));
+  }
+
+  initAudio() {
+    AudioManager.init();
   }
 
   /**
@@ -58,6 +65,10 @@ export class App {
    */
   start () {
     PAGES.show('count');
+    Socket.on('game:count', this.startCount.bind(this));
+  }
+
+  startCount() {
     TimerManager.runCount(() => {
       PAGES.show('experience');
       Game.animate();

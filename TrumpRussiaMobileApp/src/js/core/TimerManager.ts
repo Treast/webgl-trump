@@ -11,7 +11,7 @@ import { TweenMax } from 'gsap';
 import GameManager, { GameState } from './GameManager';
 
 class TimerManager {
-  public static TIME: number = 180;
+  public static TIME: number = 3000; // 180
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
@@ -38,6 +38,7 @@ class TimerManager {
   }
 
   public runCount() {
+    Socket.emit('game:count');
     let count = 6;
     const interval = setInterval(() => {
       TweenMax.fromTo(this.countOuter, 1, {
