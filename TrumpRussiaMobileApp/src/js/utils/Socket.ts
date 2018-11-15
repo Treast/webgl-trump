@@ -9,6 +9,7 @@ class Socket {
 
   constructor() {
     this.socket = io(`${CONFIG.SERVER}`);
+    this.socket.on('client:disconnect', () => alert('Votre ordinateur est déconnecté !'));
   }
 
   get() {

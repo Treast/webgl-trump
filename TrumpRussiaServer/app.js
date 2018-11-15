@@ -116,6 +116,11 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('page:show', name);
   });
 
+  socket.on('disconnect', () => {
+    console.log("td");
+    socket.to(socket.roomId).emit('client:disconnect');
+  })
+
 });
 
 http.listen(3000, () => {

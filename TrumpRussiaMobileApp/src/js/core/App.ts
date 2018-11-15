@@ -133,10 +133,14 @@ class App {
    */
   async start() {
     const gyroscope = new Gyronorm();
-    await gyroscope.init({
-      frequency: 10,
-    });
-    gyroscope.start(this.onDeviceOrientation.bind(this));
+    try {
+      await gyroscope.init({
+        frequency: 10,
+      });
+      gyroscope.start(this.onDeviceOrientation.bind(this));
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   /**
