@@ -1,12 +1,6 @@
 .list-actions {
   list-style: none;
   padding: 0;
-  &_item-red{
-    & span{
-      color: #FF0000;
-      text-shadow: 0 0 5px #FF0000;
-    }
-  }
   & li {
     display: flex;
     justify-content: center;
@@ -22,6 +16,13 @@
         opacity: 1;
       }
     }
+  }
+  & span {
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-family: 'Bai Jamjuree', sans-serif;
+    text-transform: uppercase;
+    @extend .text;
   }
   & .border {
     display: block; // none
@@ -78,11 +79,16 @@
       }
     }
   }
-  & span {
-    letter-spacing: 1px;
-    font-size: 20px;
-    font-family: 'Bai Jamjuree', sans-serif;
-    text-transform: uppercase;
-    @extend .text;
+  &_item-red{
+    & span{
+      color: #FF0000;
+      text-shadow: 0 0 5px #FF0000;
+    }
+    & .border {
+      background-color: #FF0000;
+      &:after, &:before{
+        background-color: #FF0000;
+      }
+    }
   }
 }

@@ -35,7 +35,7 @@ class MenuManager {
           menuButton.parentElement.classList.remove('menu_item-on');
         }
         button.parentElement.classList.add('menu_item-on');
-        PAGES.fade(page);
+        PAGES.fade(page, true);
       } else {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');

@@ -79,6 +79,7 @@ class EnvelopesManager {
    * On "illumine" la case Enveloppe dans l'inventaire.
    */
   onClickedEnvelope() {
+    if (this.currentHover === null) return;
     Socket.emit('envelope:pickup', this.currentHover);
     this.envelopeCount += 1;
     this.updateCountEnvelope();

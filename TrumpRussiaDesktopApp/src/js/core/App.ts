@@ -70,7 +70,7 @@ export class App {
 
   startCount() {
     TimerManager.runCount(() => {
-      PAGES.show('experience');
+      PAGES.show('app');
       Game.animate();
     });
   }
@@ -81,12 +81,16 @@ export class App {
     .forEach((el: HTMLElement) => {
       el.addEventListener('click', () => {
         document.body.classList.add('paused');
+        Socket.emit('pause:on');
+        Game.isPauseOn = true;
       });
     });
     document.querySelectorAll('[data-pause="button-off"]')
     .forEach((el: HTMLElement) => {
       el.addEventListener('click', () => {
         document.body.classList.remove('paused');
+        Socket.emit('pause:off');
+        Game.isPauseOn = false;
       });
     });
   }

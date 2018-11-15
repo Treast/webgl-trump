@@ -32,7 +32,7 @@ io.on('connection', socket => {
   socket.on('room:join', id => {
     socket.join(id);
     socket.roomId = id;
-    io.to(id).emit('game:start');
+    socket.to(id).emit('game:start');
   });
 
   /**
@@ -40,15 +40,15 @@ io.on('connection', socket => {
    */
 
   socket.on('game:count', () => {
-    io.to(socket.roomId).emit('game:count');
+    socket.to(socket.roomId).emit('game:count');
   });
 
   socket.on('game:win', () => {
-    io.to(socket.roomId).emit('game:win');
+    socket.to(socket.roomId).emit('game:win');
   });
 
   socket.on('game:lose', () => {
-    io.to(socket.roomId).emit('game:lose');
+    socket.to(socket.roomId).emit('game:lose');
   });
 
   /**
@@ -56,15 +56,15 @@ io.on('connection', socket => {
    */
 
   socket.on('camera:set', id => {
-    io.to(socket.roomId).emit('camera:set', id);
+    socket.to(socket.roomId).emit('camera:set', id);
   });
 
   socket.on('camera:orientation', data => {
-    io.to(socket.roomId).emit('camera:orientation', data)
+    socket.to(socket.roomId).emit('camera:orientation', data)
   });
 
   socket.on('camera:zoom', data => {
-    io.to(socket.roomId).emit('camera:zoom', data)
+    socket.to(socket.roomId).emit('camera:zoom', data)
   });
 
   /**
@@ -72,15 +72,15 @@ io.on('connection', socket => {
    */
 
   socket.on('timer:change', data => {
-    io.to(socket.roomId).emit('timer:change', data)
+    socket.to(socket.roomId).emit('timer:change', data)
   });
 
   socket.on('timer:end', data => {
-    io.to(socket.roomId).emit('game:lose');
+    socket.to(socket.roomId).emit('game:lose');
   });
 
   socket.on('counter:change', count => {
-    io.to(socket.roomId).emit('counter:change', count);
+    socket.to(socket.roomId).emit('counter:change', count);
   });
 
   /**
@@ -88,11 +88,11 @@ io.on('connection', socket => {
    */
 
   socket.on('pause:on', data => {
-    io.to(socket.roomId).emit('pause:on', data)
+    socket.broadcast.to(socket.roomId).emit('pause:on', data)
   });
 
   socket.on('pause:off', data => {
-    io.to(socket.roomId).emit('pause:off', data)
+    socket.broadcast.to(socket.roomId).emit('pause:off', data)
   });
 
   /**
@@ -100,11 +100,11 @@ io.on('connection', socket => {
    */
 
   socket.on('envelope:hover', envelope => {
-    io.to(socket.roomId).emit('envelope:hover', envelope);
+    socket.to(socket.roomId).emit('envelope:hover', envelope);
   });
 
   socket.on('envelope:pickup', envelope => {
-    io.to(socket.roomId).emit('envelope:pickup', envelope);
+    socket.to(socket.roomId).emit('envelope:pickup', envelope);
   });
 
   /**
@@ -112,7 +112,8 @@ io.on('connection', socket => {
    */
 
   socket.on('page:show', name => {
-    io.to(socket.roomId).emit('page:show', name);
+    console.log(name, socket.id);
+    socket.to(socket.roomId).emit('page:show', name);
   });
 
 });
