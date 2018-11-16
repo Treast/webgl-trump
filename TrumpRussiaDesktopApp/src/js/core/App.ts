@@ -22,15 +22,10 @@ export class App {
    */
   init () {
     PAGES.show('introduction');
-    this.initAudio();
     this.initRoom();
     this.initGame();
-    // AudioManager.play('Musique_IntroFin.mp3');
+    AudioManager.play('Musique_IntroFin.mp3');
     Socket.on('game:start', this.start.bind(this));
-  }
-
-  initAudio() {
-    AudioManager.init();
   }
 
   /**

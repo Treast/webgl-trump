@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Real Donald Trump</title>
-    <link href="app.css" rel="stylesheet"><link href="app.3718703a4678c9b037b9.css" rel="stylesheet"></head>
+    <link href="app.css" rel="stylesheet"><link href="app.73cf9b8923802b320b93.css" rel="stylesheet"></head>
     <body style="display: none">
         <div class="background"></div>
         <div id="pause">
@@ -47,19 +47,25 @@
                         <p>_ Ce texte sera une mise en contexte rappelant l’élection de Trump et un les suspections qui tournent autours de sa relation avec Poutine. Tempor invidunt aliquyam erat, sed diam voluptua. At vero eos et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
                     </div>
                     <div class="inner-page" data-inner-page="2">
-                        <p>_ Ce texte aura pour but de mettre l’utilisateur dans la peau d’un agent secret étant sur le point d’infiltrer le réseau d’un bâtiment pour avoir accès à des caméras de surveillance d’une pièce secrète où se trouvent Trump et Poutine. </p>
+                        <p>Tu es sur le point de t’infiltrer dans le réseau d’un bâtiment pour avoir accès à des caméras de vidéo surveillance. Elles se trouvent dans une pièce secrète où se rejoignent régulièrement Trump et Poutine.</p>
                     </div>
                     <div class="inner-page introduction_map" data-inner-page="3">
+                        <div class="introduction_map_content">
+                            <img class="introduction_map_image" src="images/Groupe 85@2x.png">
+                            <p class="introduction_map_text">6 enveloppes  sont cachées un peu partout dans la pièce. Elles contiennent des informations que Trump et Poutine aimeraient décridibiliser car elles portent une atteinte à leur popularité.<br /><br />À toi de les récolter pour voir ce qu’elles cachent.</p>
+                        </div>
+                    </div>
+                    <div class="inner-page introduction_map" data-inner-page="4">
                         <h2 class="page_title">Pièce secrète</h2>
                         <div class="introduction_map_content">
                             <img class="introduction_map_image" src="images/Map.png">
-                            <p class="introduction_map_text">_ Cette pièce est constituée de 3 caméras contrôlables. Mais attention, vous n’aurez que 5 minutes avant de vous faire repérer.</p>
+                            <p class="introduction_map_text">Les 3 caméras sont contrôlables depuis ton téléphone. Tu pourras passer d’une caméra à l’autre autant de fois que tu le souhaites.<br /><br />Mais attention, tu n’auras que 3 minutes avant que l’on détecte que tu es infiltré.</p>
                         </div>
                     </div>
-                    <div class="inner-page" data-inner-page="4">
+                    <div class="inner-page" data-inner-page="5">
                         <div id="qrcode"></div>
                         <div class="linker_adress" id="address"></div>
-                        <p>Scanne le QR code pour accéder aux caméras de surveillance. </p>
+                        <p>Scanne le QR code pour démarrer l’infiltration.</p>
                     </div>
                 </div>
                 <div class="inner-pagination">
@@ -68,9 +74,10 @@
                     </div>
                     <div class="pages">
                         <div class="page selected" data-inner-page="1"></div>
-                        <div class="page selected" data-inner-page="2"></div>
+                        <div class="page" data-inner-page="2"></div>
                         <div class="page" data-inner-page="3"></div>
                         <div class="page" data-inner-page="4"></div>
+                        <div class="page" data-inner-page="5"></div>
                     </div>
                     <div class="arrow arrow-right">
                         <img src="images/arrow.svg">
@@ -87,7 +94,10 @@
             <span class="camera_timer" id="timer"></span>
             <span class="camera_text">REC <span class="camera_icon"></span></span>
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
-            <span class="camera_center"></span>
+            <span class="camera_center" id="camera-cursor">
+                <span class="camera_center_border camera_center_border-left"></span>
+                <span class="camera_center_border camera_center_border-right"></span>
+            </span>
         </section>
         <section data-page="game-result">
             <div data-state-game="win"></div>
@@ -125,6 +135,41 @@
                         <img class="envelopes_item_image" src="images/envelope_6.png">
                     </li>
                 </ul>
+            </div>
+        </section>
+        <section class="page page_end" data-page="end">
+            <div class="wrapper">
+                <header>
+                    <h1>TRUMP’S SECRET</h1>
+                </header>
+                <main>
+                    <div data-state-game="Wining">
+                        <p>Félicitation, tu as réussi à récolter les faits en</p>
+                        <p>2 : 15</p>
+                    </div>
+                    <!--<div data-state-game="Losing">
+                        <p>Oups on dirait que tu t’es fait repérer…</p>
+                        <p>La prochaine fois sera la bonne !</p>
+                    </div>-->
+                    <div class="links">
+                        <span>Picto 1</span>
+                        <span>Picto 2</span>
+                    </div>
+                </main>
+                <footer>
+                    <ul class="actions">
+                        <li>
+                            <div class="border border-top"></div>
+                            <span>Rejouer</span>
+                            <div class="border border-bottom"></div>
+                        </li>
+                        <li>
+                            <div class="border border-top"></div>
+                            <span>Crédits</span>
+                            <div class="border border-bottom"></div>
+                        </li>
+                    </ul>
+                </footer>
             </div>
         </section>
         <!--<video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">

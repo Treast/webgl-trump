@@ -39,7 +39,10 @@ export const CONFIG = {
     'ChangerCam.wav',
     'clickBouton.wav',
     'EnveloppeRecoltee.wav',
-    'Musique_IntroFin.mp3',
+    {
+      sound: 'Musique_IntroFin.mp3',
+      volume: 0.1,
+    },
     'TimmerDepart.wav',
   ],
 };
