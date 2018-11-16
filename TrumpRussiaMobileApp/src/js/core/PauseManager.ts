@@ -4,7 +4,7 @@
 
 import Socket from '../utils/Socket';
 import Timer from './TimerManager';
-import { PAGES } from '../utils/Pages';
+import {PAGES} from '../utils/Pages';
 
 class PauseManager {
   private elements: NodeListOf<HTMLElement>;
@@ -15,6 +15,8 @@ class PauseManager {
   init() {
     this.elements = document.querySelectorAll('.pause-button');
     this.setupListener();
+    Socket.on('pause:on', this.on.bind(this));
+    Socket.on('pause:off', this.off.bind(this));
   }
 
   /**
@@ -25,16 +27,24 @@ class PauseManager {
     for (const element of this.elements) {
       element.addEventListener('click', () => {
         Socket.emit('pause:on');
-        Timer.stop();
-        document.body.classList.add('paused');
+        this.on();
       });
     }
 
     document.querySelector('.timer-run').addEventListener('click', () => {
       Socket.emit('pause:off');
-      Timer.run();
-      document.body.classList.remove('paused');
+      this.off();
     });
+  }
+
+  on() {
+    Timer.stop();
+    document.body.classList.add('paused');
+  }
+
+  off() {
+    Timer.run();
+    document.body.classList.remove('paused');
   }
 }
 

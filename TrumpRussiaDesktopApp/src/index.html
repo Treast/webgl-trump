@@ -9,10 +9,18 @@
         <div id="pause">
             <div class="content">
                 <h1>Pause</h1>
-                <h2 class="timer-run">
-                    <span>Reprendre</span>
-                </h2>
-                <h2 class="play-again">Rejouer</h2>
+                <ul class="list-actions">
+                    <li data-pause="button-off">
+                        <span class="border border-top"></span>
+                        <span>Reprendre</span>
+                        <span class="border border-bottom"></span>
+                    </li>
+                    <li class="list-actions_item-red">
+                        <span class="border border-top"></span>
+                        <span class="text-replay">Rejouer</span>
+                        <span class="border border-bottom"></span>
+                    </li>
+                </ul>
             </div>
         </div>
         <section class="count page-fade" data-page="count">
@@ -86,7 +94,10 @@
                 </div>
             </div>
         </section>
-        <section data-page="experience" id="experience" class="experience">
+        <section data-page="app" id="experience" class="experience">
+            <span class="pause_icon_container" data-pause="button-on">
+                <span class="pause_icon"></span>
+            </span>
             <span class="camera_corner"></span>
             <span class="camera_corner"></span>
             <span class="camera_corner"></span>
@@ -103,7 +114,10 @@
             <div data-state-game="win"></div>
             <div data-state-game="lose"></div>
         </section>
-        <section class="phone page-fade" data-page="phone">
+        <section class="phone page-fade" data-page="inventory">
+            <span class="pause_icon_container" data-pause="button-on">
+                <span class="pause_icon"></span>
+            </span>
             <div class="inner">
                 <p>
                     <span>On dirait que les chiffres marqués sur les enveloppes correspondent à un</span>
@@ -157,7 +171,7 @@
                     </div>
                 </main>
                 <footer>
-                    <ul class="actions">
+                    <ul class="actions list-actions">
                         <li>
                             <div class="border border-top"></div>
                             <span>Rejouer</span>

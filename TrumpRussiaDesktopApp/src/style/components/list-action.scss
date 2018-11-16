@@ -1,0 +1,94 @@
+.list-actions {
+  list-style: none;
+  padding: 0;
+  & li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    margin: 20px 0;
+    padding: 10px 22px;
+    &:hover {
+      & .border {
+        display: block;
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+  }
+  & span {
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-family: 'Bai Jamjuree', sans-serif;
+    text-transform: uppercase;
+    @extend .text;
+  }
+  & .border {
+    display: block; // none
+    position: absolute;
+    width: 110px;
+    height: 1px;
+    background-color: #fff;
+    transition: transform .5s ease-out, opacity .5s ease-out;
+    opacity: 0;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 28px;
+      height: 1px;
+      background-color: #fff;
+    }
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 65px;
+      height: 1px;
+      background-color: #fff;
+    }
+    &-top {
+      top: 0;
+      left: 0;
+      transform: translateX(-50%);
+      &:before {
+        top: calc(45px / 2);
+        left: -16px;
+        transform: translateX(-100%);
+      }
+      &:after {
+        left: 6px;
+        top: 11px;
+        transform: translateX(-100%) rotate(-55deg);
+      }
+    }
+    &-bottom {
+      right: 0;
+      bottom: 0;
+      transform: translateX(50%);
+      &:before {
+        bottom: calc(45px / 2);
+        right: -16px;
+        transform: translateX(100%);
+      }
+      &:after {
+        right: 6px;
+        bottom: 11px;
+        transform: translateX(100%) rotate(-55deg);
+      }
+    }
+  }
+  &_item-red{
+    & span{
+      color: #FF0000;
+      text-shadow: 0 0 5px #FF0000;
+    }
+    & .border {
+      background-color: #FF0000;
+      &:after, &:before{
+        background-color: #FF0000;
+      }
+    }
+  }
+}

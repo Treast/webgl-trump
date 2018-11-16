@@ -27,6 +27,7 @@ export const PAGES: PagesManager = {
    * @param name
    */
   show (name: string) {
+    console.log(name);
     this.items.forEach((item: any) => {
       if (item.getAttribute('data-page') === name) {
         item.style.display = 'block';

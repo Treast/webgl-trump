@@ -23,6 +23,7 @@ export class App {
   init () {
     PAGES.show('introduction');
     this.initRoom();
+    this.initPause();
     this.initGame();
     AudioManager.play('Musique_IntroFin.mp3');
     Socket.on('game:start', this.start.bind(this));
@@ -64,9 +65,28 @@ export class App {
 
   startCount() {
     TimerManager.runCount(() => {
-      PAGES.show('experience');
+      PAGES.show('app');
       Game.animate();
     });
   }
 
+  private initPause () {
+    // todo: change app state
+    document.querySelectorAll('[data-pause="button-on"]')
+    .forEach((el: HTMLElement) => {
+      el.addEventListener('click', () => {
+        document.body.classList.add('paused');
+        Socket.emit('pause:on');
+        Game.isPauseOn = true;
+      });
+    });
+    document.querySelectorAll('[data-pause="button-off"]')
+    .forEach((el: HTMLElement) => {
+      el.addEventListener('click', () => {
+        document.body.classList.remove('paused');
+        Socket.emit('pause:off');
+        Game.isPauseOn = false;
+      });
+    });
+  }
 }
