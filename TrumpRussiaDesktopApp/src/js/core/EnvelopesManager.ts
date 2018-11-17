@@ -92,6 +92,7 @@ class EnvelopesManager {
     this.scene.remove(envelope.object);
     this.scene.remove(envelope.boundingBox);
     this.envelopes.splice(this.envelopes.indexOf(envelope), 1);
+    Socket.emit('envelope:delete');
     if (this.envelopes.length === 0) {
       Socket.emit('game:win');
     }

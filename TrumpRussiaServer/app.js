@@ -107,6 +107,10 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('envelope:pickup', envelope);
   });
 
+  socket.on('envelope:delete', envelope => {
+    socket.to(socket.roomId).emit('envelope:delete', envelope);
+  });
+
   /**
    * 7.Pages
    */

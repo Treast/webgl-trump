@@ -54,6 +54,7 @@ class EnvelopesManager {
    */
   init() {
     Socket.on('envelope:hover', this.onHoverEnvelope.bind(this));
+    Socket.on('envelope:delete', this.onEnvelopeDelete.bind(this));
     this.goBack.addEventListener('click', this.onClickGoBack.bind(this));
     this.btnEnvelope.addEventListener('click', this.onClickedEnvelope.bind(this));
     for (const envelope of this.envelopesActives) {
@@ -81,6 +82,9 @@ class EnvelopesManager {
   onClickedEnvelope() {
     if (this.currentHover === null) return;
     Socket.emit('envelope:pickup', this.currentHover);
+  }
+
+  onEnvelopeDelete() {
     this.envelopeCount += 1;
     this.updateCountEnvelope();
     if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {

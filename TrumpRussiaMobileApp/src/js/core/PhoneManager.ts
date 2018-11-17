@@ -2,6 +2,8 @@ import { PAGES } from '../utils/Pages';
 import AudioManager from './AudioManager';
 
 class PhoneManager {
+  private static TRUMP_PHONE_NUMBER: string = '06 54 78 17 35';
+
   private readonly numbers: NodeListOf<HTMLElement>;
   private readonly input: HTMLElement;
   private readonly deleteInput: HTMLElement;
@@ -11,8 +13,8 @@ class PhoneManager {
 
   constructor() {
     this.numbers = document.querySelectorAll('.phone .numbers .number span');
-    this.deleteInput = document.querySelector('.phone .numbers .number.delete');
-    this.callInput = document.querySelector('.phone .numbers .number.call');
+    this.deleteInput = document.querySelector('.phone .numbers .number.delete-action');
+    this.callInput = document.querySelector('.phone .numbers .number.call-action');
     this.input = document.querySelector('.phone .phone-number');
     this.goBack = document.querySelector('.phone .go-back');
     this.endCallButton = document.querySelector('.call .end-call');
@@ -61,7 +63,9 @@ class PhoneManager {
   }
 
   call() {
-    PAGES.fade('call');
+    if (this.input.innerText === PhoneManager.TRUMP_PHONE_NUMBER) {
+      (document.querySelector('.call') as HTMLElement).style.display = 'block';
+    }
   }
 
   endCall() {

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 80.865 48.906">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        opacity: 0.7;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #121c1d;
+        stroke-width: 2px;
+      }
+
+      .cls-3 {
+        filter: url(#Tracé_79);
+      }
+    </style>
+    <filter id="Tracé_79" x="0" y="0" width="80.865" height="48.906" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#fff" flood-opacity="0.8"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Menu" transform="translate(-1292.6 7.5)">
+    <g class="cls-3" transform="matrix(1, 0, 0, 1, 1292.6, -7.5)">
+      <path id="Tracé_79-2" data-name="Tracé 79" class="cls-1" d="M3276.4,3992v18.634l17.361,15.271h48.5V3992Z" transform="translate(-3268.9 -3984.5)"/>
+    </g>
+    <g id="Pause" transform="translate(1061 -18)">
+      <line id="Ligne_45" data-name="Ligne 45" class="cls-2" y2="11" transform="translate(272.5 28.5)"/>
+      <line id="Ligne_46" data-name="Ligne 46" class="cls-2" y2="11" transform="translate(279.5 28.5)"/>
+    </g>
+  </g>
+</svg>
