@@ -27,6 +27,7 @@ interface FlagInformations {
   name: string;
   parent: string;
   windForce: number;
+  texture: string;
 }
 
 class Game {
@@ -118,7 +119,8 @@ class Game {
                                             object.position.z - Flag.OFFSETZ),
                                 object.rotation.toVector3(),
                                 new Vector3(0.3, 0.3, 0.3),
-                                flag.windForce);
+                                flag.windForce,
+                                flag.texture);
       flagMesh.mesh.rotation.set(0, 0, Math.PI / 2);
       this.scene.getObjectByName(flag.parent).add(flagMesh.mesh);
       object.visible = false;

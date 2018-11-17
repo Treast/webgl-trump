@@ -27,11 +27,13 @@ export const CONFIG = {
       name: 'drapeau',
       parent: 'Drapeau1',
       windForce: 0.001,
+      texture: './assets/american_flag.jpg',
     },
     {
       name: 'drapeau',
       parent: 'Drapeau1.1',
       windForce: 0.001,
+      texture: './assets/russian_flag.jpg',
     },
   ],
   SOUNDS: [

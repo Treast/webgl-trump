@@ -28,17 +28,19 @@ export default class Flag {
   private readonly rotation: Vector3;
   private readonly scale: Vector3;
   private windForce: number;
+  private textureString: string;
 
   public static OFFSETX: number = 53.2;
   public static OFFSETY: number = 46;
   public static OFFSETZ: number = 0;
 
-  constructor(position: Vector3, rotation: Vector3, scale: Vector3, windForce: number) {
+  constructor(position: Vector3, rotation: Vector3, scale: Vector3, windForce: number, textureString: string) {
     this.windForce = windForce;
     this.position = new Vector3(Flag.OFFSETX, Flag.OFFSETY, Flag.OFFSETZ);
     this.rotation = rotation;
     this.scale = scale;
     this.cloth = new Cloth();
+    this.textureString = textureString;
     this.createGeometry();
     this.loadTexture();
     this.createMaterial();
@@ -61,7 +63,7 @@ export default class Flag {
 
   loadTexture() {
     const loader = new TextureLoader();
-    this.clothTexture = loader.load('./assets/american_flag2.png');
+    this.clothTexture = loader.load(this.textureString);
     this.clothTexture.anisotropy = 16;
     this.uniforms = { texture: { value: this.clothTexture } };
   }
