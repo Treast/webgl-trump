@@ -14,7 +14,7 @@ import Timer from './TimerManager';
 class EnvelopesManager {
 
   private static INACTIVE_OPACITY = '0.4';
-  private static NUMBER_ENVELOPES: number = 3;
+  private static NUMBER_ENVELOPES: number = 5;
 
   private readonly btnEnvelope: HTMLImageElement;
   private readonly inventory: HTMLElement;

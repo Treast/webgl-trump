@@ -9,7 +9,18 @@ export const CONFIG = {
   MOBILE_APP: process.env.MOBILE,
   SERVER: process.env.SERVER,
   GAME: {
-    ENVELOPES_NAMES: ['Enveloppe_01', 'Enveloppe__02', 'Enveloppe_03_'],
+    ENVELOPES_NAMES: [
+      'Enveloppe_01',
+      'Enveloppe_02',
+      'Enveloppe_03',
+      'Enveloppe_04',
+      'Enveloppe_05',
+      'Enveloppe_06',
+      'Enveloppe_07',
+      'Enveloppe_08',
+      'Enveloppe_09',
+      'Enveloppe_10',
+    ],
     CAMERAS: [
       {
         POSITION: { x: 4, y: 3, z: 2 },
@@ -25,7 +36,7 @@ export const CONFIG = {
   FLAGS: [
     {
       name: 'drapeau',
-      parent: 'Drapeau1',
+      parent: 'AmericanFlag',
       windForce: 0.001,
       texture: './assets/american_flag.jpg',
     },

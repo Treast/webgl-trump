@@ -44,13 +44,24 @@ class EnvelopesManager {
    * On récupère le nom des objets des enveloppes définies dans la scène selon le fichier de configuration.
    */
   private initEnvelopes() {
+    let envelopes = [...CONFIG.GAME.ENVELOPES_NAMES];
+    envelopes = envelopes.sort(() => { return 0.5 - Math.random(); });
+    const randomEnvelopes = envelopes.slice(0, 5);
+
     CONFIG.GAME.ENVELOPES_NAMES.forEach((name: string) => {
       const object = this.scene.getObjectByName(name);
       if (object) {
-        const boundingBox = this.createBoundingBox(object);
-        this.envelopes.push({ object, boundingBox, name });
+        if (randomEnvelopes.indexOf(name) > -1) {
+          console.log(object);
+          const boundingBox = this.createBoundingBox(object);
+          this.envelopes.push({ object, boundingBox, name });
+        } else {
+          object.visible = false;
+          this.scene.remove(object);
+        }
       }
     });
+    console.log(this.scene);
   }
 
   /**
