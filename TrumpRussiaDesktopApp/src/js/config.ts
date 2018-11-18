@@ -9,6 +9,11 @@ export const CONFIG = {
   MOBILE_APP: process.env.MOBILE,
   SERVER: process.env.SERVER,
   GAME: {
+    CAMERAS_NAMES: [
+      'Caméra',
+      'Caméra.1',
+      'Caméra.2',
+    ],
     ENVELOPES_NAMES: [
       'Enveloppe_01',
       'Enveloppe_02',

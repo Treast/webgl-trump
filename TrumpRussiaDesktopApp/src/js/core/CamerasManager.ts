@@ -54,10 +54,12 @@ class CamerasManager {
    */
   setCamera (id: any, playSound: boolean = true) {
     const idn = parseInt(id, 10);
+    const cameraObject = this.scene.getObjectByName(CONFIG.GAME.CAMERAS_NAMES[idn]);
+    console.log(cameraObject.position);
     this.cameraParent.position.set(
-      CONFIG.GAME.CAMERAS[idn].POSITION.x,
-      CONFIG.GAME.CAMERAS[idn].POSITION.y,
-      CONFIG.GAME.CAMERAS[idn].POSITION.z,
+      cameraObject.position.x / 100,
+      cameraObject.position.y / 100,
+      cameraObject.position.z / 100,
     );
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
