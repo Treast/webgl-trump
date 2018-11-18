@@ -28,8 +28,7 @@ canvas{
   background: $background, radial-gradient(ellipse 70% 85%, rgb(214, 214, 214) 38%, rgba(107, 107, 107, 0.44) 54%, #000 107%);
   background-blend-mode: multiply;
   opacity: 0.7;
-
-  &::before {
+  &:before, &:after {
     content: '';
     position: absolute;
     pointer-events: none;
@@ -37,7 +36,15 @@ canvas{
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./images/Pattern.svg') repeat;
+  }
+  &:after {
+    background: url("./images/branchs.svg") center repeat-x;
+    background-size: auto 168%;
+    filter: brightness(0);
+    opacity: 0.6;
+  }
+  &:before {
+    background: url("./images/Pattern.svg") repeat;
     background-size: 50px 50px;
     opacity: 0.7;
   }

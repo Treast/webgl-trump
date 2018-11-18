@@ -21,7 +21,7 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('introduction');
+    PAGES.show('end');
     this.initRoom();
     this.initPause();
     this.initGame();

@@ -26,9 +26,17 @@
     justify-content: center;
     align-items: center;
     margin-top: 23px;
-    & span{
+    &_item{
       @extend .text;
+      display: block;
+      width: 30px;
+      height: 30px;
       margin: 0 15px;
+      & img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
     }
   }
 }

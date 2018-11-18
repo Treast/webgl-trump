@@ -3,6 +3,7 @@ section[data-page="inventory"]{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 60px;
     &_item{
       display: flex;
       flex-direction: column;
@@ -10,6 +11,7 @@ section[data-page="inventory"]{
       align-items: center;
       flex-basis: 33%;
       width: 33%;
+      margin-bottom: 20px;
       &_image{
         width: 179px;
         height: 119px;
