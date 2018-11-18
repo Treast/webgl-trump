@@ -77,6 +77,22 @@ body.paused {
   z-index: 1000;
   background: rgba(#000, 0.4);
 
+  .sound-controls {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+    .sound {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .text;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 17px;
+      text-transform: uppercase;
+    }
+  }
+
 
   .content {
     width: 100%;

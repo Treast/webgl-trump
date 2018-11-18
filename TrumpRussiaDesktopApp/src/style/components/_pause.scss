@@ -7,6 +7,23 @@
   bottom: 0;
   z-index: 200;
 
+  .sound-controls {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+
+    .sound {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @extend .text;
+      font-family: 'Bai Jamjuree', sans-serif;
+      font-size: 17px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+  }
+
   & .list-actions {
     margin-top: 60px;
     transition: transform .3s ease-in, opacity .3s ease-in;

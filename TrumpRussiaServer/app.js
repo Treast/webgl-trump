@@ -95,6 +95,10 @@ io.on('connection', socket => {
     socket.broadcast.to(socket.roomId).emit('pause:off', data)
   });
 
+  socket.on('sound:toggle', data => {
+    socket.to(socket.roomId).emit('sound:toggle', data);
+  });
+
   /**
    * 6.Enveloppe
    */

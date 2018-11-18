@@ -1,14 +1,20 @@
 import { CONFIG } from '../config';
-import { Howl } from 'howler';
-import lowLag from '../libs/lowLag';
+import { Howl, Howler } from 'howler';
+import Socket from './Socket';
 
 class AudioManager {
   private audios: any = {};
   private static SOUNDS_BASE_URL: string = './assets/sounds/';
+  public isMute: boolean = false;
+  private soundElement: HTMLElement;
 
   init() {
-    lowLag.init();
-    for (const sound of CONFIG.SOUNDS) {
+    this.soundElement = document.querySelector('#pause .sound-controls');
+    this.soundElement.addEventListener('click', this.toggleMute.bind(this));
+    Socket.on('sound:toggle', this.toggleMuteSocket.bind(this));
+    this.updateSoundDisplay();
+    for (const configSound of CONFIG.SOUNDS) {
+      const sound = configSound as any;
       if (typeof sound === 'string') {
         console.log('Loading sound', sound);
         this.audios[sound] = new Howl({ src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`] });
@@ -20,9 +26,33 @@ class AudioManager {
     }
   }
 
+  toggleMute() {
+    this.isMute = !this.isMute;
+    Howler.mute(this.isMute);
+    Socket.emit('sound:toggle');
+    this.updateSoundDisplay();
+  }
+
+  toggleMuteSocket() {
+    this.isMute = !this.isMute;
+    Howler.mute(this.isMute);
+    this.updateSoundDisplay();
+  }
+
+  updateSoundDisplay() {
+    if (this.isMute) {
+      (this.soundElement.querySelector('.sound-on') as HTMLElement).style.display = 'none';
+      (this.soundElement.querySelector('.sound-off') as HTMLElement).style.display = 'flex';
+    } else {
+      (this.soundElement.querySelector('.sound-on') as HTMLElement).style.display = 'flex';
+      (this.soundElement.querySelector('.sound-off') as HTMLElement).style.display = 'none';
+    }
+  }
+
   play(sound: string) {
-    this.audios[sound].play();
-    // lowLag.play(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
+    if (!this.isMute) {
+      this.audios[sound].play();
+    }
   }
 }
 
