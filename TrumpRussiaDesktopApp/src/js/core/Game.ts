@@ -5,7 +5,7 @@
 
 import {
   Clock,
-  LoadingManager,
+  LoadingManager, Object3D,
   PerspectiveCamera,
   Scene, Vector3,
   WebGLRenderer,
@@ -41,6 +41,7 @@ class Game {
   public flags: Flag[] = [];
   private shaderTime: number = 0;
   public isPauseOn: boolean = false;
+  private fan: Object3D;
 
   /**
    * Initialisation
@@ -140,6 +141,7 @@ class Game {
       this.loaderManager,
       (scene: Scene) => {
         this.scene.add(scene);
+        this.fan = this.scene.getObjectByName('Helices');
       },
     );
     modelsLoader.load(MODELS_DATA);
@@ -158,6 +160,10 @@ class Game {
     for (const flag of this.flags) {
       flag.simulate(time);
       flag.update();
+    }
+
+    if (this.fan) {
+      this.fan.rotateY(this.fan.rotation.y + 2);
     }
 
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
