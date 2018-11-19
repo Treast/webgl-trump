@@ -18,7 +18,7 @@ import { CONFIG } from '../config';
 import { Envelope } from '../typing';
 import Socket from './Socket';
 import effectManager from './EffectManager';
-import CamerasManager from "./CamerasManager";
+import CamerasManager from './CamerasManager';
 import AudioManager from './AudioManager';
 
 class EnvelopesManager {

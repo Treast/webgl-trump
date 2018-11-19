@@ -176,8 +176,10 @@ class Game {
    * Une fois la partie finie, si l'utilisateur a trouvé toutes les enveloppes, on affiche la page de résultats,
    * sinon on lance l'effet d'écran cassé.
    * @param isWinning
+   * @param data
    */
-  onGameFinish (isWinning: boolean) {
+  onGameFinish(isWinning: boolean, data: any) {
+    console.log(data);
     if (isWinning) {
       // PAGES.show('game-result');
       CamerasManager.setEnableMovement(false);
