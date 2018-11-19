@@ -2,9 +2,46 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Real Donald Trump</title>
+        <title>Trump's secret</title>
+        <meta name="title" content="Trump's secret">
+        <meta name="description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta property="og:title" content="Trump's secret">
+        <meta property="og:url" content="https://trump.vincentriva.fr/">
+        <meta property="og:image" content="https://trump.vincentriva.fr/assets/cover.jpg">
+        <meta property="fb:app_id" content="2103204286406907">
+        <meta property="og:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta name="twitter:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta name="twitter:image:src" content="https://trump.vincentriva.fr/assets/cover.jpg">
+        <meta property="author" content="Trump's secret">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="robots" content="index, follow">
+        <meta name="twitter:creator" content="@MCpTreast">
+        <meta name="twitter:site" content="@MCpTreast">
+        <meta property="og:site_name" content="Trump's secret">
     </head>
     <body style="display: none">
+        <!-- Twitter -->
+        <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+        <!-- FACEBOOK -->
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '2103204286406907',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v3.2'
+            });
+          };
+
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div class="background"></div>
         <div id="pause">
             <div class="sound-controls">
@@ -170,10 +207,12 @@
                         <p>La prochaine fois sera la bonne !</p>
                     </div>-->
                     <div class="links">
-                        <span class="links_item">
-                            <img src="./images/icon_twitter.png" alt="Partager sur twitter">
+                        <span class="twitter-share links_item">
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=J%27ai%20pirat%C3%A9%20une%20salle%20secr%C3%A8te%20de%20Trump%20en%202min%2040s.%20Peux-tu%20faire%20mieux%20%3F">
+                                <img src="./images/icon_twitter.png" alt="Partager sur twitter">
+                            </a>
                         </span>
-                        <span class="links_item">
+                        <span class="facebook-share links_item">
                             <img src="./images/icon_facebook.png" alt="Partager sur facebook">
                         </span>
                     </div>

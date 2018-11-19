@@ -32,8 +32,12 @@ class GameManager {
     const docEl = window.document.documentElement;
     const requestFullscreen =
       // @ts-ignore
-      docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen;
-    requestFullscreen.call(docEl);
+    docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen
+      // @ts-ignore
+      || docEl.webkitRequestFullscreen || docEl.msRequestFullscreen;
+    if (requestFullscreen) {
+      requestFullscreen.call(docEl);
+    }
     PAGES.show('count');
     TimerManager.runCount();
   }

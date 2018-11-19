@@ -14,6 +14,7 @@ import { DAT_GUI } from '../utils/DatGui';
 import Socket from './Socket';
 import TimerManager from './TimerManager';
 import AudioManager from './AudioManager';
+import ShareManager from './ShareManager';
 
 export class App {
 
@@ -21,7 +22,7 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('end');
+    PAGES.show('introduction');
     this.initRoom();
     this.initPause();
     this.initGame();
@@ -44,6 +45,7 @@ export class App {
    * On lance le jeu.
    */
   initGame () {
+    ShareManager.init();
     if (CONFIG.DEBUG_MODE) DAT_GUI.init();
     Game.init(window.innerWidth, window.innerHeight);
 

@@ -5,7 +5,7 @@
 
 import {
   Clock,
-  LoadingManager,
+  LoadingManager, Object3D,
   PerspectiveCamera,
   Scene, Vector3,
   WebGLRenderer,
@@ -41,6 +41,7 @@ class Game {
   public flags: Flag[] = [];
   private shaderTime: number = 0;
   public isPauseOn: boolean = false;
+  private fan: Object3D;
 
   /**
    * Initialisation
@@ -140,6 +141,7 @@ class Game {
       this.loaderManager,
       (scene: Scene) => {
         this.scene.add(scene);
+        this.fan = this.scene.getObjectByName('Helices');
       },
     );
     modelsLoader.load(MODELS_DATA);
@@ -160,6 +162,10 @@ class Game {
       flag.update();
     }
 
+    if (this.fan) {
+      this.fan.rotateY(this.fan.rotation.y + 2);
+    }
+
     if (CONFIG.DEBUG_MODE) DAT_GUI.render();
     if (EffectManager.getEnableBadTVPass()) EffectManager.getBadTVPass().uniforms['time'].value = this.shaderTime;
     EffectManager.getFilmPass().uniforms['time'].value = this.shaderTime;
@@ -170,8 +176,10 @@ class Game {
    * Une fois la partie finie, si l'utilisateur a trouvé toutes les enveloppes, on affiche la page de résultats,
    * sinon on lance l'effet d'écran cassé.
    * @param isWinning
+   * @param data
    */
-  onGameFinish (isWinning: boolean) {
+  onGameFinish(isWinning: boolean, data: any) {
+    console.log(data);
     if (isWinning) {
       // PAGES.show('game-result');
       CamerasManager.setEnableMovement(false);
