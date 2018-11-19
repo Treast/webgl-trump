@@ -120,12 +120,10 @@ io.on('connection', socket => {
    */
 
   socket.on('page:show', name => {
-    console.log(name, socket.id);
     socket.to(socket.roomId).emit('page:show', name);
   });
 
   socket.on('disconnect', () => {
-    console.log("td");
     socket.to(socket.roomId).emit('client:disconnect');
   })
 
