@@ -10,13 +10,6 @@ export class VideoObject {
 
   static apply (videoId: string, object: Object3D) {
     const video = document.getElementById(videoId) as HTMLVideoElement;
-    // @ts-ignore
-    /*object.materials = new MeshLambertMaterial({
-      map: this.createTexture(video),
-      color: 0xffffff
-    });*/
-
-    /* it works !*/
     object.traverse((node: Object3D) => {
       // @ts-ignore
       if (node.isMesh) {
@@ -24,6 +17,7 @@ export class VideoObject {
         node.material.map = this.createTexture(video);
       }
     });
+    video.play();
   }
 
   static createTexture (video: HTMLVideoElement): VideoTexture {

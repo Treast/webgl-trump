@@ -16,6 +16,10 @@ html, body {
   overflow: hidden;
 }
 
+body{
+  background-color: #1d2f42;
+}
+
 ul, li{
   list-style: none;
 }
@@ -34,19 +38,23 @@ ul, li{
   left: 0;
   right: 0;
   bottom: 0;
-  background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
+  filter: brightness(92%) blur(0.3px);
+  background: $background, radial-gradient(ellipse 70% 85%, rgb(214, 214, 214) 38%, rgba(107, 107, 107, 0.44) 54%, #000 107%);
   background-blend-mode: multiply;
-
-  &::before {
+  opacity: 0.7;
+  &:before, &:after {
     content: '';
     position: absolute;
+    pointer-events: none;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./assets/images/Pattern.svg') repeat;
-    background-size: 40px 40px;
-    opacity: 0.5;
+  }
+  &:before {
+    background: url("./assets/images/Pattern.svg") repeat;
+    background-size: 50px 50px;
+    opacity: 0.7;
   }
 }
 
