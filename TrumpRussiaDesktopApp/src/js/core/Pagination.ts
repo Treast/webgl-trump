@@ -78,6 +78,8 @@ class Pagination {
     AudioManager.play('clickBouton.wav');
     for (const innerPage of this.innerPages) {
       if (innerPage.getAttribute('data-inner-page') === this.currentIndex.toString(10)) {
+        const voice = innerPage.getAttribute('data-voice');
+        AudioManager.playVoice(voice);
         TweenMax.to(innerPage, 0.2, {
           opacity: 1,
           delay: 0.2,

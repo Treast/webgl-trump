@@ -55,7 +55,6 @@ class CamerasManager {
   setCamera (id: any, playSound: boolean = true) {
     const idn = parseInt(id, 10);
     const cameraObject = this.scene.getObjectByName(CONFIG.GAME.CAMERAS_NAMES[idn]);
-    console.log(cameraObject.position);
     this.cameraParent.position.set(
       cameraObject.position.x / 100,
       cameraObject.position.y / 100,

@@ -10,6 +10,8 @@ class AudioManager {
   private soundElement: HTMLElement;
   private introductionSound: Howl;
   private bassSound: Howl;
+  private currentVoice: string;
+  private voicePlayed: string[] = [];
 
   init() {
     this.soundElement = document.querySelector('#pause .sound-controls');
@@ -39,6 +41,17 @@ class AudioManager {
         });
       }
       // lowLag.load(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
+    }
+  }
+
+  playVoice(voice: string) {
+    if (this.voicePlayed.indexOf(voice) === -1) {
+      if (this.currentVoice) {
+        this.audios[`voices/${this.currentVoice}`].fade(1, 0, 500);
+      }
+      this.currentVoice = voice;
+      setTimeout(() => { this.audios[`voices/${voice}`].play(); }, 1000);
+      this.voicePlayed.push(voice);
     }
   }
 

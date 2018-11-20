@@ -181,7 +181,6 @@ class Game {
    * @param data
    */
   onGameFinish(isWinning: boolean, data: any) {
-    console.log(data);
     if (isWinning) {
       // PAGES.show('game-result');
       CamerasManager.setEnableMovement(false);
