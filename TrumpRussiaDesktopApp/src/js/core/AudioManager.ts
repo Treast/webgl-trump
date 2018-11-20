@@ -1,6 +1,7 @@
 import { CONFIG } from '../config';
 import { Howl, Howler } from 'howler';
 import Socket from './Socket';
+import LoaderManager from './LoaderManager';
 
 class AudioManager {
   private audios: any = {};
@@ -19,11 +20,23 @@ class AudioManager {
       const sound = configSound as any;
       if (typeof sound === 'string') {
         console.log('Loading sound', sound);
-        this.audios[sound] = new Howl({ src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`] });
+        this.audios[sound] = new Howl({
+          src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`],
+          preload: true,
+          onload: () => {
+            LoaderManager.incrementLoading();
+          },
+        });
       } else {
         console.log('Loading sound', sound.sound);
-        this.audios[sound.sound] = new Howl({ src: [`${AudioManager.SOUNDS_BASE_URL}${sound.sound}`],
-          volume: sound.volume, loop: sound.loop || false });
+        this.audios[sound.sound] = new Howl({
+          src: [`${AudioManager.SOUNDS_BASE_URL}${sound.sound}`],
+          volume: sound.volume, loop: sound.loop || false,
+          preload: true,
+          onload: () => {
+            LoaderManager.incrementLoading();
+          },
+        });
       }
       // lowLag.load(`${AudioManager.SOUNDS_BASE_URL}${sound}`);
     }

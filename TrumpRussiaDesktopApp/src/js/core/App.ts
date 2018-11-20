@@ -22,7 +22,7 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('introduction');
+    PAGES.show('loader');
     this.initRoom();
     this.initPause();
     this.initGame();

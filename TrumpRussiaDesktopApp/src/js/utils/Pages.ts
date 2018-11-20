@@ -1,15 +1,20 @@
+import { TimelineMax } from 'gsap';
+import Socket from '../core/Socket';
+
 /**
  * Système de pages qui nous permet d'afficher des écrans prédéfinis tout au long de l'expérience.
  */
-import Socket from '../core/Socket';
 
 interface PagesManager {
   items: string[];
   init: () => void;
-  show: (name: string) => void;
+  show: (name: string, trigger?: boolean) => void;
+  fade: (name: string, trigger?: boolean) => void;
+  get: () => string;
 }
 
 export const PAGES: PagesManager = {
+
   items: [],
 
   /**
@@ -18,25 +23,55 @@ export const PAGES: PagesManager = {
   init () {
     this.items = document.querySelectorAll('[data-page]');
     this.items.forEach((item: any) => item.style.display = 'none');
-    document.body.style.display = 'block';
-    Socket.on('page:show', this.show.bind(this));
   },
 
   /**
    * On affiche la page dont le nom est passé en paramètre.
    * @param name
+   * @param trigger
    */
-  show (name: string) {
-    console.log(name);
+  show (name: string, trigger: boolean = false) {
     this.items.forEach((item: any) => {
-      if (item.getAttribute('data-page') === name) {
-        item.style.display = 'block';
-        item.classList.add('page-active');
-      } else {
-        item.style.display = 'none';
-        item.classList.remove('page-active');
-      }
+      item.style.display = item.getAttribute('data-page') === name ? 'block' : 'none';
     });
+    if (trigger) Socket.emit('page:show', name);
+  },
+
+  /**
+   * On affiche la page dont le nom est passé en paramètre.
+   * @param name
+   * @param trigger
+   */
+  fade (name: string, trigger: boolean = false) {
+    const currentPage = document.querySelector(`[data-page="${this.get()}"]`) as HTMLElement;
+    const nextPage = document.querySelector(`[data-page="${name}"]`) as HTMLElement;
+    const timeline = new TimelineMax();
+    timeline.to(currentPage, 0.2, {
+      alpha: 0,
+      onComplete: () => {
+        currentPage.style.display = 'none';
+        currentPage.style.opacity = '1';
+      },
+    });
+    timeline.fromTo(nextPage, 0.2, {
+      alpha: 0,
+    },              {
+      alpha: 1,
+      onStart: () => {
+        nextPage.style.display = 'block';
+      },
+    });
+    timeline.play();
+    if (trigger) Socket.emit('page:show', name);
+  },
+
+  get () {
+    for (const item of this.items) {
+      if (item.style.display === 'block') {
+        return item.getAttribute('data-page');
+      }
+    }
+    return null;
   },
 
 };

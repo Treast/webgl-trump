@@ -119,6 +119,10 @@ io.on('connection', socket => {
    * 7.Pages
    */
 
+  socket.on('call:end', data => {
+    socket.to(socket.roomId).emit('call:end', data);
+  });
+
   socket.on('page:show', name => {
     socket.to(socket.roomId).emit('page:show', name);
   });
