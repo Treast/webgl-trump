@@ -20,9 +20,9 @@
     </div>
     <div class="app" data-page="app">
         <div class="controller">
-            <div class="pause-button">
-                <span></span>
-            </div>
+            <span class="pause_icon_container" data-pause="button-on">
+                <span class="pause_icon"></span>
+            </span>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
                 <div data-game-state="Running">
@@ -93,7 +93,7 @@
             <h2 class="play-again">Rejouer</h2>
         </div>
     </div>
-    <div id="menu" data-show-onpage="app|inventory">
+    <div id="menu" data-game-state="Running|Wining" data-show-onpage="app|inventory">
         <div class="menu_title">
             <div>
                 <span>Menu</span>
@@ -128,15 +128,18 @@
     </div>
     <div class="inventory" data-page="inventory">
         <div class="content">
-            <div class="pause-button">
-                <span></span>
-            </div>
+            <span class="pause_icon_container">
+                <span class="pause_icon"></span>
+            </span>
             <div class="inventory">
                 <div class="inventory_title">
                     <span>Inventaire</span>
                 </div>
-                <div class="text description">
+                <div data-game-state="Wining" class="text description">
                     Découvre le contenu des enveloppes
+                </div>
+                <div data-game-state="Losing" class="text description">
+                    Dommage… Tu peux quand même regarder ce que cachent les enveloppes.
                 </div>
                 <ul class="inventory_list">
                     <li class="inventory_item inventory_item-active">
@@ -170,6 +173,14 @@
                         </span>
                     </li>
                 </ul>
+                <div class="menu" data-game-state="Losing">
+                    <h2>
+                        <span>Rejouer</span>
+                    </h2>
+                    <h2 class="red" data-page-onclick="end">
+                        Abandonner
+                    </h2>
+                </div>
             </div>
         </div>
     </div>
@@ -187,9 +198,9 @@
         </div>
     </div>
     <div class="phone">
-        <div class="pause-button">
-            <span></span>
-        </div>
+        <span class="pause_icon_container">
+            <span class="pause_icon"></span>
+        </span>
         <div class="go-back">
             <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
         </div>
@@ -262,7 +273,7 @@
             </div>
         </div>
     </div>
-    <div class="credits">
+    <div class="credits" data-page="end">
         <div class="content">
             <div class="logos">
                 <div class="logo-gobelins">

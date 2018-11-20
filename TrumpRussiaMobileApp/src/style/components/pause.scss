@@ -194,3 +194,47 @@ body.paused {
     }
   }
 }
+
+.pause_icon{
+  display: block;
+  position: relative;
+  right: 5px;
+  width: 9px;
+  height: 12px;
+  border: solid 2px #121C1D;
+  border-top: transparent;
+  border-bottom: transparent;
+  &_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 34px;
+    margin-left: 19px;
+    cursor: pointer;
+    background-color: #e0e0e0;
+    background-size: 100% 100%;
+    &:before, &:after{
+      content: '';
+      position: absolute;
+      left: 0;
+      background-color: #e0e0e0;
+    }
+    &:before{
+      top: 0;
+      width: 18px;
+      height: 18px;
+      transform: translate(-100%);
+    }
+    &:after{
+      bottom: 6px;
+      left: 8px;
+      width: 24px;
+      height: 18px;
+      transform: translate(-100%) rotate(40deg);
+    }
+  }
+}

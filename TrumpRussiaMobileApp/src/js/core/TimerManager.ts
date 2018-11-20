@@ -11,7 +11,7 @@ import { TweenMax } from 'gsap';
 import GameManager, { GameState } from './GameManager';
 
 class TimerManager {
-  public static TIME: number = 100; // 180
+  public static TIME: number = 5; // 180
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
@@ -23,7 +23,6 @@ class TimerManager {
     this.interval = null;
     this.countOuter = document.querySelector('[data-page="count"] .count .outer');
     this.countInner = document.querySelector('[data-page="count"] .count .inner');
-    // this.runCount();
   }
 
   /**
@@ -40,6 +39,7 @@ class TimerManager {
   public runCount() {
     Socket.emit('game:count');
     let count = 6;
+    let started = false;
     const interval = setInterval(() => {
       TweenMax.fromTo(this.countOuter, 1, {
         y: 0,
@@ -56,6 +56,10 @@ class TimerManager {
           if (count <= 0) {
             clearInterval(interval);
             PAGES.fade('app');
+            if (!started) {
+              started = true;
+              this.start();
+            }
           }
         },
       });
@@ -69,6 +73,10 @@ class TimerManager {
           if (count <= -1) {
             clearInterval(interval);
             PAGES.fade('app');
+            if (!started) {
+              started = true;
+              this.start();
+            }
           } else {
             this.countOuter.innerText = count.toString();
           }
@@ -88,6 +96,7 @@ class TimerManager {
    * On lance l'intervalle qui va calculer le temps restant chaque seconde et l'envoyer au desktop.
    */
   start() {
+    GameManager.updateState(GameState.Running);
     this.interval = setInterval(() => {
       if (this.isRunning) {
         this.remainingTime -= 1;
@@ -97,6 +106,7 @@ class TimerManager {
         if (this.remainingTime === 0) {
           App.setWinState(false);
           GameManager.updateState(GameState.Losing);
+          PAGES.fade('inventory', false);
           Socket.emit('timer:end');
           clearInterval(this.interval);
         }

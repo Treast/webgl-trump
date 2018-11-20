@@ -168,5 +168,7 @@
 }
 
 [data-page] {
-  padding-bottom: 130px;
+  body:not(.experience-losing) &{
+    padding-bottom: 130px;
+  }
 }

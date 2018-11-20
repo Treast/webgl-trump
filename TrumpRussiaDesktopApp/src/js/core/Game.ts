@@ -31,6 +31,12 @@ interface FlagInformations {
   texture: string;
 }
 
+export enum GameState {
+  Running = 'Running',
+  Losing = 'Losing',
+  Wining = 'Wining',
+}
+
 class Game {
   private width: number;
   private height: number;
@@ -43,6 +49,8 @@ class Game {
   private shaderTime: number = 0;
   public isPauseOn: boolean = false;
   private fan: Object3D;
+  private state: GameState;
+  private elementsGameState: NodeListOf<Element>;
 
   /**
    * Initialisation
@@ -63,6 +71,8 @@ class Game {
     TimerManager.init();
     this.initModels(() => this.onInitDone());
     this.initSocketListeners();
+    this.elementsGameState = document.querySelectorAll('[data-game-state]');
+    this.updateState(GameState.Running);
   }
 
   /**
@@ -136,7 +146,6 @@ class Game {
    */
   initModels (onLoaded: () => void) {
     this.loaderManager = new LoadingManager();
-    // this.loaderManager.onProgress = this.onModelsLoadingProgress.bind(this);
     this.loaderManager.onLoad = onLoaded;
     const modelsLoader = new ModelsLoader(
       this.loaderManager,
@@ -181,13 +190,27 @@ class Game {
    * @param data
    */
   onGameFinish(isWinning: boolean, data: any) {
+    (document.getElementById('experience')).classList.add('experience-finish');
+    CamerasManager.setEnableMovement(false);
     if (isWinning) {
-      // PAGES.show('game-result');
-      CamerasManager.setEnableMovement(false);
+      this.updateState(GameState.Wining);
     } else {
+      this.updateState(GameState.Losing);
       EffectManager.setBreakScreen(true);
-      (document.getElementById('experience')).classList.add('experience-finish');
     }
+    (document.getElementById('experience')).classList.add(`experience-${this.state.toLowerCase()}`);
+  }
+
+  /**
+   * Mettre à jour l'état du jeu
+   * @param {GameState} state
+   */
+  private updateState(state: GameState) {
+    this.state = state;
+    this.elementsGameState.forEach((el: HTMLElement) => {
+      const exists = el.getAttribute('data-game-state').split('|').indexOf(state) !== -1;
+      el.style.display = exists ? 'block' : 'none';
+    });
   }
 }
 

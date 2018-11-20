@@ -40,7 +40,6 @@ class App {
     this.initPauseManager();
     this.initMenuManager();
     this.initAudioManager();
-    this.initTimerManager();
     this.initSlider();
     this.initPhone();
     this.initGameManager();
@@ -91,13 +90,6 @@ class App {
    */
   private initSlider() {
     ZoomManager.init();
-  }
-
-  /**
-   * Initialisation du TimerManager
-   */
-  private initTimerManager() {
-    TimerManager.start();
   }
 
   /**

@@ -26,6 +26,9 @@ export const PAGES: PagesManager = {
     this.dependencies = document.querySelectorAll('[data-show-onpage]');
     this.items.forEach((item: any) => item.style.display = 'none');
     this.dependencies.forEach((item: any) => item.style.display = 'none');
+    (document.querySelectorAll('[data-page-onclick]')).forEach((el: HTMLElement) => {
+      el.addEventListener('click', this.show.bind(this, el.getAttribute('data-page-onclick'), true));
+    });
   },
 
   /**
@@ -81,7 +84,9 @@ export const PAGES: PagesManager = {
 
   handleDependencies (name: string) {
     this.dependencies.forEach((el: HTMLElement) => {
-      el.style.display = el.getAttribute('data-show-onpage').split('|').indexOf(name) !== -1 ? 'block' : 'none';
+      if (!el.hasAttribute('data-game-state')) {
+        el.style.display = el.getAttribute('data-show-onpage').split('|').indexOf(name) !== -1 ? 'block' : 'none';
+      }
     });
   },
 

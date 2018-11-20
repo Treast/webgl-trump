@@ -22,12 +22,14 @@ export class App {
    * Initialisation
    */
   init () {
+    document.body.style.display = 'block';
     PAGES.show('loader');
     this.initRoom();
     this.initPause();
     this.initGame();
     AudioManager.playIntroSound();
     Socket.on('game:start', this.start.bind(this));
+    Socket.on('page:show', PAGES.show.bind(PAGES));
   }
 
   /**

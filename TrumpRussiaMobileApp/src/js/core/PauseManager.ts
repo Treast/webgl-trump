@@ -13,7 +13,7 @@ class PauseManager {
    * Initialisation
    */
   init() {
-    this.elements = document.querySelectorAll('.pause-button');
+    this.elements = document.querySelectorAll('.pause_icon_container');
     this.setupListener();
     Socket.on('pause:on', this.on.bind(this));
     Socket.on('pause:off', this.off.bind(this));

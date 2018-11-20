@@ -1,6 +1,6 @@
 .experience {
   position: relative;
-  &-finish {
+  &-losing {
     .camera_text {
       display: none
     }
@@ -130,6 +130,10 @@
   font-size: 25px;
   letter-spacing: 6px;
   transform: translateX(-50%);
+  transition: transform .3s ease;
+  .experience-losing &{
+    transform: translate(-50%, -20px);
+  }
 }
 
 .camera_center {
