@@ -22,11 +22,11 @@ export class App {
    * Initialisation
    */
   init () {
-    PAGES.show('introduction');
+    PAGES.show('loader');
     this.initRoom();
     this.initPause();
     this.initGame();
-    AudioManager.play('Musique_IntroFin.mp3');
+    AudioManager.playIntroSound();
     Socket.on('game:start', this.start.bind(this));
   }
 
@@ -67,6 +67,7 @@ export class App {
 
   startCount() {
     TimerManager.runCount(() => {
+      AudioManager.playBassSound();
       PAGES.show('app');
       Game.animate();
     });

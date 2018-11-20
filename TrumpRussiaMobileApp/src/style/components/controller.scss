@@ -157,14 +157,25 @@
       flex-grow: 2;
       flex-basis: 50%;
 
+      span.button-envelop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 105px;
+        height: 105px;
+        border-bottom-left-radius: 10px;
+        border-top-right-radius: 10px;
+        background-color: #fff;
+      }
+
       img.envelope-draggable {
-        width: 108px;
-        height: 67px;
+        width: 67px;
+        height: 72px;
       }
       .envelope-count {
         @extend .text;
         font-family: 'Bai Jamjuree', sans-serif;
-        font-size: 38px;
+        font-size: 25px;
         margin-top: 20px;
       }
     }

@@ -3,7 +3,7 @@
  * du mobile. On peut également changer de zoom.
  */
 
-import { Group, PerspectiveCamera, Scene } from 'three';
+import { Group, PerspectiveCamera, Scene, Vector3 } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
 import Socket from './Socket';

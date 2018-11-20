@@ -53,7 +53,11 @@ export const CONFIG = {
     },
   ],
   SOUNDS: [
-    'BasseFond.mp3',
+    {
+      sound: 'BasseFond.mp3',
+      volume: 0,
+      loop: true,
+    },
     'ChangerCam.wav',
     'clickBouton.wav',
     'EnveloppeRecoltee.wav',
@@ -62,5 +66,15 @@ export const CONFIG = {
       volume: 0.1,
     },
     'TimmerDepart.wav',
+    'voices/01_MiseContexte.wav',
+    'voices/02_Mission.wav',
+    'voices/03_Enveloppes.wav',
+    'voices/04_CameraControlables.wav',
+    'voices/05_QRCode.wav',
+    'voices/06_TempsEcoule.wav',
+    'voices/07_5EnveloppesRecoltee.wav',
+    'voices/08_Aide01.wav',
+    'voices/08_Aide02.wav',
+    'voices/08_Aide03.wav',
   ],
 };

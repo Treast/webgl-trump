@@ -22,6 +22,7 @@ import EffectManager from './EffectManager';
 import TimerManager from './TimerManager';
 import { VideoObject } from '../utils/VideoObject';
 import Flag from './Flag';
+import LoaderManager from './LoaderManager';
 
 interface FlagInformations {
   name: string;
@@ -140,6 +141,7 @@ class Game {
     const modelsLoader = new ModelsLoader(
       this.loaderManager,
       (scene: Scene) => {
+        LoaderManager.incrementLoading();
         this.scene.add(scene);
         this.fan = this.scene.getObjectByName('Helices');
       },
