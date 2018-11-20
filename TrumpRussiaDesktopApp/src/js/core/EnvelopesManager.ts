@@ -52,7 +52,6 @@ class EnvelopesManager {
       const object = this.scene.getObjectByName(name);
       if (object) {
         if (randomEnvelopes.indexOf(name) > -1) {
-          console.log(object);
           const boundingBox = this.createBoundingBox(object);
           this.envelopes.push({ object, boundingBox, name });
         } else {
@@ -61,7 +60,6 @@ class EnvelopesManager {
         }
       }
     });
-    console.log(this.scene);
   }
 
   /**

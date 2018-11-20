@@ -72,8 +72,7 @@ class PhoneManager {
   }
 
   endCall() {
-    const audio = new Audio('./assets/sounds/fortnite-death-sound.mp3');
-    audio.play();
+    (document.querySelector('.credits') as HTMLElement).style.display = 'block';
   }
 }
 
