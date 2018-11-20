@@ -27,18 +27,54 @@
   h1 {
     @extend .text;
     font-family: 'Bai Jamjuree', sans-serif;
-    font-size: 25px;
+    font-size: 23px;
     text-transform: uppercase;
     text-align: center;
-    margin: 100px 0 50px;
+    margin: 50px 0;
+    letter-spacing: 4px;
   }
 
-  ul {
-    flex-grow: 1;
-    li {
-      @extend .text;
-      font-family: 'Bai Jamjuree', sans-serif;
-      font-size: 20px;
+  h2 {
+    @extend .text;
+    text-shadow: none;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 20px;
+    letter-spacing: 6px;
+    text-align: center;
+    margin: 40px 0 15px;
+  }
+
+  p {
+    @extend .text;
+    text-shadow: none;
+    font-family: 'Bai Jamjuree', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    padding: 0 30px;
+  }
+
+  .content {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    right: 20px;
+    bottom: 40px;
+    overflow-y: scroll;
+    padding-bottom: 40px;
+  }
+
+  .envelop-content {
+    p {
+      a, a:hover {
+        display: block;
+        @extend .text;
+        text-shadow: none;
+        text-decoration: none;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        padding: 10px 0;
+      }
     }
   }
 
@@ -46,8 +82,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: auto;
-    margin-bottom: 40px;
     .logo-gobelins {
       filter: brightness(0) invert(1);
       margin-right: 40px;

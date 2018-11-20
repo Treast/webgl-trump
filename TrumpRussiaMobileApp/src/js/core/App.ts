@@ -33,7 +33,7 @@ class App {
    * Initialisation
    */
   init() {
-    PAGES.show('count');
+    PAGES.show('credits');
     this.joinRoom();
     this.initCamerasManager();
     this.initEnvelopesManager();

@@ -1,6 +1,7 @@
 import { TweenMax } from 'gsap';
 import { CONFIG } from '../config';
 import { PAGES } from '../utils/Pages';
+import Pagination from './Pagination';
 
 class LoaderManager {
   private readonly element: HTMLElement;
@@ -29,6 +30,7 @@ class LoaderManager {
     this.element.style.width = `${width}px`;
 
     if (this.currentLoading === this.numberOfElementsToLoad) {
+      Pagination.refreshPage();
       PAGES.fade('introduction');
     }
   }

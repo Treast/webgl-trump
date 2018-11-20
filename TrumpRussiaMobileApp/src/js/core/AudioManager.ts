@@ -1,6 +1,7 @@
 import { CONFIG } from '../config';
 import { Howl, Howler } from 'howler';
 import Socket from '../utils/Socket';
+import LoaderManager from '../../../../TrumpRussiaDesktopApp/src/js/core/LoaderManager';
 
 class AudioManager {
   private audios: any = {};
@@ -17,7 +18,10 @@ class AudioManager {
       const sound = configSound as any;
       if (typeof sound === 'string') {
         console.log('Loading sound', sound);
-        this.audios[sound] = new Howl({ src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`] });
+        this.audios[sound] = new Howl({
+          src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`],
+          preload: true,
+        });
       } else {
         console.log('Loading sound', sound.sound);
         this.audios[sound.sound] = new Howl({ src: [`${AudioManager.SOUNDS_BASE_URL}${sound.sound}`], volume: sound.volume });

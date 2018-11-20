@@ -24,8 +24,6 @@ class Pagination {
   init() {
     this.initPages();
     this.initListeners();
-    this.refreshPage();
-    this.refreshClasses();
   }
 
   /**
@@ -49,7 +47,7 @@ class Pagination {
   /**
    * On regarde sur quelle page on se trouve et on met à jour l'affichage de la pagination et des boutons.
    */
-  private refreshClasses() {
+  public refreshClasses() {
     if (this.currentIndex === this.maxIndex) {
       this.element.querySelector('.arrow-right').classList.add('disabled');
     } else {
@@ -74,7 +72,7 @@ class Pagination {
   /**
    * On change l'opacité de la page courante et de la page suivante.
    */
-  private refreshPage() {
+  public refreshPage() {
     AudioManager.play('clickBouton.wav');
     for (const innerPage of this.innerPages) {
       if (innerPage.getAttribute('data-inner-page') === this.currentIndex.toString(10)) {
