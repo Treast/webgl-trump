@@ -8,7 +8,7 @@
   width: 100%;
   padding: 30px;
   z-index: 400;
-  background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
+  // background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
   background-blend-mode: multiply;
   transition: transform 0.3s ease-in-out;
 
@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('./assets/images/Pattern.svg') repeat;
+    //background: url('./assets/images/Pattern.svg') repeat;
     background-size: 40px 40px;
     opacity: 0.5;
   }
@@ -61,7 +61,7 @@
     width: 212px;
     flex-grow: 0;
     flex-shrink: 0;
-    background: $background;
+    // background: $background;
     color: #ffffff;
     text-shadow: 0 0 5px #ffffff;
     span {
@@ -73,7 +73,7 @@
       text-transform: uppercase;
       letter-spacing: 1.5px;
       border-top: 1px solid #ffffff;
-      background: $background;
+      // background: $background;
       width: 155px;
       height: 31px;
 

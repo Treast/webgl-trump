@@ -14,17 +14,34 @@
       margin: 0 auto -2px;
       width: 160px;
       position: relative;
-      background: $background;
+      // background: $background;
+      &:before, &:after{
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 2px;
+        width: 24vw;
+        height: 1px;
+        background-color: #fff;
+      }
+      &:before{
+        left: 0;
+        transform: translateX(-100%);
+      }
+      &:after{
+        right: 0;
+        transform: translateX(100%);
+      }
     }
     span {
       @extend .text;
-      padding: 7px 34px;
+      padding: 8px 34px;
       font-family: 'Bai Jamjuree', sans-serif;
       font-size: 14px;
       text-transform: uppercase;
       letter-spacing: 1.5px;
       border-top: 1px solid #ffffff;
-      background: $background;
+      // background: $background;
       height: 32px;
 
       &::before {
@@ -65,7 +82,7 @@
     width: 90%;
     height: 88px;
     margin: 0 auto;
-    border-top: 1px solid #fff;
+    border-top: 1px solid transparent;
     z-index: -1;
 
     .badge {

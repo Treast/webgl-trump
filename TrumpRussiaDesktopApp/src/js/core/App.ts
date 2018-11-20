@@ -61,7 +61,7 @@ export class App {
    * On affiche le canvas et on rend la scène THREE.JS
    */
   start () {
-    PAGES.show('count');
+    PAGES.fade('count');
     Socket.on('game:count', this.startCount.bind(this));
   }
 

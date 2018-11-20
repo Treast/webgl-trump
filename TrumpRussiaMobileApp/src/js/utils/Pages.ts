@@ -10,6 +10,7 @@ interface PagesManager {
   init: () => void;
   show: (name: string, trigger?: boolean) => void;
   fade: (name: string, trigger?: boolean) => void;
+  handleDependencies: (name: string) => void;
   get: () => string;
 }
 
@@ -22,7 +23,9 @@ export const PAGES: PagesManager = {
    */
   init () {
     this.items = document.querySelectorAll('[data-page]');
+    this.dependencies = document.querySelectorAll('[data-show-onpage]');
     this.items.forEach((item: any) => item.style.display = 'none');
+    this.dependencies.forEach((item: any) => item.style.display = 'none');
   },
 
   /**
@@ -31,6 +34,7 @@ export const PAGES: PagesManager = {
    * @param trigger
    */
   show (name: string, trigger: boolean = false) {
+    this.handleDependencies(name);
     this.items.forEach((item: any) => {
       item.style.display = item.getAttribute('data-page') === name ? 'block' : 'none';
     });
@@ -43,6 +47,7 @@ export const PAGES: PagesManager = {
    * @param trigger
    */
   fade (name: string, trigger: boolean = false) {
+    this.handleDependencies(name);
     const currentPage = document.querySelector(`[data-page="${this.get()}"]`) as HTMLElement;
     const nextPage = document.querySelector(`[data-page="${name}"]`) as HTMLElement;
     const timeline = new TimelineMax();
@@ -72,6 +77,12 @@ export const PAGES: PagesManager = {
       }
     }
     return null;
+  },
+
+  handleDependencies (name: string) {
+    this.dependencies.forEach((el: HTMLElement) => {
+      el.style.display = el.getAttribute('data-show-onpage').split('|').indexOf(name) !== -1 ? 'block' : 'none';
+    });
   },
 
 };
