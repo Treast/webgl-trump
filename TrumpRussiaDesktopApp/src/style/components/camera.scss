@@ -38,10 +38,10 @@
   margin-left: 16px;
 
   animation-name: RecAnimation;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: step-start;
   animation-iteration-count: infinite;
   animation-fill-mode: both;
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-direction: alternate;
 }
 
@@ -106,6 +106,17 @@
 
 .camera_label span {
   margin-left: 5px;
+}
+
+.camera_help {
+  @extend .text;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 18px;
+  width: 100%;
 }
 
 .camera_timer {
@@ -205,9 +216,12 @@
 
 @keyframes RecAnimation {
   from {
-    transform: scale(1);
+    opacity: 1;
   }
-  to {
-    transform: scale(0.8);
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

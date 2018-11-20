@@ -2,11 +2,56 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Real Donald Trump</title>
-    <link href="app.css" rel="stylesheet"><link href="app.6983fe10fce8e6ed8f96.css" rel="stylesheet"></head>
+        <title>Trump's secret</title>
+        <meta name="title" content="Trump's secret">
+        <meta name="description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta property="og:title" content="Trump's secret">
+        <meta property="og:url" content="https://trump.vincentriva.fr/">
+        <meta property="og:image" content="https://trump.vincentriva.fr/assets/cover.jpg">
+        <meta property="fb:app_id" content="2103204286406907">
+        <meta property="og:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta name="twitter:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta name="twitter:image:src" content="https://trump.vincentriva.fr/assets/cover.jpg">
+        <meta property="author" content="Trump's secret">
+        <meta property="og:type" content="website">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="robots" content="index, follow">
+        <meta name="twitter:creator" content="@MCpTreast">
+        <meta name="twitter:site" content="@MCpTreast">
+        <meta property="og:site_name" content="Trump's secret">
+    <link href="app.css" rel="stylesheet"><link href="app.b1b47d5771fa12f7833c.css" rel="stylesheet"></head>
     <body style="display: none">
+        <!-- Twitter -->
+        <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+        <!-- FACEBOOK -->
+        <script>
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId            : '2103204286406907',
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : 'v3.2'
+            });
+          };
+
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+        </script>
         <div class="background"></div>
         <div id="pause">
+            <div class="sound-controls">
+                <div class="sound sound-on">
+                    On <img src="./assets/images/SoundOn@2x.png" alt="">
+                </div>
+                <div class="sound sound-off">
+                    Off <img src="./assets/images/SoundOff@2x.png" alt="">
+                </div>
+            </div>
             <div class="content">
                 <h1>Pause</h1>
                 <ul class="list-actions">
@@ -59,8 +104,8 @@
                     </div>
                     <div class="inner-page introduction_map" data-inner-page="3">
                         <div class="introduction_map_content">
-                            <img class="introduction_map_image" src="images/Groupe 85@2x.png">
-                            <p class="introduction_map_text">6 enveloppes  sont cachées un peu partout dans la pièce. Elles contiennent des informations que Trump et Poutine aimeraient décridibiliser car elles portent une atteinte à leur popularité.<br /><br />À toi de les récolter pour voir ce qu’elles cachent.</p>
+                            <img class="introduction_map_image" src="images/Groupe 71@2x.png">
+                            <p class="introduction_map_text">5 enveloppes sont cachées un peu partout dans la pièce. Elles contiennent des informations que Trump et Poutine aimeraient décridibiliser car elles portent une atteinte à leur popularité.<br /><br />À toi de les récolter pour voir ce qu’elles cachent.</p>
                         </div>
                     </div>
                     <div class="inner-page introduction_map" data-inner-page="4">
@@ -144,10 +189,6 @@
                         <span class="envelopes_item_number text">05</span>
                         <img class="envelopes_item_image" src="images/envelope_5.png">
                     </li>
-                    <li class="envelopes_item">
-                        <span class="envelopes_item_number text">06</span>
-                        <img class="envelopes_item_image" src="images/envelope_6.png">
-                    </li>
                 </ul>
             </div>
         </section>
@@ -166,8 +207,14 @@
                         <p>La prochaine fois sera la bonne !</p>
                     </div>-->
                     <div class="links">
-                        <span>Picto 1</span>
-                        <span>Picto 2</span>
+                        <span class="twitter-share links_item">
+                            <a target="_blank" href="https://twitter.com/intent/tweet?text=J%27ai%20pirat%C3%A9%20une%20salle%20secr%C3%A8te%20de%20Trump%20en%202min%2040s.%20Peux-tu%20faire%20mieux%20%3F">
+                                <img src="./images/icon_twitter.png" alt="Partager sur twitter">
+                            </a>
+                        </span>
+                        <span class="facebook-share links_item">
+                            <img src="./images/icon_facebook.png" alt="Partager sur facebook">
+                        </span>
                     </div>
                 </main>
                 <footer>

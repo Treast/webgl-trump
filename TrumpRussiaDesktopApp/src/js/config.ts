@@ -53,7 +53,11 @@ export const CONFIG = {
     },
   ],
   SOUNDS: [
-    'BasseFond.mp3',
+    {
+      sound: 'BasseFond.mp3',
+      volume: 0,
+      loop: true,
+    },
     'ChangerCam.wav',
     'clickBouton.wav',
     'EnveloppeRecoltee.wav',

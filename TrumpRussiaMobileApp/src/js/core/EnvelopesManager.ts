@@ -13,10 +13,11 @@ import Timer from './TimerManager';
 
 class EnvelopesManager {
 
-  private static INACTIVE_OPACITY = '0.4';
+  private static INACTIVE_OPACITY = '0.2';
   private static NUMBER_ENVELOPES: number = 5;
 
   private readonly btnEnvelope: HTMLImageElement;
+  private readonly btnEnvelopeWrapper: HTMLImageElement;
   private readonly inventory: HTMLElement;
   private readonly envelopesActives: NodeListOf<HTMLElement>;
   private readonly goBack: HTMLElement;
@@ -25,13 +26,14 @@ class EnvelopesManager {
 
   constructor() {
     this.btnEnvelope = (document.getElementById('envelope-draggable') as HTMLImageElement);
+    this.btnEnvelopeWrapper = (document.querySelector('#envelop .button-envelop') as HTMLImageElement);
     this.inventory = document.getElementById('inventory');
     // this.envelopes = this.inventory.querySelectorAll('.inventory_item');
     this.envelopesActives = document.querySelectorAll('.inventory .inventory_item-active span');
     this.goBack = document.querySelector('.envelope .go-back');
     this.currentHover = null;
 
-    this.btnEnvelope.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
+    this.btnEnvelopeWrapper.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
   onClickActive(e: Event) {
@@ -73,7 +75,7 @@ class EnvelopesManager {
    */
   onHoverEnvelope(envelope?: HTMLElement) {
     this.currentHover = envelope;
-    this.btnEnvelope.style.opacity = this.currentHover === null ? EnvelopesManager.INACTIVE_OPACITY : '1';
+    this.btnEnvelopeWrapper.style.opacity = this.currentHover === null ? EnvelopesManager.INACTIVE_OPACITY : '1';
   }
 
   /**

@@ -50,9 +50,7 @@ class AudioManager {
   }
 
   play(sound: string) {
-    if (!this.isMute) {
-      this.audios[sound].play();
-    }
+    this.audios[sound].play();
   }
 }
 
