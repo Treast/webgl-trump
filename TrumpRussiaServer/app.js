@@ -127,6 +127,10 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('page:show', name);
   });
 
+  socket.on('restart', () => {
+    socket.to(socket.roomId).emit('restart');
+  })
+
   socket.on('disconnect', () => {
     socket.to(socket.roomId).emit('client:disconnect');
   })

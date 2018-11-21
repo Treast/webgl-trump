@@ -83,6 +83,11 @@
     & span{
       color: #FF0000;
       text-shadow: 0 0 5px #FF0000;
+
+      a {
+        color: #FF0000;
+        text-shadow: 0 0 5px #FF0000;
+      }
     }
     & .border {
       background-color: #FF0000;
