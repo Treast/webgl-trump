@@ -70,7 +70,7 @@ export const PAGES: PagesManager = {
       },
     });
     timeline.play();
-    if (trigger) Socket.emit('page:show', name);
+    if (trigger) Socket.emit('page:fade', name);
   },
 
   get () {

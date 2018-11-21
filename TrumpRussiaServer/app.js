@@ -124,7 +124,11 @@ io.on('connection', socket => {
   });
 
   socket.on('page:show', name => {
-    socket.to(socket.roomId).emit('page:show', name);
+    socket.broadcast.to(socket.roomId).emit('page:show', name);
+  });
+
+  socket.on('page:fade', name => {
+    socket.broadcast.to(socket.roomId).emit('page:fade', name);
   });
 
   socket.on('disconnect', () => {

@@ -91,7 +91,7 @@ class EnvelopesManager {
     this.updateCountEnvelope();
     if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {
       // todo: implements win state
-      PAGES.fade('');
+      PAGES.fade('inventory', true);
       App.setWinState(true, Timer.remainingTime);
     }
   }
