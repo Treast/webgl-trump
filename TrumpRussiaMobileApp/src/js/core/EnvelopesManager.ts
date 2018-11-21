@@ -75,6 +75,11 @@ class EnvelopesManager {
    */
   onHoverEnvelope(envelope?: HTMLElement) {
     this.currentHover = envelope;
+    if (this.currentHover === null) {
+      this.btnEnvelopeWrapper.classList.remove('active');
+    } else {
+      this.btnEnvelopeWrapper.classList.add('active');
+    }
     this.btnEnvelopeWrapper.style.opacity = this.currentHover === null ? EnvelopesManager.INACTIVE_OPACITY : '1';
   }
 

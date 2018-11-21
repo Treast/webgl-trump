@@ -26,12 +26,18 @@ class LoaderManager {
 
   updateLoading() {
     const loading = this.currentLoading / this.numberOfElementsToLoad * 100;
+    (document.querySelector('.loader_value')).innerText = `${Math.round(loading)}%`;
     const width = loading * this.elementMaxWidth / 100;
-    this.element.style.width = `${width}px`;
+    if (this.currentLoading < this.numberOfElementsToLoad - 2) this.element.style.width = `${width}px`;
 
     if (this.currentLoading === this.numberOfElementsToLoad) {
-      Pagination.refreshPage();
-      PAGES.fade('introduction');
+      setTimeout(
+        () => {
+          Pagination.refreshPage();
+          PAGES.fade('introduction');
+        },
+        500,
+      );
     }
   }
 }
