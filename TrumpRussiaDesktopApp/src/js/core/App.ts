@@ -30,6 +30,7 @@ export class App {
     AudioManager.playIntroSound();
     Socket.on('game:start', this.start.bind(this));
     Socket.on('page:show', PAGES.show.bind(PAGES));
+    Socket.on('page:fade', PAGES.fade.bind(PAGES));
   }
 
   /**

@@ -5,13 +5,13 @@
 
 import Socket from '../utils/Socket';
 import { PAGES } from '../utils/Pages';
-import EnvelopesManager from './EnvelopesManager';
 import App from './App';
 import { TweenMax } from 'gsap';
 import GameManager, { GameState } from './GameManager';
 
 class TimerManager {
-  public static TIME: number = 500; // 180
+
+  public static TIME: number = 180; // 180
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;
