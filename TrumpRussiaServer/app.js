@@ -131,6 +131,10 @@ io.on('connection', socket => {
     socket.broadcast.to(socket.roomId).emit('page:fade', name);
   });
 
+  socket.on('restart', () => {
+    socket.to(socket.roomId).emit('restart');
+  })
+
   socket.on('disconnect', () => {
     socket.to(socket.roomId).emit('client:disconnect');
   })

@@ -4,7 +4,6 @@
 
 import Socket from '../utils/Socket';
 import Timer from './TimerManager';
-import {PAGES} from '../utils/Pages';
 
 class PauseManager {
   private elements: NodeListOf<HTMLElement>;
@@ -34,6 +33,10 @@ class PauseManager {
     document.querySelector('.timer-run').addEventListener('click', () => {
       Socket.emit('pause:off');
       this.off();
+    });
+
+    document.querySelector('.play-again').addEventListener('click', () => {
+      Socket.emit('restart');
     });
   }
 

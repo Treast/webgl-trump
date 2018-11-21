@@ -83,6 +83,9 @@ class Game {
     Socket.on('game:lose', this.onGameFinish.bind(this, false));
     Socket.on('pause:on', this.onGamePauseOn.bind(this));
     Socket.on('pause:off', this.onGamePauseOff.bind(this));
+    Socket.on('restart', () => {
+      window.location.reload();
+    });
   }
 
   onGamePauseOn() {
