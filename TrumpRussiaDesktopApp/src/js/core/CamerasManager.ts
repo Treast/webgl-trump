@@ -72,7 +72,6 @@ class CamerasManager {
    */
   changeOrientation (data: Orientation) {
     if (!Game.isPauseOn) {
-      console.log(this.cameraParent.position);
       if (this.cameraParent.position.z > 0) {
         this.cameraParent.rotation.x = -(data.beta * Math.PI / 180) * -1;
       } else {

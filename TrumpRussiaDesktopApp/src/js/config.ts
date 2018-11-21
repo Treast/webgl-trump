@@ -54,7 +54,7 @@ export const CONFIG = {
   ],
   SOUNDS: [
     {
-      sound: 'BasseFond.mp3',
+      sound: 'AmbianceEnveloppes.wav',
       volume: 0,
       loop: true,
     },
