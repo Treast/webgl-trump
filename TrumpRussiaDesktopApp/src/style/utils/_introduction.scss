@@ -93,6 +93,14 @@ section[data-page="introduction"] {
         font-family: 'Chakra Petch', sans-serif;
         transition: all 0.4s ease-in-out;
 
+        h1 {
+          font-size: 27px;
+          text-transform: uppercase;
+          text-align: center;
+          margin-bottom: 35px;
+          letter-spacing: 4px;
+        }
+
         #qrcode {
           text-align: center;
         }
