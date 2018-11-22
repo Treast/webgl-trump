@@ -35,8 +35,10 @@ class PauseManager {
       this.off();
     });
 
-    document.querySelector('.play-again').addEventListener('click', () => {
-      Socket.emit('restart');
+    document.querySelectorAll('.play-again').forEach((element) => {
+      element.addEventListener('click', () => {
+        Socket.emit('restart');
+      });
     });
   }
 

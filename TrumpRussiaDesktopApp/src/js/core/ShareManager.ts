@@ -1,4 +1,5 @@
 import Game, { GameState } from './Game';
+import TimerManager from './TimerManager';
 
 class ShareManager {
   private twitterButton: HTMLElement;
@@ -18,7 +19,8 @@ class ShareManager {
   changeText() {
     switch (Game.state) {
       case GameState.Wining:
-        const text = `J'ai piraté une salle secrète de Trump en XX:XX. Peux-tu faire mieux ? #TrumpsSecret\n\nhttps://trump.vincentriva.fr`;
+        const text = `J'ai piraté une salle secrète de Trump en ${TimerManager.timerMinutes}:${TimerManager.timerSeconds}.
+        Peux-tu faire mieux ? #TrumpsSecret\n\nhttps://trump.vincentriva.fr`;
         this.twitterButton.parentElement.setAttribute('href', `https://twitter.com/intent/tweet?text=${text}`);
         break;
       case GameState.Losing:

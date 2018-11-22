@@ -24,6 +24,7 @@ import { VideoObject } from '../utils/VideoObject';
 import Flag from './Flag';
 import LoaderManager from './LoaderManager';
 import { App } from './App';
+import ShareManager from './ShareManager';
 
 interface FlagInformations {
   name: string;
@@ -208,6 +209,7 @@ class Game {
       this.updateState(GameState.Losing);
       EffectManager.setBreakScreen(true);
     }
+    ShareManager.changeText();
     (document.getElementById('experience')).classList.add(`experience-${this.state.toLowerCase()}`);
   }
 
