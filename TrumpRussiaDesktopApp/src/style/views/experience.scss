@@ -14,3 +14,18 @@
     opacity: 1;
   }
 }
+
+.experience_envelope_keeped{
+  @extend .text;
+  display: block;
+  position: absolute;
+  left: 50%;
+  bottom: 100px;
+  visibility: hidden;
+  opacity: 0;
+  font-size: 30px;
+  transition: opacity .3s ease, visibility .3s ease;
+  transform: translate(-50%, -50%);
+  color: #00FF0A;
+  text-shadow: 0 0 5px #00FF0A;
+}

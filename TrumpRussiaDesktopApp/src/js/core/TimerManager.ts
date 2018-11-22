@@ -30,6 +30,7 @@ class TimerManager {
 
   runCount(onCountDone: () => void) {
     let count = 6;
+    let started = false;
     const interval = setInterval(() => {
       AudioManager.play('TimmerDepart.wav');
       TweenMax.fromTo(this.countOuter, 1, {
@@ -44,8 +45,9 @@ class TimerManager {
         },
         onComplete: () => {
           if (count <= 0) {
-            onCountDone();
+            if (!started) onCountDone();
             clearInterval(interval);
+            started = true;
           }
         },
       });

@@ -112,7 +112,6 @@ class EnvelopesManager {
       // PAGES.fade('inventory', true);
       (document.querySelector('.app') as HTMLElement).classList.add('disable');
       App.setWinState(true, Timer.remainingTime);
-      Socket.emit('run:helper');
     }
   }
 

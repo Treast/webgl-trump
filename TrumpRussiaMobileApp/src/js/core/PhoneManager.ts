@@ -69,6 +69,7 @@ class PhoneManager {
     if (this.input.innerText === PhoneManager.TRUMP_PHONE_NUMBER) {
       (document.querySelector('.call') as HTMLElement).style.display = 'block';
       this.startCallAnimation();
+      Socket.emit('helper:stop');
     } else {
       (document.querySelector('.number-not-found') as HTMLElement).style.color = '#f00';
     }
