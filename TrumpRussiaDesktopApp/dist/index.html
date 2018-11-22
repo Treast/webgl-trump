@@ -19,7 +19,7 @@
         <meta name="twitter:creator" content="@MCpTreast">
         <meta name="twitter:site" content="@MCpTreast">
         <meta property="og:site_name" content="Trump's secret">
-    <link href="app.css" rel="stylesheet"><link href="app.b1b47d5771fa12f7833c.css" rel="stylesheet"></head>
+    <link href="app.css" rel="stylesheet"><link href="app.9a69f97b82bf071edd92.css" rel="stylesheet"></head>
     <body style="display: none">
         <!-- Twitter -->
         <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
@@ -62,7 +62,7 @@
                     </li>
                     <li class="list-actions_item-red">
                         <span class="border border-top"></span>
-                        <span class="text-replay">Rejouer</span>
+                        <span class="text-replay"><a href="#" onclick="window.location.reload(true)">Rejouer</a></span>
                         <span class="border border-bottom"></span>
                     </li>
                 </ul>
@@ -89,6 +89,7 @@
                         <img src="./images/LoaderWhite.svg" class="loader-white" alt="">
                     </div>
                 </div>
+                <div class="loader_value">0%</div>
             </div>
         </section>
         <section data-page="introduction" class="introduction">
@@ -96,26 +97,26 @@
                 <div class="inner-top"></div>
                 <div class="inner-bottom"></div>
                 <div class="inner-content">
-                    <div class="inner-page" data-inner-page="1">
-                        <p>_ Ce texte sera une mise en contexte rappelant l’élection de Trump et un les suspections qui tournent autours de sa relation avec Poutine. Tempor invidunt aliquyam erat, sed diam voluptua. At vero eos et justo duo dolores et ea rebum. Stet clita kasd gubergren.</p>
+                    <div class="inner-page" data-inner-page="1" data-voice="01_MiseContexte.wav">
+                        <p>Le 8 novembre 2016, Donald Trump est nommé 45ème président des Etats-Unis d’Amérique.<br /><br />Suite à ça, la communauté du renseignement des États-Unis a rendu public ses soupçons d'une ingérence de la Russie dans les élections. Aujourd’hui, la relation qu’il détient avec les Russes est douteuse.</p>
                     </div>
-                    <div class="inner-page" data-inner-page="2">
+                    <div class="inner-page" data-inner-page="2" data-voice="02_Mission.wav">
                         <p>Tu es sur le point de t’infiltrer dans le réseau d’un bâtiment pour avoir accès à des caméras de vidéo surveillance. Elles se trouvent dans une pièce secrète où se rejoignent régulièrement Trump et Poutine.</p>
                     </div>
-                    <div class="inner-page introduction_map" data-inner-page="3">
+                    <div class="inner-page introduction_map" data-inner-page="3" data-voice="03_Enveloppes.wav">
                         <div class="introduction_map_content">
                             <img class="introduction_map_image" src="images/Groupe 71@2x.png">
                             <p class="introduction_map_text">5 enveloppes sont cachées un peu partout dans la pièce. Elles contiennent des informations que Trump et Poutine aimeraient décridibiliser car elles portent une atteinte à leur popularité.<br /><br />À toi de les récolter pour voir ce qu’elles cachent.</p>
                         </div>
                     </div>
-                    <div class="inner-page introduction_map" data-inner-page="4">
+                    <div class="inner-page introduction_map" data-inner-page="4" data-voice="04_CameraControlables.wav">
                         <h2 class="page_title">Pièce secrète</h2>
                         <div class="introduction_map_content">
                             <img class="introduction_map_image" src="images/Map.png">
                             <p class="introduction_map_text">Les 3 caméras sont contrôlables depuis ton téléphone. Tu pourras passer d’une caméra à l’autre autant de fois que tu le souhaites.<br /><br />Mais attention, tu n’auras que 3 minutes avant que l’on détecte que tu es infiltré.</p>
                         </div>
                     </div>
-                    <div class="inner-page" data-inner-page="5">
+                    <div class="inner-page" data-inner-page="5" data-voice="05_QRCode.wav">
                         <div id="qrcode"></div>
                         <div class="linker_adress" id="address"></div>
                         <p>Scanne le QR code pour démarrer l’infiltration.</p>
@@ -140,14 +141,19 @@
             </div>
         </section>
         <section data-page="app" id="experience" class="experience">
+            <span class="camera_filter"></span>
+            <div class="camera_corners">
+                <span class="camera_corner"></span>
+                <span class="camera_corner"></span>
+                <span class="camera_corner"></span>
+                <span class="camera_corner"></span>
+            </div>
             <span class="pause_icon_container" data-pause="button-on">
                 <span class="pause_icon"></span>
             </span>
-            <span class="camera_corner"></span>
-            <span class="camera_corner"></span>
-            <span class="camera_corner"></span>
-            <span class="camera_corner"></span>
             <span class="camera_timer" id="timer"></span>
+            <span class="camera_help" data-game-state="Running">Explore la pièce avec ton téléphone pour trouver les enveloppes.</span>
+            <span class="experience_connection">Connexion perdue ...</span>
             <span class="camera_text">REC <span class="camera_icon"></span></span>
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
             <span class="camera_center" id="camera-cursor">
@@ -158,6 +164,15 @@
         <section data-page="game-result">
             <div data-state-game="win"></div>
             <div data-state-game="lose"></div>
+        </section>
+        <section class="morale" data-page="morale">
+            <div class="inner">
+                <div class="inner-top"></div>
+                <div class="inner-bottom"></div>
+                <div class="inner-content">
+                    There's always two sides to every story.
+                </div>
+            </div>
         </section>
         <section class="phone page-fade" data-page="inventory">
             <span class="pause_icon_container" data-pause="button-on">
@@ -198,14 +213,14 @@
                     <h1>TRUMP’S SECRET</h1>
                 </header>
                 <main>
-                    <div data-state-game="Wining">
+                    <div data-game-state="Wining">
                         <p>Félicitation, tu as réussi à récolter les faits en</p>
                         <p>2 : 15</p>
                     </div>
-                    <!--<div data-state-game="Losing">
+                    <div data-game-state="Losing">
                         <p>Oups on dirait que tu t’es fait repérer…</p>
                         <p>La prochaine fois sera la bonne !</p>
-                    </div>-->
+                    </div>
                     <div class="links">
                         <span class="twitter-share links_item">
                             <a target="_blank" href="https://twitter.com/intent/tweet?text=J%27ai%20pirat%C3%A9%20une%20salle%20secr%C3%A8te%20de%20Trump%20en%202min%2040s.%20Peux-tu%20faire%20mieux%20%3F">
@@ -221,7 +236,7 @@
                     <ul class="actions list-actions">
                         <li>
                             <div class="border border-top"></div>
-                            <span>Rejouer</span>
+                            <span><a href="#" onclick="window.location.reload(true)">Rejouer</a></span>
                             <div class="border border-bottom"></div>
                         </li>
                         <li>
@@ -233,8 +248,8 @@
                 </footer>
             </div>
         </section>
-        <!--<video id="videoTrumpPoutine" autoplay loop webkit-playsinline style="display:none">
+        <video id="videoTrumpPoutine" loop webkit-playsinline style="display:none">
             <source src="videos/trump_poutine.mp4" type='video/mp4'>
-        </video>-->
+        </video>
     <script type="text/javascript" src="app.js"></script></body>
 </html>

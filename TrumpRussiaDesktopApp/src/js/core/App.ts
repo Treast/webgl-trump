@@ -41,7 +41,7 @@ export class App {
     element.innerHTML = text.replace(/([^x00-x80]|\w)/g, '<span class="letter">$&</span>');
   }
 
-  runMoraleAnimation() {
+  static runMoraleAnimation() {
     const elements: NodeListOf<HTMLElement> = document.querySelectorAll('.morale .inner .inner-content .letter');
     const delay = elements.length * 0.15 + 2;
     const timeline = new TimelineMax();

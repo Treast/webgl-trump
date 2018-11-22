@@ -23,6 +23,7 @@ import TimerManager from './TimerManager';
 import { VideoObject } from '../utils/VideoObject';
 import Flag from './Flag';
 import LoaderManager from './LoaderManager';
+import { App } from './App';
 
 interface FlagInformations {
   name: string;
@@ -90,7 +91,8 @@ class Game {
   }
 
   onCallEnd() {
-
+    PAGES.fade('morale');
+    App.runMoraleAnimation();
   }
 
   onGamePauseOn() {

@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Device Orientation</title>
-<link href="app.css" rel="stylesheet"><link href="app.f7a916182e4e88f1e331.css" rel="stylesheet"></head>
-<body>
-    <div id="fullscreen">
+<link href="app.css" rel="stylesheet"><link href="app.a5585707d5f4d0a1abd3.css" rel="stylesheet"></head>
+<body style="display: none">
+    <div class="background"></div>
+    <div id="fullscreen" data-page="fullscreen">
         <div class="content">
             <h1>Pour une meilleure expérience, souhaitez-vous activer le mode plein écran ?</h1>
             <div class="choices">
@@ -19,9 +20,9 @@
     </div>
     <div class="app" data-page="app">
         <div class="controller">
-            <div class="pause-button">
-                <span></span>
-            </div>
+            <span class="pause_icon_container" data-pause="button-on">
+                <span class="pause_icon"></span>
+            </span>
             <div class="header">
                 <div id="timer" class="timer">5:00</div>
                 <div data-game-state="Running">
@@ -63,7 +64,7 @@
                     </li>
                 </ul>
                 <div id="envelop">
-                    <img class="envelope-draggable" id="envelope-draggable" src="./assets/images/envelop@2x.png" alt="">
+                    <span class="button-envelop"><img class="envelope-draggable" id="envelope-draggable" src="./assets/images/BoutonEnvelope@2x.png" alt=""></span>
                     <div class="envelope-count"><span data-envelope-count>0</span>/5</div>
                 </div>
                 <div class="zoom-slider">
@@ -92,7 +93,7 @@
             <h2 class="play-again">Rejouer</h2>
         </div>
     </div>
-    <div id="menu">
+    <div id="menu" data-game-state="Running|Wining" data-show-onpage="app|inventory">
         <div class="menu_title">
             <div>
                 <span>Menu</span>
@@ -127,9 +128,9 @@
     </div>
     <div class="inventory" data-page="inventory">
         <div class="content">
-            <div class="pause-button">
-                <span></span>
-            </div>
+            <span class="pause_icon_container">
+                <span class="pause_icon"></span>
+            </span>
             <div class="inventory">
                 <div class="inventory_title">
                     <span>Inventaire</span>
@@ -137,8 +138,8 @@
                 <div data-game-state="Wining" class="text description">
                     Découvre le contenu des enveloppes
                 </div>
-                <div data-game-state="Losing">
-                    <p>Dommage… Tu peux quand même regarder ce que cachent les enveloppes.</p>
+                <div data-game-state="Losing" class="text description">
+                    Dommage… Tu peux quand même regarder ce que cachent les enveloppes.
                 </div>
                 <ul class="inventory_list">
                     <li class="inventory_item inventory_item-active">
@@ -172,10 +173,19 @@
                         </span>
                     </li>
                 </ul>
+                <div class="menu" data-game-state="Losing">
+                    <h2>
+                        <span>Rejouer</span>
+                    </h2>
+                    <h2 class="red" data-page-onclick="end">
+                        Abandonner
+                    </h2>
+                </div>
             </div>
         </div>
     </div>
     <div class="envelope">
+        <div class="background background-opac"></div>
         <div class="go-back">
             <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
         </div>
@@ -189,9 +199,10 @@
         </div>
     </div>
     <div class="phone">
-        <div class="pause-button">
-            <span></span>
-        </div>
+        <div class="background background-opac"></div>
+        <span class="pause_icon_container">
+            <span class="pause_icon"></span>
+        </span>
         <div class="go-back">
             <img src="./assets/images/chevron-left@2x.png" alt="Retour en arrière">
         </div>
@@ -249,6 +260,7 @@
         </div>
     </div>
     <div class="call">
+        <div class="background background-opac"></div>
         <div class="content">
             <div class="called">
                 <h1>Donald Trump</h1>
@@ -264,20 +276,45 @@
             </div>
         </div>
     </div>
-    <div class="credits">
-        <h1>Retrouve le contenu des enveloppes :</h1>
-        <ul>
-            <li>Enveloppe 1</li>
-        </ul>
-        <div class="logos">
-            <div class="logo-gobelins">
-                <img src="./assets/images/GobelinsLogo.png" alt="">
+    <div class="credits" data-page="end">
+        <div class="background background-opac"></div>
+        <div class="content">
+            <div class="logos">
+                <div class="logo-gobelins">
+                    <img src="./assets/images/GobelinsLogo.png" alt="">
+                </div>
+                <div class="logo-cci">
+                    <img src="./assets/images/CCILogo.png" alt="">
+                </div>
             </div>
-            <div class="logo-cci">
-                <img src="./assets/images/CCILogo.png" alt="">
+            <h1>Crédits</h1>
+            <h2>Musique</h2>
+            <p>Steath Music - Silent</p>
+            <p>Assassin (Ambient Version)</p>
+            <h2>Réalisation du projet</h2>
+            <p>Solène Callens, Lucien Albert, Vincent Riva</p>
+            <h1>Retrouve le contenu des enveloppes</h1>
+            <div class="envelop-content">
+                <p>
+                    <a href="#">Enveloppe 1</a>
+                </p>
+                <p>
+                    <a href="#">Enveloppe 2</a>
+                </p>
+                <p>
+                    <a href="#">Enveloppe 3</a>
+                </p>
+                <p>
+                    <a href="#">Enveloppe 4</a>
+                </p>
+                <p>
+                    <a href="#">Enveloppe 5</a>
+                </p>
             </div>
+            <h1>Remerciements</h1>
+            <p>À Bastien Langlade pour la voix-off.</p>
         </div>
+
     </div>
-    <div class="background"></div>
 <script type="text/javascript" src="app.js"></script></body>
 </html>
