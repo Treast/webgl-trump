@@ -45,9 +45,9 @@ class TimerManager {
         },
         onComplete: () => {
           if (count <= 0) {
-            started = false;
             if (!started) onCountDone();
             clearInterval(interval);
+            started = true;
           }
         },
       });
