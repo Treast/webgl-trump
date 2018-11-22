@@ -7,15 +7,15 @@ class AudioManager {
   private audios: any = {};
   private static SOUNDS_BASE_URL: string = './assets/sounds/';
   public isMute: boolean = false;
-  private soundElement: HTMLElement;
+  private soundElements: NodeListOf<HTMLElement>;
   private introductionSound: Howl;
   private bassSound: Howl;
   private currentVoice: string;
   private voicePlayed: string[] = [];
 
   init() {
-    this.soundElement = document.querySelector('#pause .sound-controls');
-    this.soundElement.addEventListener('click', this.toggleMute.bind(this));
+    this.soundElements = document.querySelectorAll('#pause .sound-controls, .introduction .inner .sound-controls');
+    this.soundElements.forEach(element => element.addEventListener('click', this.toggleMute.bind(this)));
     Socket.on('sound:toggle', this.toggleMuteSocket.bind(this));
     this.updateSoundDisplay();
     for (const configSound of CONFIG.SOUNDS) {
@@ -70,11 +70,11 @@ class AudioManager {
 
   updateSoundDisplay() {
     if (this.isMute) {
-      (this.soundElement.querySelector('.sound-on') as HTMLElement).style.display = 'none';
-      (this.soundElement.querySelector('.sound-off') as HTMLElement).style.display = 'flex';
+      this.soundElements.forEach(element => (element.querySelector('.sound-on') as HTMLElement).style.display = 'none');
+      this.soundElements.forEach(element => (element.querySelector('.sound-off') as HTMLElement).style.display = 'flex');
     } else {
-      (this.soundElement.querySelector('.sound-on') as HTMLElement).style.display = 'flex';
-      (this.soundElement.querySelector('.sound-off') as HTMLElement).style.display = 'none';
+      this.soundElements.forEach(element => (element.querySelector('.sound-on') as HTMLElement).style.display = 'flex');
+      this.soundElements.forEach(element => (element.querySelector('.sound-off') as HTMLElement).style.display = 'none');
     }
   }
 

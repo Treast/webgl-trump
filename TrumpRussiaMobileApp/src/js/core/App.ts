@@ -52,9 +52,14 @@ class App {
       const converted = TimerManager.convertToMinutes(TimerManager.getTime() - remainingTime);
       document.querySelector('.app-result h1').innerHTML = `${converted.minutes}:${converted.seconds}`;
       document.querySelector('.app-result h2').innerHTML = 'Bravo';
+      Socket.emit('game:win', {
+        minutes: converted.minutes,
+        seconds: converted.seconds,
+      });
     } else {
       document.querySelector('.app-result h1').innerHTML = '00:00';
       document.querySelector('.app-result h2').innerHTML = 'Temps écoulé !';
+      Socket.emit('game:lose');
     }
   }
 

@@ -14,6 +14,8 @@ class TimerManager {
   private count: HTMLElement;
   private countOuter: HTMLElement;
   private countInner: HTMLElement;
+  public timerMinutes: string;
+  public timerSeconds: string;
 
   /**
    * Initialisation
@@ -76,6 +78,8 @@ class TimerManager {
    * @param value
    */
   private onTimerChange (value: TimerValue) {
+    this.timerMinutes = value.minutes;
+    this.timerSeconds = value.seconds;
     this.timer.innerHTML = `${value.minutes}:${value.seconds}`;
   }
 }

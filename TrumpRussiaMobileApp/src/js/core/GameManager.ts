@@ -3,6 +3,7 @@ import MenuManager from './MenuManager';
 import TimerManager from './TimerManager';
 import { PAGES } from '../utils/Pages';
 import App from './App';
+import ShareManager from '../../../../TrumpRussiaDesktopApp/src/js/core/ShareManager';
 
 export enum GameState {
   Starting = 'Starting',
@@ -53,6 +54,10 @@ class GameManager {
   updateState(state: GameState) {
     this.state = state;
     MenuManager.handleGameState(this.state);
+    if (state === GameState.Wining || state === GameState.Losing) {
+      TimerManager.stop();
+    }
+
     for (const k in GameState) {
       document.body.classList.remove(`experience-${GameState[k].toLowerCase()}`);
     }

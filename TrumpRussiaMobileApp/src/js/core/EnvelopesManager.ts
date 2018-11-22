@@ -33,6 +33,11 @@ class EnvelopesManager {
     this.goBack = document.querySelector('.envelope .go-back');
     this.currentHover = null;
 
+    document.querySelectorAll('.credits .envelop-content a').forEach((element) => {
+      const index = element.getAttribute('data-envelope');
+      element.setAttribute('href', CONFIG.ENVELOPES[parseInt(index, 10)].url);
+    });
+
     this.btnEnvelopeWrapper.style.opacity = EnvelopesManager.INACTIVE_OPACITY;
   }
 
@@ -93,6 +98,10 @@ class EnvelopesManager {
 
   onEnvelopeDelete() {
     this.envelopeCount += 1;
+    const disabledEnvelope = (document.querySelector('.inventory .inventory_item-disabled') as HTMLElement);
+    disabledEnvelope.classList.remove('inventory_item-disabled');
+    disabledEnvelope.classList.add('inventory_item-active');
+    disabledEnvelope.querySelector('span').addEventListener('click', this.onClickActive.bind(this));
     this.updateCountEnvelope();
   }
 

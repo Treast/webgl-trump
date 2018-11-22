@@ -159,6 +159,20 @@
         }
       }
 
+      &-disabled.inventory_item {
+        opacity: 0.2;
+        img {
+          opacity: 1;
+        }
+        span{
+          background-color: #ffffff;
+
+          img {
+            filter: invert(0);
+          }
+        }
+      }
+
       > .inventory_item_number {
         margin-bottom: 10px;
         font-family: 'Chakra Petch', sans-serif;

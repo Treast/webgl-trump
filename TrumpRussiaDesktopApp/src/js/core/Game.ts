@@ -24,6 +24,7 @@ import { VideoObject } from '../utils/VideoObject';
 import Flag from './Flag';
 import LoaderManager from './LoaderManager';
 import { App } from './App';
+import ShareManager from './ShareManager';
 
 interface FlagInformations {
   name: string;
@@ -80,8 +81,8 @@ class Game {
    * On écoute les événements Socket.
    */
   initSocketListeners () {
-    Socket.on('game:win', this.onGameFinish.bind(this, true));
-    Socket.on('game:lose', this.onGameFinish.bind(this, false));
+    Socket.on('game:win', (data: any) => { this.onGameFinish(true, data); });
+    Socket.on('game:lose', (data: any) => { this.onGameFinish(false, data); });
     Socket.on('pause:on', this.onGamePauseOn.bind(this));
     Socket.on('pause:off', this.onGamePauseOff.bind(this));
     Socket.on('call:end', this.onCallEnd.bind(this));
@@ -204,9 +205,11 @@ class Game {
     CamerasManager.setEnableMovement(false);
     if (isWinning) {
       this.updateState(GameState.Wining);
+      ShareManager.changeText(data.minutes, data.seconds);
     } else {
       this.updateState(GameState.Losing);
       EffectManager.setBreakScreen(true);
+      ShareManager.changeText();
     }
     (document.getElementById('experience')).classList.add(`experience-${this.state.toLowerCase()}`);
   }
