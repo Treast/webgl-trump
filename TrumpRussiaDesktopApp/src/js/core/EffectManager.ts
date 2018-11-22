@@ -116,9 +116,9 @@ class EffectManager {
       this.scene,
       this.camera,
     );
-    this.outlinePass.edgeStrength = 1;
+    this.outlinePass.edgeStrength = 4;
     this.outlinePass.edgeGlow = 1;
-    this.outlinePass.edgeThickness = 1;
+    this.outlinePass.edgeThickness = 4;
     this.outlinePass.pulsePeriod = 2;
     this.outlinePass.usePatternTexture = false;
     this.outlinePass.visibleEdgeColor.set('#ffffff');

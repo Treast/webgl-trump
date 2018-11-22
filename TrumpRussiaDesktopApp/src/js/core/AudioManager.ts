@@ -45,9 +45,10 @@ class AudioManager {
   playVoice(voice: string) {
     if (this.voicePlayed.indexOf(voice) === -1) {
       if (this.currentVoice) {
-        this.audios[`voices/${this.currentVoice}`].fade(1, 0, 500);
+        this.audios[`voices/${this.currentVoice}`].fade(0.5, 0, 500);
       }
       this.currentVoice = voice;
+      this.audios[`voices/${voice}`].volume(0.2);
       setTimeout(() => { this.audios[`voices/${voice}`].play(); }, 1000);
       this.voicePlayed.push(voice);
     }
@@ -82,13 +83,13 @@ class AudioManager {
 
   playBassSound() {
     this.bassSound = this.audios['AmbianceEnveloppes.wav'].play();
-    this.audios['AmbianceEnveloppes.wav'].fade(0, 1, 1500);
+    this.audios['AmbianceEnveloppes.wav'].fade(0, 0.5, 1500);
     this.audios['Musique_IntroFin.mp3'].fade(0.1, 0, 1500);
   }
 
   playIntroBack() {
     this.audios['Musique_IntroFin.mp3'].fade(0, 1, 1500);
-    this.audios['AmbianceEnveloppes.wav'].fade(0.1, 0, 1500);
+    this.audios['AmbianceEnveloppes.wav'].fade(0.5, 0, 1500);
   }
 
   play(sound: string) {

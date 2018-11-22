@@ -8,6 +8,7 @@ export interface Orientation {
   alpha: number;
   beta: number;
   gamma: number;
+  absolute: number;
 }
 
 export interface Envelope {

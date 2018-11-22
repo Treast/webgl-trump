@@ -2,24 +2,24 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Trump's secret</title>
-        <meta name="title" content="Trump's secret">
-        <meta name="description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
-        <meta property="og:title" content="Trump's secret">
+        <title>Trump's Secrets</title>
+        <meta name="title" content="Trump's Secrets">
+        <meta name="description" content="Trump's Secrets est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta property="og:title" content="Trump's Secrets">
         <meta property="og:url" content="https://trump.vincentriva.fr/">
         <meta property="og:image" content="https://trump.vincentriva.fr/assets/cover.jpg">
         <meta property="fb:app_id" content="2103204286406907">
-        <meta property="og:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
-        <meta name="twitter:description" content="Trump's secret est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta property="og:description" content="Trump's Secrets est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
+        <meta name="twitter:description" content="Trump's Secrets est une expérience interactive en 3D sur les relations entre Trump et la Russie.">
         <meta name="twitter:image:src" content="https://trump.vincentriva.fr/assets/cover.jpg">
-        <meta property="author" content="Trump's secret">
+        <meta property="author" content="Trump's Secrets">
         <meta property="og:type" content="website">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="robots" content="index, follow">
         <meta name="twitter:creator" content="@MCpTreast">
         <meta name="twitter:site" content="@MCpTreast">
         <meta property="og:site_name" content="Trump's secret">
-    <link href="app.css" rel="stylesheet"><link href="app.9a69f97b82bf071edd92.css" rel="stylesheet"></head>
+    <link href="app.css" rel="stylesheet"><link href="app.4be7aefcf71998a013cf.css" rel="stylesheet"></head>
     <body style="display: none">
         <!-- Twitter -->
         <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
@@ -94,14 +94,24 @@
         </section>
         <section data-page="introduction" class="introduction">
             <div class="inner">
+                <div class="sound-controls">
+                    <div class="sound sound-on">
+                        On <img src="./assets/images/SoundOn@2x.png" alt="">
+                    </div>
+                    <div class="sound sound-off">
+                        Off <img src="./assets/images/SoundOff@2x.png" alt="">
+                    </div>
+                </div>
                 <div class="inner-top"></div>
                 <div class="inner-bottom"></div>
                 <div class="inner-content">
                     <div class="inner-page" data-inner-page="1" data-voice="01_MiseContexte.wav">
-                        <p>Le 8 novembre 2016, Donald Trump est nommé 45ème président des Etats-Unis d’Amérique.<br /><br />Suite à ça, la communauté du renseignement des États-Unis a rendu public ses soupçons d'une ingérence de la Russie dans les élections. Aujourd’hui, la relation qu’il détient avec les Russes est douteuse.</p>
+                        <h1>8 Novembre 2016</h1>
+                        <p>Donald Trump est nommé 45ème président des Etats-Unis d’Amérique. Depuis ce jour, de nombreuses preuves laissent paraître qu’il serait en étroite relation avec la Russie, et ce avant-même son arrivée au pouvoir. Mais que cache-t-il ? C’est justement ce pourquoi tu es là aujourd’hui.</p>
                     </div>
                     <div class="inner-page" data-inner-page="2" data-voice="02_Mission.wav">
-                        <p>Tu es sur le point de t’infiltrer dans le réseau d’un bâtiment pour avoir accès à des caméras de vidéo surveillance. Elles se trouvent dans une pièce secrète où se rejoignent régulièrement Trump et Poutine.</p>
+                        <h1>Ta mission</h1>
+                        <p>Tu es sur le point de t’infiltrer dans le réseau d’un bâtiment pour avoir accès à des caméras de vidéo surveillance. Elles se trouvent dans une pièce secrète où se rejoignent régulièrement Trump et Poutine. </p>
                     </div>
                     <div class="inner-page introduction_map" data-inner-page="3" data-voice="03_Enveloppes.wav">
                         <div class="introduction_map_content">
@@ -154,6 +164,7 @@
             <span class="camera_timer" id="timer"></span>
             <span class="camera_help" data-game-state="Running">Explore la pièce avec ton téléphone pour trouver les enveloppes.</span>
             <span class="experience_connection">Connexion perdue ...</span>
+            <span class="experience_envelope_keeped">Enveloppe récoltée</span>
             <span class="camera_text">REC <span class="camera_icon"></span></span>
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
             <span class="camera_center" id="camera-cursor">
@@ -162,8 +173,13 @@
             </span>
         </section>
         <section data-page="game-result">
-            <div data-state-game="win"></div>
-            <div data-state-game="lose"></div>
+            <header>
+                <span>Bien joué ! Mission accomplie en</span>
+                <span data-score>2:15</span>
+            </header>
+            <div class="inner">
+                <span>Tu peux maintenant regarder le contenu des enveloppes</span>
+            </div>
         </section>
         <section class="morale" data-page="morale">
             <div class="inner">
@@ -174,15 +190,16 @@
                 </div>
             </div>
         </section>
-        <section class="phone page-fade" data-page="inventory">
+        <section class="phone" data-page="inventory">
             <span class="pause_icon_container" data-pause="button-on">
                 <span class="pause_icon"></span>
             </span>
             <div class="inner">
-                <p>
-                    <span>On dirait que les chiffres marqués sur les enveloppes correspondent à un</span>
-                    <span>numéro de téléphone…</span>
-                </p>
+                <div class="helper">
+                    <div class="helper-in helper-1" data-voice="08_Aide01.wav">Il semblerait que quelques informations peuvent encore être découvertes…</div>
+                    <div class="helper-in helper-2" data-voice="08_Aide02.wav">À quoi peut bien correspondre cette suite de chiffres ?</div>
+                    <div class="helper-in helper-3" data-voice="08_Aide03.wav">On dirait que les chiffres marqués sur les enveloppes correspondent à un numéro de téléphone...</div>
+                </div>
                 <ul class="envelopes">
                     <li class="envelopes_item">
                         <span class="envelopes_item_number text">01</span>
@@ -210,12 +227,12 @@
         <section class="page page_end" data-page="end">
             <div class="wrapper">
                 <header>
-                    <h1>TRUMP’S SECRET</h1>
+                    <h1>TRUMP’S SECRETS</h1>
                 </header>
                 <main>
                     <div data-game-state="Wining">
                         <p>Félicitation, tu as réussi à récolter les faits en</p>
-                        <p>2 : 15</p>
+                        <p><span class="timer-minutes">2</span> : <span class="timer-seconds">15</span></p>
                     </div>
                     <div data-game-state="Losing">
                         <p>Oups on dirait que tu t’es fait repérer…</p>

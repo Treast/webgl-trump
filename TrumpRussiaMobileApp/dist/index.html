@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Device Orientation</title>
-<link href="app.css" rel="stylesheet"><link href="app.a5585707d5f4d0a1abd3.css" rel="stylesheet"></head>
+<link href="app.css" rel="stylesheet"><link href="app.0fed6048f8f04410cf6a.css" rel="stylesheet"></head>
 <body style="display: none">
     <div class="background"></div>
     <div id="fullscreen" data-page="fullscreen">
@@ -142,39 +142,39 @@
                     Dommage… Tu peux quand même regarder ce que cachent les enveloppes.
                 </div>
                 <ul class="inventory_list">
-                    <li class="inventory_item inventory_item-active">
+                    <li class="inventory_item inventory_item-disabled">
                         <div class="inventory_item_number">01</div>
                         <span class="inventory_1" data-envelope="0">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item inventory_item-active">
+                    <li class="inventory_item inventory_item-disabled">
                         <div class="inventory_item_number">02</div>
                         <span class="inventory_2" data-envelope="1">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item inventory_item-active">
+                    <li class="inventory_item inventory_item-disabled">
                         <div class="inventory_item_number">03</div>
                         <span class="inventory_3" data-envelope="2">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item inventory_item-active">
+                    <li class="inventory_item inventory_item-disabled">
                         <div class="inventory_item_number">04</div>
-                        <span class="inventory_4" data-envelope="0">
+                        <span class="inventory_4" data-envelope="3">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
-                    <li class="inventory_item inventory_item-active">
+                    <li class="inventory_item inventory_item-disabled">
                         <div class="inventory_item_number">05</div>
-                        <span class="inventory_5" data-envelope="1">
+                        <span class="inventory_5" data-envelope="4">
                             <img src="./assets/images/inventory_envelop@2x.png" alt="Envelop">
                         </span>
                     </li>
                 </ul>
                 <div class="menu" data-game-state="Losing">
-                    <h2>
+                    <h2 class="play-again">
                         <span>Rejouer</span>
                     </h2>
                     <h2 class="red" data-page-onclick="end">
@@ -210,7 +210,11 @@
             <h1>Entrer le numéro de téléphone</h1>
             <div class="phone-number"></div>
             <div class="number-not-found">Ce numéro n'est pas attribué</div>
-            <div class="separator"><span></span></div>
+            <div class="separator">
+                <div>
+                    <span></span>
+                </div>
+            </div>
             <div class="numbers">
                 <div class="number">
                     <span data-number="1" data-sound="DTMF_1.wav">1</span>
@@ -276,6 +280,9 @@
             </div>
         </div>
     </div>
+    <div class="empty" data-page="empty">
+        <div class="background background-opac"></div>
+    </div>
     <div class="credits" data-page="end">
         <div class="background background-opac"></div>
         <div class="content">
@@ -296,19 +303,19 @@
             <h1>Retrouve le contenu des enveloppes</h1>
             <div class="envelop-content">
                 <p>
-                    <a href="#">Enveloppe 1</a>
+                    <a href="#" target="_blank" data-envelope="0">Enveloppe 1</a>
                 </p>
                 <p>
-                    <a href="#">Enveloppe 2</a>
+                    <a href="#" target="_blank" data-envelope="1">Enveloppe 2</a>
                 </p>
                 <p>
-                    <a href="#">Enveloppe 3</a>
+                    <a href="#" target="_blank" data-envelope="2">Enveloppe 3</a>
                 </p>
                 <p>
-                    <a href="#">Enveloppe 4</a>
+                    <a href="#" target="_blank" data-envelope="3">Enveloppe 4</a>
                 </p>
                 <p>
-                    <a href="#">Enveloppe 5</a>
+                    <a href="#" target="_blank" data-envelope="4">Enveloppe 5</a>
                 </p>
             </div>
             <h1>Remerciements</h1>

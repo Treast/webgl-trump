@@ -123,6 +123,10 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('helper:stop', envelope);
   });
 
+  socket.on('end:morale', envelope => {
+    socket.to(socket.roomId).emit('end:morale', envelope);
+  });
+
   /**
    * 7.Pages
    */

@@ -42,13 +42,14 @@ class MenuManager {
             menuButton.parentElement.classList.remove('menu_item-on');
           }
           button.parentElement.classList.add('menu_item-on');
-          PAGES.fade(page, true);
+          PAGES.fade(page);
           this.currentPage = page;
           this.visitedPages.push(page);
         }
       } else {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');
+        Socket.emit('page:show', 'inventory');
       }
     }
   }

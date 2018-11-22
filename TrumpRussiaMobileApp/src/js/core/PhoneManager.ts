@@ -77,10 +77,12 @@ class PhoneManager {
 
   endCall() {
     Socket.emit('call:end');
-    PAGES.fade('');
+    (document.querySelector('.call') as HTMLElement).style.display = 'none';
+    PAGES.fade('empty');
   }
 
   startCallAnimation () {
+    (document.querySelector('.phone') as HTMLElement).classList.remove('show');
     const el = document.createElement('div');
     const timeline = new TimelineLite();
     timeline.to(el, 1, {
