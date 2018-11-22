@@ -19,7 +19,7 @@
         <meta name="twitter:creator" content="@MCpTreast">
         <meta name="twitter:site" content="@MCpTreast">
         <meta property="og:site_name" content="Trump's secret">
-    <link href="app.css" rel="stylesheet"><link href="app.1c1d8d024f63172ae06f.css" rel="stylesheet"></head>
+    <link href="app.css" rel="stylesheet"><link href="app.4be7aefcf71998a013cf.css" rel="stylesheet"></head>
     <body style="display: none">
         <!-- Twitter -->
         <script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
@@ -164,6 +164,7 @@
             <span class="camera_timer" id="timer"></span>
             <span class="camera_help" data-game-state="Running">Explore la pièce avec ton téléphone pour trouver les enveloppes.</span>
             <span class="experience_connection">Connexion perdue ...</span>
+            <span class="experience_envelope_keeped">Enveloppe récoltée</span>
             <span class="camera_text">REC <span class="camera_icon"></span></span>
             <span class="camera_label">Caméra<span id="camera_number"></span></span>
             <span class="camera_center" id="camera-cursor">
@@ -172,8 +173,13 @@
             </span>
         </section>
         <section data-page="game-result">
-            <div data-state-game="win"></div>
-            <div data-state-game="lose"></div>
+            <header>
+                <span>Bien joué ! Mission accomplie en</span>
+                <span data-score>2:15</span>
+            </header>
+            <div class="inner">
+                <span>Tu peux maintenant regarder le contenu des enveloppes</span>
+            </div>
         </section>
         <section class="morale" data-page="morale">
             <div class="inner">
@@ -190,9 +196,9 @@
             </span>
             <div class="inner">
                 <div class="helper">
-                    <div class="helper-in helper-1" data-voice="voices/08_Aide01.wav">Il semblerait que quelques informations peuvent encore être découvertes…</div>
-                    <div class="helper-in helper-2" data-voice="voices/08_Aide02.wav">À quoi peut bien correspondre cette suite de chiffres ?</div>
-                    <div class="helper-in helper-3" data-voice="voices/08_Aide03.wav">On dirait que les chiffres marqués sur les enveloppes correspondent à un numéro de téléphone...</div>
+                    <div class="helper-in helper-1" data-voice="08_Aide01.wav">Il semblerait que quelques informations peuvent encore être découvertes…</div>
+                    <div class="helper-in helper-2" data-voice="08_Aide02.wav">À quoi peut bien correspondre cette suite de chiffres ?</div>
+                    <div class="helper-in helper-3" data-voice="08_Aide03.wav">On dirait que les chiffres marqués sur les enveloppes correspondent à un numéro de téléphone...</div>
                 </div>
                 <ul class="envelopes">
                     <li class="envelopes_item">
