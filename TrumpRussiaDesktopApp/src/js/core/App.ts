@@ -62,6 +62,7 @@ export class App {
       0.08,
       0,
       () => {
+        Socket.emit('end:morale');
         PAGES.fade('end');
       });
   }

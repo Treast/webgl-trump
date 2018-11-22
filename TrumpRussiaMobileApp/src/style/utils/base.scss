@@ -32,6 +32,27 @@ ul, li{
   text-shadow: 0 0 5px #ffffff;
 }
 
+.app {
+  &::before {
+    content: '';
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    background-color: rgba(#000, 0.4);
+    pointer-events: all;
+  }
+}
+
+.app.disable::before {
+  display: block;
+}
+
 .background {
   position: absolute;
   top: 0;

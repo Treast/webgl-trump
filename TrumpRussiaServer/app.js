@@ -119,6 +119,10 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('run:helper', envelope);
   });
 
+  socket.on('end:morale', envelope => {
+    socket.to(socket.roomId).emit('end:morale', envelope);
+  });
+
   /**
    * 7.Pages
    */

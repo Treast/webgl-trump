@@ -45,6 +45,11 @@ class App {
     this.initPhone();
     this.initGameManager();
     this.start();
+    Socket.on('end:morale', this.showCredits.bind(this));
+  }
+
+  showCredits() {
+    (document.querySelector('.credits') as HTMLElement).style.display = 'block';
   }
 
   setWinState(hasWin: boolean, remainingTime: number = 0) {
@@ -150,6 +155,7 @@ class App {
       alpha: data.do.alpha,
       beta: data.do.beta,
       gamma: data.do.gamma,
+      absolute: data.do.absolute,
     });
   }
 }

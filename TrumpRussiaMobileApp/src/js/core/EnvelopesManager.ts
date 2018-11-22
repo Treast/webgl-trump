@@ -72,6 +72,10 @@ class EnvelopesManager {
 
   onClickGoBack() {
     document.querySelector('.envelope').classList.remove('active');
+
+    if (document.querySelectorAll('.inventory_item-active').length <= 0) {
+      Socket.emit('page:fade', 'inventory');
+    }
   }
 
   /**
@@ -105,7 +109,8 @@ class EnvelopesManager {
     this.updateCountEnvelope();
     if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {
       // todo: implements win state
-      PAGES.fade('inventory', true);
+      // PAGES.fade('inventory', true);
+      (document.querySelector('.app') as HTMLElement).classList.add('disable');
       App.setWinState(true, Timer.remainingTime);
       Socket.emit('run:helper');
     }

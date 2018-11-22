@@ -84,13 +84,13 @@ class AudioManager {
 
   playBassSound() {
     this.bassSound = this.audios['AmbianceEnveloppes.wav'].play();
-    this.audios['AmbianceEnveloppes.wav'].fade(0, 1, 1500);
+    this.audios['AmbianceEnveloppes.wav'].fade(0, 0.5, 1500);
     this.audios['Musique_IntroFin.mp3'].fade(0.1, 0, 1500);
   }
 
   playIntroBack() {
     this.audios['Musique_IntroFin.mp3'].fade(0, 1, 1500);
-    this.audios['AmbianceEnveloppes.wav'].fade(0.1, 0, 1500);
+    this.audios['AmbianceEnveloppes.wav'].fade(0.5, 0, 1500);
   }
 
   play(sound: string) {

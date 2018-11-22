@@ -3,7 +3,6 @@ import MenuManager from './MenuManager';
 import TimerManager from './TimerManager';
 import { PAGES } from '../utils/Pages';
 import App from './App';
-import ShareManager from '../../../../TrumpRussiaDesktopApp/src/js/core/ShareManager';
 
 export enum GameState {
   Starting = 'Starting',

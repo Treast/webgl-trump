@@ -1,5 +1,6 @@
 import { PAGES } from '../utils/Pages';
 import { GameState } from './GameManager';
+import Socket from '../utils/Socket';
 
 class MenuManager {
   private menuElement: HTMLElement;
@@ -37,12 +38,13 @@ class MenuManager {
             menuButton.parentElement.classList.remove('menu_item-on');
           }
           button.parentElement.classList.add('menu_item-on');
-          PAGES.fade(page, true);
+          PAGES.fade(page);
           this.currentPage = page;
         }
       } else {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');
+        Socket.emit('page:show', 'inventory');
       }
     }
   }

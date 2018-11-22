@@ -93,6 +93,11 @@ section[data-page="introduction"] {
         font-family: 'Chakra Petch', sans-serif;
         transition: all 0.4s ease-in-out;
 
+
+        .linker_adress {
+          @extend .text;
+        }
+
         h1 {
           font-size: 27px;
           text-transform: uppercase;
