@@ -1,5 +1,6 @@
 import { PAGES } from '../utils/Pages';
 import AudioManager from './AudioManager';
+import { TimelineLite } from 'gsap';
 
 class PhoneManager {
   private static TRUMP_PHONE_NUMBER: string = '06 54 78 17 35';
@@ -66,6 +67,7 @@ class PhoneManager {
     (document.querySelector('.number-not-found') as HTMLElement).style.color = 'transparent';
     if (this.input.innerText === PhoneManager.TRUMP_PHONE_NUMBER) {
       (document.querySelector('.call') as HTMLElement).style.display = 'block';
+      this.startCallAnimation();
     } else {
       (document.querySelector('.number-not-found') as HTMLElement).style.color = '#f00';
     }
@@ -73,6 +75,27 @@ class PhoneManager {
 
   endCall() {
     (document.querySelector('.credits') as HTMLElement).style.display = 'block';
+  }
+
+  startCallAnimation () {
+    const el = document.createElement('div');
+    const timeline = new TimelineLite();
+    timeline.to(el, 1.5, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.mp3');
+      },
+    });
+    timeline.to(el, 1.5, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.mp3');
+      },
+    });
+    timeline.to(el, 1.5, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.mp3');
+      },
+    });
+    timeline.play();
   }
 }
 

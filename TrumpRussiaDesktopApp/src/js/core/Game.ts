@@ -121,7 +121,7 @@ class Game {
     CamerasManager.init(this.scene, this.camera);
     CamerasManager.setCamera(0, false);
     this.initFlags();
-    // VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('ecran'));
+    VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('plan'));
   }
 
   initFlags() {

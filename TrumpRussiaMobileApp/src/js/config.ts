@@ -61,5 +61,8 @@ export const CONFIG = {
     'DTMF_9.wav',
     'DTMF_Et.wav',
     'DTMF_Di.wav',
+    'fake_news.mp3',
+    'phone_raccroche.mp3',
+    'phone_ring.mp3',
   ],
 };
