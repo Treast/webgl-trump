@@ -33,6 +33,7 @@ class App {
    * Initialisation
    */
   init() {
+    document.body.style.display = 'block';
     PAGES.show('fullscreen');
     this.joinRoom();
     this.initCamerasManager();

@@ -166,6 +166,13 @@
         border-bottom-left-radius: 10px;
         border-top-right-radius: 10px;
         background-color: #fff;
+        &.active{
+          animation-name: envelope-hover;
+          animation-duration: .5s;
+          animation-iteration-count: infinite;
+          animation-timing-function: ease-in-out;
+          animation-direction: alternate;
+        }
       }
 
       img.envelope-draggable {
@@ -245,4 +252,13 @@
   font-size: 18px;
   text-align: center;
   padding: 0 10px 10px;
+}
+
+@keyframes envelope-hover {
+  0%{
+    box-shadow: 0 0 5px 0 #fff;
+  }
+  100%{
+    box-shadow: 0 0 20px 3px #fff;
+  }
 }
