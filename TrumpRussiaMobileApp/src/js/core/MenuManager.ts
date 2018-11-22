@@ -1,5 +1,6 @@
 import { PAGES } from '../utils/Pages';
 import { GameState } from './GameManager';
+import Socket from '../utils/Socket';
 
 class MenuManager {
   private menuElement: HTMLElement;
@@ -32,6 +33,7 @@ class MenuManager {
     if (button.parentElement.classList.contains('menu_item-active')) {
       const page = button.getAttribute('data-click-page');
       if (page) {
+        if (page === 'inventory') Socket.emit('run:helper');
         if (page !== this.currentPage) {
           for (const menuButton of this.menuButtons) {
             menuButton.parentElement.classList.remove('menu_item-on');
