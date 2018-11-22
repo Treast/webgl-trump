@@ -11,7 +11,7 @@ import GameManager, { GameState } from './GameManager';
 
 class TimerManager {
 
-  public static TIME: number = 10; // 180
+  public static TIME: number = 180; // 180
   public remainingTime: number;
   private interval: any;
   private isRunning: boolean = true;

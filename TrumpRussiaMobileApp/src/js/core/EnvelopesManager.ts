@@ -107,6 +107,7 @@ class EnvelopesManager {
       // todo: implements win state
       PAGES.fade('inventory', true);
       App.setWinState(true, Timer.remainingTime);
+      Socket.emit('run:helper');
     }
   }
 

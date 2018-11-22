@@ -115,6 +115,10 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('envelope:delete', envelope);
   });
 
+  socket.on('run:helper', envelope => {
+    socket.to(socket.roomId).emit('run:helper', envelope);
+  });
+
   /**
    * 7.Pages
    */
