@@ -38,7 +38,7 @@ ul, li{
   left: 0;
   right: 0;
   bottom: 0;
-  filter: brightness(92%) blur(0.3px);
+  filter: brightness(92%) blur(0.1px);
   background: $background, radial-gradient(ellipse 70% 85%, rgb(214, 214, 214) 38%, rgba(107, 107, 107, 0.44) 54%, #000 107%);
   background-blend-mode: multiply;
   opacity: 0.7;

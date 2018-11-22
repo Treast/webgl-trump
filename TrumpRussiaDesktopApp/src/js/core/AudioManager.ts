@@ -21,7 +21,6 @@ class AudioManager {
     for (const configSound of CONFIG.SOUNDS) {
       const sound = configSound as any;
       if (typeof sound === 'string') {
-        console.log('Loading sound', sound);
         this.audios[sound] = new Howl({
           src: [`${AudioManager.SOUNDS_BASE_URL}${sound}`],
           preload: true,
@@ -30,7 +29,6 @@ class AudioManager {
           },
         });
       } else {
-        console.log('Loading sound', sound.sound);
         this.audios[sound.sound] = new Howl({
           src: [`${AudioManager.SOUNDS_BASE_URL}${sound.sound}`],
           volume: sound.volume, loop: sound.loop || false,
