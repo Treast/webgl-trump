@@ -1,0 +1,97 @@
+section[data-page="morale"] {
+  //background: url('./assets/background.jpg');
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /*background-color: #182128;*/
+
+  .inner {
+    position: absolute;
+    top: 100px;
+    left: 80px;
+    right: 80px;
+    bottom: 100px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    box-shadow: shadow-border((left, right), #fff);
+
+    .inner-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        top: -42px;
+        left: 16px;
+        background-color: #fff;
+        box-shadow: shadow-border((top, bottom), #fff);
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        top: -42px;
+        right: 16px;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+    }
+
+    .inner-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      &::before {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        bottom: -42px;
+        left: 16px;
+        background-color: #fff;
+        transform: rotate(-45deg);
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        height: 50px;
+        width: 1px;
+        position: absolute;
+        bottom: -42px;
+        right: 16px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+    }
+
+    .inner-content {
+      @extend .text;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 16px;
+
+      .letter {
+        opacity: 0;
+      }
+    }
+  }
+}

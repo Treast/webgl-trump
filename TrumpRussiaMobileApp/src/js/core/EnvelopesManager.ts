@@ -94,11 +94,6 @@ class EnvelopesManager {
   onEnvelopeDelete() {
     this.envelopeCount += 1;
     this.updateCountEnvelope();
-    if (this.envelopeCount >= EnvelopesManager.NUMBER_ENVELOPES) {
-      // todo: implements win state
-      PAGES.fade('inventory', true);
-      App.setWinState(true, Timer.remainingTime);
-    }
   }
 
   updateCountEnvelope () {

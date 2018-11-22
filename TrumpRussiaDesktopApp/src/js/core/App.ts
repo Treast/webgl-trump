@@ -15,6 +15,7 @@ import Socket from './Socket';
 import TimerManager from './TimerManager';
 import AudioManager from './AudioManager';
 import ShareManager from './ShareManager';
+import { TimelineMax, Power2 } from 'gsap';
 
 export class App {
 
@@ -27,10 +28,43 @@ export class App {
     this.initRoom();
     this.initPause();
     this.initGame();
+    this.initMorale();
     AudioManager.playIntroSound();
     Socket.on('game:start', this.start.bind(this));
     Socket.on('page:show', PAGES.show.bind(PAGES));
     Socket.on('page:fade', PAGES.fade.bind(PAGES));
+  }
+
+  initMorale() {
+    const element: HTMLElement = document.querySelector('.morale .inner .inner-content');
+    const text = element.innerText;
+    element.innerHTML = text.replace(/([^x00-x80]|\w)/g, '<span class="letter">$&</span>');
+  }
+
+  static runMoraleAnimation() {
+    const elements: NodeListOf<HTMLElement> = document.querySelectorAll('.morale .inner .inner-content .letter');
+    const delay = elements.length * 0.15 + 2;
+    const timeline = new TimelineMax();
+    timeline.staggerTo(elements, 0.4, {
+      opacity: 1,
+      ease: Power2.easeInOut,
+    },                 0.150);
+
+    timeline.staggerTo(
+      elements,
+      0.4,
+      {
+        opacity: 0,
+        ease: Power2.easeInOut,
+        delay: delay,
+      },
+      0.150,
+      0,
+      () => {
+        setTimeout(() => {
+          PAGES.fade('end', true);
+        },         300);
+      });
   }
 
   /**

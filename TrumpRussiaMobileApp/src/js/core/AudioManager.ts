@@ -53,7 +53,15 @@ class AudioManager {
     }
   }
 
-  play(sound: string) {
+  play(
+    sound: string,
+    volume: number = 1,
+    onFinished: () => void = null,
+  ) {
+    if (onFinished !== null) {
+      this.audios[sound].on('end', onFinished);
+    }
+    this.audios[sound].volume(volume);
     this.audios[sound].play();
   }
 }

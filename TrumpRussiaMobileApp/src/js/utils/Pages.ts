@@ -38,6 +38,7 @@ export const PAGES: PagesManager = {
    */
   show (name: string, trigger: boolean = false) {
     this.handleDependencies(name);
+    console.log('page_name', name);
     this.items.forEach((item: any) => {
       item.style.display = item.getAttribute('data-page') === name ? 'block' : 'none';
     });

@@ -1,6 +1,7 @@
 import { PAGES } from '../utils/Pages';
 import AudioManager from './AudioManager';
 import { TimelineLite } from 'gsap';
+import Socket from '../utils/Socket';
 
 class PhoneManager {
   private static TRUMP_PHONE_NUMBER: string = '06 54 78 17 35';
@@ -74,25 +75,41 @@ class PhoneManager {
   }
 
   endCall() {
-    (document.querySelector('.credits') as HTMLElement).style.display = 'block';
+    Socket.emit('call:end');
+    PAGES.fade('');
   }
 
   startCallAnimation () {
     const el = document.createElement('div');
     const timeline = new TimelineLite();
-    timeline.to(el, 1.5, {
+    timeline.to(el, 1, {
       onComplete: () => {
-        AudioManager.play('phone_ring.mp3');
+        AudioManager.play('phone_ring.wav');
       },
     });
-    timeline.to(el, 1.5, {
+    timeline.to(el, 3.5, {
       onComplete: () => {
-        AudioManager.play('phone_ring.mp3');
+        AudioManager.play('phone_ring.wav');
       },
     });
-    timeline.to(el, 1.5, {
+    timeline.to(el, 3.5, {
       onComplete: () => {
-        AudioManager.play('phone_ring.mp3');
+        AudioManager.play('phone_ring.wav');
+      },
+    });
+    timeline.to(el, 3.5, {
+      onComplete: () => {
+        AudioManager.play('phone_deccroche.wav');
+      },
+    });
+    timeline.to(el, .5, {
+      onComplete: () => {
+        AudioManager.play('fake_news.wav');
+      },
+    });
+    timeline.to(el, 2, {
+      onComplete: () => {
+        AudioManager.play('phone_raccroche.wav', 1, this.endCall.bind(this));
       },
     });
     timeline.play();
