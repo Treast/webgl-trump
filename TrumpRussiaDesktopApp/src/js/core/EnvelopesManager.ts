@@ -20,7 +20,7 @@ import Socket from './Socket';
 import effectManager from './EffectManager';
 import CamerasManager from './CamerasManager';
 import AudioManager from './AudioManager';
-import { TweenMax } from 'gsap';
+import { TweenMax, TimelineLite } from 'gsap';
 
 class EnvelopesManager {
 
@@ -99,6 +99,11 @@ class EnvelopesManager {
    * @param envelope
    */
   private removeEnvelope (envelope: Envelope) {
+    const textKeeped = document.querySelector('.experience_envelope_keeped');
+    const tm = new TimelineLite();
+    tm.to(textKeeped, 1, { visibility: 'visible', opacity: 1 });
+    tm.to(textKeeped, 1, { delay: 1, visibility: 'hidden', opacity: 0 });
+    tm.play();
     envelope.object.children.forEach((children: Object3D) => {
       envelope.object.remove(children);
     });
