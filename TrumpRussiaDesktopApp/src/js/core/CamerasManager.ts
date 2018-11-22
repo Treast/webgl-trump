@@ -3,7 +3,7 @@
  * du mobile. On peut également changer de zoom.
  */
 
-import { Group, PerspectiveCamera, Scene, Vector3 } from 'three';
+import { AxesHelper, Group, PerspectiveCamera, Scene, Vector3 } from 'three';
 import { CONFIG } from '../config';
 import { Orientation } from '../typing';
 import Socket from './Socket';
@@ -60,6 +60,13 @@ class CamerasManager {
       cameraObject.position.y / 100,
       cameraObject.position.z / 100,
     );
+    if (this.cameraParent.position.z > 0) {
+      this.camera.rotation.order = 'YXZ';
+    } else if (this.cameraParent.position.x > 0) {
+      this.camera.rotation.order = 'XYZ';
+    } else {
+      this.camera.rotation.order = 'XYZ';
+    }
     this.camera.lookAt(0, 0, 0);
     this.camera.updateProjectionMatrix();
     if (playSound) AudioManager.play('ChangerCam.wav');
@@ -74,8 +81,13 @@ class CamerasManager {
     const sensibility = 1;
     if (!Game.isPauseOn) {
       if (this.cameraParent.position.z > 0) {
+        this.cameraParent.rotation.order = 'YXZ';
         this.cameraParent.rotation.x = (-(data.beta * Math.PI / 180) * -1) / sensibility;
+      } else if (this.cameraParent.position.x > 0) {
+        this.cameraParent.rotation.order = 'XYZ';
+        this.cameraParent.rotation.z = ((-(data.beta * Math.PI / 180) * -1) / sensibility) * -1;
       } else {
+        this.cameraParent.rotation.order = 'XYZ';
         this.cameraParent.rotation.z = (-(data.beta * Math.PI / 180) * -1) / sensibility;
       }
       this.cameraParent.rotation.y = (data.alpha * Math.PI / 180) / sensibility;

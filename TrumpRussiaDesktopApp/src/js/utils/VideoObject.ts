@@ -1,5 +1,6 @@
 import {
-  LinearFilter,
+  DoubleSide,
+  LinearFilter, MeshBasicMaterial,
   MeshLambertMaterial,
   Object3D,
   RGBFormat,
@@ -10,15 +11,17 @@ export class VideoObject {
 
   static apply (videoId: string, object: Object3D) {
     const video = document.getElementById(videoId) as HTMLVideoElement;
-    object.traverse((node: Object3D) => {
-      // @ts-ignore
-      if (node.isMesh) {
-        // @ts-ignore
-        node.material = node.material.clone();
-        // @ts-ignore
-        node.material.map = this.createTexture(video);
-      }
-    });
+    // @ts-ignore
+    object.material = object.material.clone();
+    // @ts-ignore
+    object.material = new MeshBasicMaterial();
+    // @ts-ignore
+    object.material.side = DoubleSide;
+    // @ts-ignore
+    object.material.map = this.createTexture(video);
+    // @ts-ignore
+    object.material.needsUpdate = true;
+    video.volume = 0;
     video.play();
   }
 

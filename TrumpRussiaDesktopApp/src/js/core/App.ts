@@ -105,7 +105,7 @@ export class App {
     TimerManager.runCount(() => {
       AudioManager.playBassSound();
       PAGES.show('app');
-      // VideoObject.apply('videoTrumpPoutine', Game.scene.getObjectByName('Plan'));
+      Game.onBeforeAnimate();
       Game.animate();
     });
   }

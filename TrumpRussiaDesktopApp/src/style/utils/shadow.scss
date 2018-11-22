@@ -1,8 +1,8 @@
 $borders: (
-  'left': (5px 0 5px -5px, inset -5px 0 5px -5px),
-  'right': (-5px 0 5px -5px, inset 5px 0 5px -5px),
-  'top': (0 -5px 5px -5px, inset 0 5px 5px -5px),
-  'bottom': (0 5px 5px -5px, inset 0 -5px 5px -5px)
+  'left': (5px 0 3px -5px, inset -5px 0 3px -5px),
+  'right': (-5px 0 3px -5px, inset 5px 0 3px -5px),
+  'top': (0 -5px 3px -5px, inset 0 5px 3px -5px),
+  'bottom': (0 5px 3px -5px, inset 0 -5px 3px -5px)
 );
 
 @function shadow-border($types, $color) {
@@ -22,6 +22,6 @@ $borders: (
   @return unquote($box-shadow + ';');
 }
 
-.c {
+.shadow-example {
   box-shadow: shadow-border((left, right), red);
 }

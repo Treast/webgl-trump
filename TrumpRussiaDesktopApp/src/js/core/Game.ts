@@ -4,7 +4,7 @@
  */
 
 import {
-  Clock,
+  Clock, DoubleSide,
   LoadingManager, Object3D,
   PerspectiveCamera,
   Scene, Vector3,
@@ -167,6 +167,18 @@ class Game {
       },
     );
     modelsLoader.load(MODELS_DATA);
+  }
+
+  onBeforeAnimate() {
+    const screen = this.scene.getObjectByName('Ecran');
+    const laptop = this.scene.getObjectByName('ecran');
+    // @ts-ignore
+    // laptop.material.side = DoubleSide;
+    screen.rotation.order = 'YXZ';
+    screen.rotation.x = 1.6;
+    screen.rotation.y = 3.15;
+    screen.updateMatrix();
+    VideoObject.apply('videoTrumpPoutine', screen);
   }
 
   /**

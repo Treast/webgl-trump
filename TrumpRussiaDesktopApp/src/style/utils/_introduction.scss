@@ -32,7 +32,7 @@ section[data-page="introduction"] {
         top: -42px;
         left: 16px;
         background-color: #fff;
-        box-shadow: shadow-border((top, bottom), #fff);
+        box-shadow: shadow-border((top, bottom, left, right), #fff);
         transform: rotate(45deg);
       }
 

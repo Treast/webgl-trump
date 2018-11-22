@@ -13,7 +13,7 @@ export const DAT_GUI = {
   params: {
     // filmPass: new GUIParamsFilmPass(),
     // badTvPadd: new GUIParamsBadTVPass(),
-    flag: new GUIParamsFlag(),
+    // flag: new GUIParamsFlag(),
   },
 
   gui: CONFIG.DEBUG_MODE ? new dat.GUI() : null,

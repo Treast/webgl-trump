@@ -131,7 +131,7 @@ class EffectManager {
    */
   initFilmPass () {
     // @ts-ignore
-    this.filmPass = new THREE.FilmPass(0.58, 0.13, 890, false);
+    this.filmPass = new THREE.FilmPass(0.58, 0.13, 890, true);
     this.composer.addPass(this.filmPass);
   }
 
