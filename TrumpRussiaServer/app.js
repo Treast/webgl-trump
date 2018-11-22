@@ -43,12 +43,12 @@ io.on('connection', socket => {
     socket.to(socket.roomId).emit('game:count');
   });
 
-  socket.on('game:win', () => {
-    socket.to(socket.roomId).emit('game:win');
+  socket.on('game:win', (data) => {
+    socket.to(socket.roomId).emit('game:win', data);
   });
 
-  socket.on('game:lose', () => {
-    socket.to(socket.roomId).emit('game:lose');
+  socket.on('game:lose', (data) => {
+    socket.to(socket.roomId).emit('game:lose', data);
   });
 
   /**

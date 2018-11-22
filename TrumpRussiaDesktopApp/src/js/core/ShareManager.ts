@@ -16,12 +16,16 @@ class ShareManager {
     this.facebookButton.addEventListener('click', this.onClickFacebook.bind(this));
   }
 
-  changeText() {
+  changeText(minutes: any, seconds: any) {
+    document.querySelector('.page_end .timer-minutes').innerHTML = minutes;
+    document.querySelector('.page_end .timer-seconds').innerHTML = seconds;
     switch (Game.state) {
       case GameState.Wining:
-        const text = `J'ai piraté une salle secrète de Trump en ${TimerManager.timerMinutes}:${TimerManager.timerSeconds}.
-        Peux-tu faire mieux ? #TrumpsSecret\n\nhttps://trump.vincentriva.fr`;
-        this.twitterButton.parentElement.setAttribute('href', `https://twitter.com/intent/tweet?text=${text}`);
+        const text = `J'ai piraté Donald Trump en ${parseInt(minutes, 10)}m${parseInt(seconds, 10)}s.
+Peux-tu faire mieux ? #TrumpsSecrets
+
+https://trump.vincentriva.fr`;
+        this.twitterButton.parentElement.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`);
         break;
       case GameState.Losing:
         break;

@@ -43,12 +43,12 @@ export class App {
 
   static runMoraleAnimation() {
     const elements: NodeListOf<HTMLElement> = document.querySelectorAll('.morale .inner .inner-content .letter');
-    const delay = elements.length * 0.15 + 2;
+    const delay = elements.length * 0.08 + 1;
     const timeline = new TimelineMax();
     timeline.staggerTo(elements, 0.4, {
       opacity: 1,
       ease: Power2.easeInOut,
-    },                 0.150);
+    },                 0.08);
 
     timeline.staggerTo(
       elements,
@@ -58,12 +58,10 @@ export class App {
         ease: Power2.easeInOut,
         delay: delay,
       },
-      0.150,
+      0.08,
       0,
       () => {
-        setTimeout(() => {
-          PAGES.fade('end');
-        },         300);
+        PAGES.fade('end');
       });
   }
 
