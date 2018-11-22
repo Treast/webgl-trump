@@ -209,6 +209,7 @@ class Game {
     } else {
       this.updateState(GameState.Losing);
       EffectManager.setBreakScreen(true);
+      ShareManager.changeText();
     }
     (document.getElementById('experience')).classList.add(`experience-${this.state.toLowerCase()}`);
   }

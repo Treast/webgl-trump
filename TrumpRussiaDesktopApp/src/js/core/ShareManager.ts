@@ -16,18 +16,24 @@ class ShareManager {
     this.facebookButton.addEventListener('click', this.onClickFacebook.bind(this));
   }
 
-  changeText(minutes: any, seconds: any) {
+  changeText(minutes: any = 0, seconds: any = 0) {
     document.querySelector('.page_end .timer-minutes').innerHTML = minutes;
     document.querySelector('.page_end .timer-seconds').innerHTML = seconds;
+    let text = '';
     switch (Game.state) {
       case GameState.Wining:
-        const text = `J'ai piraté Donald Trump en ${parseInt(minutes, 10)}m${parseInt(seconds, 10)}s.
+        text = `J'ai piraté Donald Trump en ${parseInt(minutes, 10)}m${parseInt(seconds, 10)}s.
 Peux-tu faire mieux ? #TrumpsSecrets
 
 https://trump.vincentriva.fr`;
         this.twitterButton.parentElement.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`);
         break;
       case GameState.Losing:
+        text = `J'ai failli piraté Donald Trump.
+Peux-tu faire mieux ? #TrumpsSecrets
+
+https://trump.vincentriva.fr`;
+        this.twitterButton.parentElement.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`);
         break;
     }
   }
@@ -40,7 +46,7 @@ https://trump.vincentriva.fr`;
     // @ts-ignore
     FB.ui({
       method: 'share',
-      href: 'https://developers.facebook.com/docs/',
+      href: 'https://trump.vincentriva.fr/',
     },    (response: any) => {});
   }
 }
