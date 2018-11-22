@@ -1,0 +1,37 @@
+[data-page="game-result"] {
+  header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    left: 50%;
+    top: 70px;
+    width: 100%;
+    transform: translateX(-50%);
+    span{
+      font-family: 'Chakra Petch', sans-serif;
+      @extend .text;
+      &:nth-child(1){
+        font-size: 20px;
+      }
+      &:nth-child(2){
+        font-size: 30px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .inner{
+    @extend .text;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 23px;
+    font-family: 'Chakra Petch', sans-serif;
+  }
+}

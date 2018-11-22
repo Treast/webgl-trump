@@ -27,7 +27,6 @@ class GameManager {
     this.updateState(GameState.Starting);
     Socket.on('game:win', () => {
       this.updateState(GameState.Wining);
-      PAGES.fade('inventory', true);
       App.setWinState(true, TimerManager.remainingTime);
     });
     this.buttonFullscreenYes.addEventListener('click', this.onClickFullscreen.bind(this, true));

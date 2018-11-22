@@ -7,6 +7,7 @@ class MenuManager {
   private btnController: HTMLElement;
   private btnInventory: HTMLElement;
   private btnPhone: HTMLElement;
+  private currentPage: string = '';
 
   private static BTN_ENABLE_OPACITY: string = '1';
   private static BTN_DISABLE_OPACITY: string = '0.3';
@@ -31,11 +32,14 @@ class MenuManager {
     if (button.parentElement.classList.contains('menu_item-active')) {
       const page = button.getAttribute('data-click-page');
       if (page) {
-        for (const menuButton of this.menuButtons) {
-          menuButton.parentElement.classList.remove('menu_item-on');
+        if (page !== this.currentPage) {
+          for (const menuButton of this.menuButtons) {
+            menuButton.parentElement.classList.remove('menu_item-on');
+          }
+          button.parentElement.classList.add('menu_item-on');
+          PAGES.fade(page, true);
+          this.currentPage = page;
         }
-        button.parentElement.classList.add('menu_item-on');
-        PAGES.fade(page, true);
       } else {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');

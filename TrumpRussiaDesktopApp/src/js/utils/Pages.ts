@@ -1,5 +1,6 @@
 import { TimelineMax } from 'gsap';
 import Socket from '../core/Socket';
+import Game, { GameState } from '../core/Game';
 
 /**
  * Système de pages qui nous permet d'afficher des écrans prédéfinis tout au long de l'expérience.
@@ -43,6 +44,10 @@ export const PAGES: PagesManager = {
    * @param trigger
    */
   fade (name: string, trigger: boolean = false) {
+    if (Game.state === GameState.Wining && name === 'app') {
+      this.fade('game-result', trigger);
+      return false;
+    }
     const currentPage = document.querySelector(`[data-page="${this.get()}"]`) as HTMLElement;
     const nextPage = document.querySelector(`[data-page="${name}"]`) as HTMLElement;
     const timeline = new TimelineMax();

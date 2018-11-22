@@ -72,7 +72,7 @@ export const CONFIG = {
     'voices/04_CameraControlables.wav',
     'voices/05_QRCode.wav',
     'voices/06_TempsEcoule.wav',
-    'voices/07_5EnveloppesRecoltee.wav',
+    'voices/07_EnveloppesRecoltees.wav',
     'voices/08_Aide01.wav',
     'voices/08_Aide02.wav',
     'voices/08_Aide03.wav',

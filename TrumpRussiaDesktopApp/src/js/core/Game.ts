@@ -25,6 +25,7 @@ import Flag from './Flag';
 import LoaderManager from './LoaderManager';
 import { App } from './App';
 import ShareManager from './ShareManager';
+import AudioManager from './AudioManager';
 
 interface FlagInformations {
   name: string;
@@ -205,6 +206,11 @@ class Game {
     if (isWinning) {
       this.updateState(GameState.Wining);
       ShareManager.changeText(data.minutes, data.seconds);
+      (document.querySelectorAll('[data-score]') as NodeListOf<HTMLElement>).forEach((el: HTMLElement) => {
+        el.innerHTML = `${data.minutes}:${data.seconds}`;
+      });
+      PAGES.fade('game-result');
+      AudioManager.playVoice('07_EnveloppesRecoltees.wav');
     } else {
       this.updateState(GameState.Losing);
       EffectManager.setBreakScreen(true);
