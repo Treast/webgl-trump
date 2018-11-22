@@ -1,5 +1,6 @@
 import { PAGES } from '../utils/Pages';
 import AudioManager from './AudioManager';
+import Socket from '../utils/Socket';
 
 class PhoneManager {
   private static TRUMP_PHONE_NUMBER: string = '06 54 78 17 35';
@@ -72,6 +73,7 @@ class PhoneManager {
   }
 
   endCall() {
+    Socket.emit('call:end');
     (document.querySelector('.credits') as HTMLElement).style.display = 'block';
   }
 }

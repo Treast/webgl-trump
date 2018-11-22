@@ -49,7 +49,7 @@ class Game {
   private shaderTime: number = 0;
   public isPauseOn: boolean = false;
   private fan: Object3D;
-  private state: GameState;
+  public state: GameState;
   private elementsGameState: NodeListOf<Element>;
 
   /**
@@ -83,9 +83,14 @@ class Game {
     Socket.on('game:lose', this.onGameFinish.bind(this, false));
     Socket.on('pause:on', this.onGamePauseOn.bind(this));
     Socket.on('pause:off', this.onGamePauseOff.bind(this));
+    Socket.on('call:end', this.onCallEnd.bind(this));
     Socket.on('restart', () => {
       window.location.reload();
     });
+  }
+
+  onCallEnd() {
+
   }
 
   onGamePauseOn() {
