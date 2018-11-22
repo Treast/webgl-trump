@@ -16,6 +16,7 @@ import TimerManager from './TimerManager';
 import AudioManager from './AudioManager';
 import ShareManager from './ShareManager';
 import { TimelineMax, Power2 } from 'gsap';
+import { VideoObject } from '../utils/VideoObject';
 
 export class App {
 
@@ -104,6 +105,7 @@ export class App {
     TimerManager.runCount(() => {
       AudioManager.playBassSound();
       PAGES.show('app');
+      // VideoObject.apply('videoTrumpPoutine', Game.scene.getObjectByName('Plan'));
       Game.animate();
     });
   }

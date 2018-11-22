@@ -67,7 +67,7 @@ class EnvelopesManager {
    * @param envelope
    */
   private createBoundingBox (envelope: Object3D) {
-    const geometry = new BoxGeometry(40, 40, 40);
+    const geometry = new BoxGeometry(50, 50, 50);
     const material = new MeshBasicMaterial({ opacity: 0.3, color: 0x00ff00 });
     const cube = new Mesh(geometry, material);
     // @ts-ignore

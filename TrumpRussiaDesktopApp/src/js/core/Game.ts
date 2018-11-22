@@ -43,7 +43,7 @@ class Game {
   private width: number;
   private height: number;
   private camera: PerspectiveCamera;
-  private scene: Scene;
+  public scene: Scene;
   private loaderManager: LoadingManager;
   public renderer: WebGLRenderer;
   private clock: Clock;
@@ -129,7 +129,6 @@ class Game {
     CamerasManager.init(this.scene, this.camera);
     CamerasManager.setCamera(0, false);
     this.initFlags();
-    VideoObject.apply('videoTrumpPoutine', this.scene.getObjectByName('plan'));
   }
 
   initFlags() {

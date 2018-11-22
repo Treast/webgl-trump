@@ -14,6 +14,8 @@ export class VideoObject {
       // @ts-ignore
       if (node.isMesh) {
         // @ts-ignore
+        node.material = node.material.clone();
+        // @ts-ignore
         node.material.map = this.createTexture(video);
       }
     });

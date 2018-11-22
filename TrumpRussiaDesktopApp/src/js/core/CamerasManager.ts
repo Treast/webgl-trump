@@ -71,13 +71,14 @@ class CamerasManager {
    * @param data
    */
   changeOrientation (data: Orientation) {
+    const sensibility = 1;
     if (!Game.isPauseOn) {
       if (this.cameraParent.position.z > 0) {
-        this.cameraParent.rotation.x = -(data.beta * Math.PI / 180) * -1;
+        this.cameraParent.rotation.x = (-(data.beta * Math.PI / 180) * -1) / sensibility;
       } else {
-        this.cameraParent.rotation.z = -(data.beta * Math.PI / 180) * -1;
+        this.cameraParent.rotation.z = (-(data.beta * Math.PI / 180) * -1) / sensibility;
       }
-      this.cameraParent.rotation.y = data.alpha * Math.PI / 180;
+      this.cameraParent.rotation.y = (data.alpha * Math.PI / 180) / sensibility;
     }
   }
 
