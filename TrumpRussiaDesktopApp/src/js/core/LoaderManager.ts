@@ -26,10 +26,9 @@ class LoaderManager {
 
   updateLoading() {
     const loading = this.currentLoading / this.numberOfElementsToLoad * 100;
-    (document.querySelector('.loader_value') as HTMLElement).innerText = `${Math.round(loading)}%`;
+    (document.querySelector('.loader_value') as HTMLElement).innerHTML = `${Math.round(loading)}%`;
     const width = loading * this.elementMaxWidth / 100;
-    if (this.currentLoading < this.numberOfElementsToLoad - 2) this.element.style.width = `${width}px`;
-
+    this.element.style.width = `${width}px`;
     if (this.currentLoading === this.numberOfElementsToLoad) {
       setTimeout(
         () => {

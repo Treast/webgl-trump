@@ -1,5 +1,6 @@
 import { PAGES } from '../utils/Pages';
 import AudioManager from './AudioManager';
+import { TimelineLite } from 'gsap';
 import Socket from '../utils/Socket';
 
 class PhoneManager {
@@ -67,6 +68,7 @@ class PhoneManager {
     (document.querySelector('.number-not-found') as HTMLElement).style.color = 'transparent';
     if (this.input.innerText === PhoneManager.TRUMP_PHONE_NUMBER) {
       (document.querySelector('.call') as HTMLElement).style.display = 'block';
+      this.startCallAnimation();
     } else {
       (document.querySelector('.number-not-found') as HTMLElement).style.color = '#f00';
     }
@@ -74,7 +76,43 @@ class PhoneManager {
 
   endCall() {
     Socket.emit('call:end');
-    (document.querySelector('.credits') as HTMLElement).style.display = 'block';
+    PAGES.fade('');
+  }
+
+  startCallAnimation () {
+    const el = document.createElement('div');
+    const timeline = new TimelineLite();
+    timeline.to(el, 1, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.wav');
+      },
+    });
+    timeline.to(el, 3.5, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.wav');
+      },
+    });
+    timeline.to(el, 3.5, {
+      onComplete: () => {
+        AudioManager.play('phone_ring.wav');
+      },
+    });
+    timeline.to(el, 3.5, {
+      onComplete: () => {
+        AudioManager.play('phone_deccroche.wav');
+      },
+    });
+    timeline.to(el, .5, {
+      onComplete: () => {
+        AudioManager.play('fake_news.wav');
+      },
+    });
+    timeline.to(el, 2, {
+      onComplete: () => {
+        AudioManager.play('phone_raccroche.wav', 1, this.endCall.bind(this));
+      },
+    });
+    timeline.play();
   }
 }
 

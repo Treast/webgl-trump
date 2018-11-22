@@ -51,7 +51,72 @@
     text-align: center;
     margin-top: 30px;
   }
-  .separator {
+  .separator{
+    position: relative;
+      div {
+        display: block;
+        text-align: center;
+        margin: 0 auto -2px;
+        width: 160px;
+        position: relative;
+        // background: $background;
+        &:before, &:after{
+          content: '';
+          display: block;
+          position: absolute;
+          bottom: 2px;
+          width: 24vw;
+          height: 1px;
+          background-color: #fff;
+        }
+        &:before{
+          left: 0;
+          transform: translateX(-100%);
+        }
+        &:after{
+          right: 0;
+          transform: translateX(100%);
+        }
+      }
+      span {
+        @extend .text;
+        padding: 8px 56px;
+        font-family: 'Bai Jamjuree', sans-serif;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        border-top: 1px solid #ffffff;
+        // background: $background;
+        height: 32px;
+
+        &::before {
+          position: absolute;
+          content: '';
+          display: block;
+          top: -13px;
+          left: 11px;
+          bottom: 0;
+          height: 35px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(45deg);
+        }
+
+        &::after{
+          position: absolute;
+          content: '';
+          display: block;
+          top: -13px;
+          right: 11px;
+          bottom: 0;
+          height: 35px;
+          width: 1px;
+          background-color: #ffffff;
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  /*.separator {
     position: relative;
     display: flex;
     align-items: center;
@@ -105,7 +170,7 @@
         transform: rotate(-45deg);
       }
     }
-  }
+  }*/
 
   .phone-number {
     height: 38px;
@@ -130,7 +195,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    border-top: 1px solid #fff;
+    //border-top: 1px solid #fff;
     padding-top: 25px;
     flex-grow: 1;
 

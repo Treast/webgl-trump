@@ -2,6 +2,7 @@ import Socket from '../utils/Socket';
 import MenuManager from './MenuManager';
 import TimerManager from './TimerManager';
 import { PAGES } from '../utils/Pages';
+import App from './App';
 import ShareManager from '../../../../TrumpRussiaDesktopApp/src/js/core/ShareManager';
 
 export enum GameState {
@@ -24,7 +25,11 @@ class GameManager {
     this.buttonFullscreenNo = document.querySelector('#fullscreen .choices .choice-no');
     this.elements = document.querySelectorAll('[data-game-state]');
     this.updateState(GameState.Starting);
-    Socket.on('game:win', () => this.updateState(GameState.Wining));
+    Socket.on('game:win', () => {
+      this.updateState(GameState.Wining);
+      PAGES.fade('inventory', true);
+      App.setWinState(true, TimerManager.remainingTime);
+    });
     this.buttonFullscreenYes.addEventListener('click', this.onClickFullscreen.bind(this, true));
     this.buttonFullscreenNo.addEventListener('click', this.onClickFullscreen.bind(this, false));
   }
