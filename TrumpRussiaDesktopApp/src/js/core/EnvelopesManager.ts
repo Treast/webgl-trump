@@ -20,6 +20,7 @@ import Socket from './Socket';
 import effectManager from './EffectManager';
 import CamerasManager from './CamerasManager';
 import AudioManager from './AudioManager';
+import { TweenMax } from 'gsap';
 
 class EnvelopesManager {
 
@@ -32,12 +33,38 @@ class EnvelopesManager {
     this.scene = scene;
   }
 
+  runHelpers() {
+    AudioManager.playIntroBack();
+    let count = 2;
+    AudioManager.play(document.querySelector('.phone .helper .helper-1').getAttribute('data-voice'));
+    const interval = setInterval(() => {
+      const currentHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count] as HTMLElement;
+      const nextHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count + 1] as HTMLElement;
+      TweenMax.to(currentHelper, 1, {
+        y: -40,
+        opacity: 0,
+      });
+      TweenMax.to(nextHelper, 1, {
+        y: 0,
+        opacity: 1,
+        onComplete: () => {
+          count -= 1;
+          AudioManager.play(nextHelper.getAttribute('data-voice'));
+          if (count === 0) {
+            clearInterval(interval);
+          }
+        },
+      });
+    },                           15000);
+  }
+
   /**
    * On initialise les enveloppes et on écoute l'événement de sélection d'enveloppes.
    */
   init () {
     this.initEnvelopes();
     Socket.on('envelope:pickup', this.onPickupEnvelope.bind(this));
+    Socket.on('run:helper', this.runHelpers.bind(this));
   }
 
   /**

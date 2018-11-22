@@ -55,9 +55,9 @@ export class App {
       elements,
       0.4,
       {
+        delay,
         opacity: 0,
         ease: Power2.easeInOut,
-        delay: delay,
       },
       0.08,
       0,
