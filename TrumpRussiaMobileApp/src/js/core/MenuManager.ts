@@ -49,7 +49,7 @@ class MenuManager {
       } else {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');
-        Socket.emit('page:show', 'inventory');
+        Socket.emit('page:fade', 'inventory');
       }
     }
   }

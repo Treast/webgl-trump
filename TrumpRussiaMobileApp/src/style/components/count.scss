@@ -61,4 +61,20 @@
       }
     }
   }
+
+
+  .instructions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10%;
+    text-align: center;
+
+    h2 {
+      @extend .text;
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 14px;
+      padding: 0 20px;
+    }
+  }
 }
