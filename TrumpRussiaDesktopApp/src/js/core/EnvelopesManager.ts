@@ -29,6 +29,7 @@ class EnvelopesManager {
   private raycaster: Raycaster = new Raycaster();
   private currEnvelopeSelected: Envelope = null;
   private stopHelper: boolean = false;
+  private isHelperRun: boolean = false;
 
   setScene(scene: Scene) {
     this.scene = scene;
@@ -153,28 +154,32 @@ class EnvelopesManager {
   }
 
   runHelpers() {
-    AudioManager.playIntroBack();
-    let count = 2;
-    AudioManager.playVoice(document.querySelector('.phone .helper .helper-1').getAttribute('data-voice'));
-    const interval = setInterval(() => {
-      const currentHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count] as HTMLElement;
-      const nextHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count + 1] as HTMLElement;
-      TweenMax.to(currentHelper, 1, {
-        y: -40,
-        opacity: 0,
-      });
-      TweenMax.to(nextHelper, 1, {
-        y: 0,
-        opacity: 1,
-        onComplete: () => {
-          count -= 1;
-          if (!this.stopHelper) AudioManager.playVoice(nextHelper.getAttribute('data-voice'));
-          if (count === 0) {
-            clearInterval(interval);
-          }
-        },
-      });
-    },                           15000);
+    if (!this.isHelperRun) {
+      this.isHelperRun = true;
+      console.log('Helper run');
+      AudioManager.playIntroBack();
+      let count = 2;
+      AudioManager.playVoice(document.querySelector('.phone .helper .helper-1').getAttribute('data-voice'));
+      const interval = setInterval(() => {
+        const currentHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count] as HTMLElement;
+        const nextHelper = document.querySelectorAll('.phone .helper .helper-in')[2 - count + 1] as HTMLElement;
+        TweenMax.to(currentHelper, 1, {
+          y: -40,
+          opacity: 0,
+        });
+        TweenMax.to(nextHelper, 1, {
+          y: 0,
+          opacity: 1,
+          onComplete: () => {
+            count -= 1;
+            if (!this.stopHelper) AudioManager.playVoice(nextHelper.getAttribute('data-voice'));
+            if (count === 0) {
+              clearInterval(interval);
+            }
+          },
+        });
+      },                           15000);
+    }
   }
 
   stopHelpers () {

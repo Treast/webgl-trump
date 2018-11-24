@@ -75,6 +75,8 @@ class EnvelopesManager {
 
     if (document.querySelectorAll('.inventory_item-active').length <= 0) {
       Socket.emit('page:fade', 'inventory');
+      Socket.emit('helper:run');
+      console.log('Emit helper:run');
     }
   }
 

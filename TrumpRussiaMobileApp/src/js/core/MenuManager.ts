@@ -34,9 +34,6 @@ class MenuManager {
     if (button.parentElement.classList.contains('menu_item-active')) {
       const page = button.getAttribute('data-click-page');
       if (page) {
-        if (page === 'inventory' && this.visitedPages.indexOf('inventory') === -1) {
-          Socket.emit('helper:run');
-        }
         if (page !== this.currentPage) {
           for (const menuButton of this.menuButtons) {
             menuButton.parentElement.classList.remove('menu_item-on');
@@ -50,6 +47,7 @@ class MenuManager {
         const clickClass = button.getAttribute('data-click-class');
         document.querySelector(clickClass).classList.add('show');
         Socket.emit('page:fade', 'inventory');
+        Socket.emit('helper:run');
       }
     }
   }

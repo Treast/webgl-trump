@@ -171,9 +171,9 @@ class Game {
 
   onBeforeAnimate() {
     const screen = this.scene.getObjectByName('Ecran');
-    const laptop = this.scene.getObjectByName('ecran');
+    const laptop = this.scene.getObjectByName('ecranOrdi');
     // @ts-ignore
-    // laptop.material.side = DoubleSide;
+    laptop.material.side = DoubleSide;
     screen.rotation.order = 'YXZ';
     screen.rotation.x = 1.6;
     screen.rotation.y = 3.15;
