@@ -10,7 +10,7 @@
   align-items: center;
   justify-content: space-around;
   //background: $background, radial-gradient(ellipse at center, #ffffff 60%, #000000 100%);
-  background-blend-mode: multiply;
+  //background-blend-mode: multiply;
 
   &::before {
     content: '';
