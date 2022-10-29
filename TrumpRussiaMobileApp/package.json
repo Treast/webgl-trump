@@ -58,7 +58,7 @@
     "har-validator": "git+https://github.com/ahmadnassri/node-har-validator",
     "howler": "^2.0.15",
     "nouislider": "^12.1.0",
-    "socket.io-client": "^2.1.1",
+    "socket.io-client": "^2.5.0",
     "three": "^0.105.1"
   }
 }
